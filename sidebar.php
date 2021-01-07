@@ -1,56 +1,66 @@
-<!-- begin #sidebar -->
-<div id="sidebar" class="sidebar">
-    <div data-scrollbar="true" data-height="100%">
-        <ul class="nav">
-            <li class="nav-profile">
-                <a href="javascript:;" data-toggle="nav-profile">
-                    <div class="cover with-shadow"></div>
-                    <div class="image">
-                        <?php
-                        if ($_SESSION['foto']==NULL) { ?>
-                            <img src="assets/img/user/user-13.png" alt=""/>   
-                        <?php }else{ ?>
-                            <img src="<?php echo base_url().'assets/img/user/'. $_SESSION['foto'];?>" alt="" />   
-                        <?php } ?>
-                    </div>
-                    <div class="info">
-                        <b class="caret pull-right"></b>
-                        <?php echo $_SESSION['nama_lengkap'];?>
-                        <small>NIP: <?php echo $_SESSION['NIK'];?></small>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <ul class="nav nav-profile">
-                    <li><a href="javascript:;"><i class="fa fa-cog"></i> Edit Profile</a></li>
-                </ul>
-            </li>
-        </ul>
-        <ul class="nav">
-            <li class="nav-header">Navigation</li>
-            <li class="<?= empty($_GET['m']) ? 'active' : '' ?>">
-                <a href="index.php"><i class="fa fa-th-large"></i> <span>Dashboard</span></a>
-            </li>
-            <?php if ($_SESSION['role'] == 'admin') { ?>
-            <li class="<?= !empty($_GET['m']) && $_GET['m'] == 'bodj' ? 'active' : '' ?>">
-                <a href="index.php?m=bodj&s=bodj"><i class="fa fa-file"></i> <span>INPUT BODJ</span></a>
-            </li>
-            <?php if($_SESSION['role']=='Admin'){ ?>
-            <li class="<?= !empty($_GET['m']) && $_GET['m'] == 'user' ? 'active' : '' ?>">
-                <a href="index.php?m=user&s=user"><i class="fa fa-users"></i> <span>Data Dokter</span></a>
-            </li>
-            <?php } ?>
-            <li class="nav-header">Section Report</li>
-            <li class="<?= !empty($_GET['m']) && $_GET['m'] == 'pasien' ? 'active' : '' ?>">
-                <a href="index.php?m=pasien&s=pasien"><i class="fa fa-chart-pie"></i> <span>Laporan Per-Pasien</span></a>
-            </li>
-            <li class="<?= !empty($_GET['m']) && $_GET['m'] == 'laporan' ? 'active' : '' ?>">
-                <a href="index.php?m=laporan&s=laporan"><i class="fa fa-chart-pie"></i> <span>Laporan BODJ Pasien</span></a>
-            </li>
-            <?php } ?>
-            <li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
-        </ul>
+<aside class="left-sidebar" data-sidebarbg="skin6">
+    <div class="scroll-sidebar" data-sidebarbg="skin6">
+        <nav class="sidebar-nav">
+            <ul id="sidebarnav">
+                <li class="sidebar-item">
+                    <a class="sidebar-link sidebar-link" href="index.php" aria-expanded="false">
+                        <i data-feather="home" class="feather-icon"></i>
+                        <span class="hide-menu">Dashboard</span>
+                    </a>
+                </li>
+                <li class="list-divider"></li>
+                <li class="nav-small-cap">
+                    <span class="hide-menu">Applications</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="ticket-list.html" aria-expanded="false">
+                        <i data-feather="tag" class="feather-icon"></i>
+                        <span class="hide-menu">Data Pasien</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link sidebar-link" href="app-chat.html" aria-expanded="false">
+                        <i data-feather="message-square" class="feather-icon"></i>
+                        <span class="hide-menu">SOAP Pasien</span>
+                    </a>
+                </li>
+                <li class="list-divider"></li>
+                <li class="nav-small-cap">
+                    <span class="hide-menu">Components</span>
+                </li>
+                <li class="sidebar-item"> 
+                    <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
+                        <i data-feather="file-text" class="feather-icon"></i>
+                        <span class="hide-menu">Forms </span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                        <li class="sidebar-item">
+                            <a href="form-inputs.html" class="sidebar-link">
+                            <span class="hide-menu"> Input BODJ</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sidebar-item"> 
+                    <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
+                        <i data-feather="bar-chart" class="feather-icon"></i>
+                        <span class="hide-menu">Laporan</span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                        <li class="sidebar-item">
+                            <a href="chart-morris.html" class="sidebar-link">
+                                <span class="hide-menu"> SOAP Count Per-Pasien</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="chart-chart-js.html" class="sidebar-link">
+                                <span class="hide-menu"> Riwayat SOAP Pasien </span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="list-divider"></li>
+            </ul>
+        </nav>
     </div>
-</div>
-<div class="sidebar-bg"></div>
-<!-- end #sidebar -->
+</aside>
