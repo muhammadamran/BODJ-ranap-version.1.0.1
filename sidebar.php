@@ -2,7 +2,7 @@
     <div class="scroll-sidebar" data-sidebarbg="skin6">
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
-                <li class="sidebar-item">
+                <li class="sidebar-item <?= empty($_GET['m']) ? 'selected' : '' ?>">
                     <a class="sidebar-link sidebar-link" href="index.php" aria-expanded="false">
                         <i data-feather="home" class="feather-icon"></i>
                         <span class="hide-menu">Dashboard</span>
@@ -12,16 +12,10 @@
                 <li class="nav-small-cap">
                     <span class="hide-menu">Applications</span>
                 </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="ticket-list.html" aria-expanded="false">
+                <li class="sidebar-item <?= !empty($_GET['m']) && $_GET['m'] == 'data-pasien' ? 'selected' : '' ?>">
+                    <a class="sidebar-link" href="index.php?m=data-pasien&s=data-pasien" aria-expanded="false">
                         <i data-feather="tag" class="feather-icon"></i>
                         <span class="hide-menu">Data Pasien</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link sidebar-link" href="app-chat.html" aria-expanded="false">
-                        <i data-feather="message-square" class="feather-icon"></i>
-                        <span class="hide-menu">SOAP Pasien</span>
                     </a>
                 </li>
                 <li class="list-divider"></li>
@@ -34,8 +28,8 @@
                         <span class="hide-menu">Forms </span>
                     </a>
                     <ul aria-expanded="false" class="collapse  first-level base-level-line">
-                        <li class="sidebar-item">
-                            <a href="form-inputs.html" class="sidebar-link">
+                        <li class="sidebar-item <?= !empty($_GET['m']) && $_GET['m'] == 'forms' ? 'active' : '' ?>">
+                            <a href="index.php?m=forms&s=forms" class="sidebar-link">
                             <span class="hide-menu"> Input BODJ</span>
                             </a>
                         </li>
@@ -47,17 +41,27 @@
                         <span class="hide-menu">Laporan</span>
                     </a>
                     <ul aria-expanded="false" class="collapse  first-level base-level-line">
-                        <li class="sidebar-item">
-                            <a href="chart-morris.html" class="sidebar-link">
+                        <li class="sidebar-item <?= !empty($_GET['m']) && $_GET['m'] == 'soap-report' ? 'active' : '' ?>">
+                            <a href="index.php?m=soap-report&s=soap-report" class="sidebar-link">
                                 <span class="hide-menu"> SOAP Count Per-Pasien</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
-                            <a href="chart-chart-js.html" class="sidebar-link">
+                        <li class="sidebar-item <?= !empty($_GET['m']) && $_GET['m'] == 'soapriwayat' ? 'active' : '' ?>">
+                            <a href="index.php?m=soapriwayat&s=soapriwayat" class="sidebar-link">
                                 <span class="hide-menu"> Riwayat SOAP Pasien </span>
                             </a>
                         </li>
                     </ul>
+                </li>
+                <li class="list-divider"></li>
+                <li class="nav-small-cap">
+                    <span class="hide-menu">Administrator</span>
+                </li>
+                <li class="sidebar-item <?= !empty($_GET['m']) && $_GET['m'] == 'pengguna' ? 'selected' : '' ?>">
+                    <a class="sidebar-link" href="index.php?m=pengguna&s=pengguna" aria-expanded="false">
+                        <i data-feather="tag" class="feather-icon"></i>
+                        <span class="hide-menu">Data Pengguna</span>
+                    </a>
                 </li>
                 <li class="list-divider"></li>
             </ul>

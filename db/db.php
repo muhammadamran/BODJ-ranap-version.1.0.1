@@ -1,6 +1,8 @@
 <?php
-$servername = "192.168.55.164";
-$username = "client";
+$servername = "localhost";
+$username = "root";
+// $servername = "192.168.55.164";
+// $username = "client";
 $password = "";
 $dbname = "db_soap";
 

@@ -7,12 +7,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/mode/images/favicon.png">
-	<title>BODJ Rawat Inap | Dashboard</title>
+    <title>BODJ Rawat Inap | Dashboard</title>
     <link href="assets/mode/extra-libs/c3/c3.min.css" rel="stylesheet">
     <link href="assets/mode/libs/chartist/dist/chartist.min.css" rel="stylesheet">
     <link href="assets/mode/extra-libs/jvector/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
     <link href="assets/mode/dist/css/style.min.css" rel="stylesheet">
-	<script type="text/javascript" src="assets/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="assets/ckeditor/ckeditor.js"></script>
+    <link href="assets/mode/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
 </head>
 <style type="text/css">
 	.lingkaran{
@@ -22,6 +23,17 @@
 		/* border-radius: 100%; */
 	}
 </style>
+<script type="text/javascript"> 
+  function display_c(){
+  var refresh=1000; // Refresh rate in milli seconds
+  mytime=setTimeout('display_ct()',refresh)
+  }
+  function display_ct() {
+  var x = new Date()
+  document.getElementById('ct').innerHTML = x;
+  display_c();
+  }
+</script>
 <?php
 function tanggal_indo($tanggal, $cetak_hari = false)
 {
@@ -58,7 +70,7 @@ function tanggal_indo($tanggal, $cetak_hari = false)
   return $tgl_indo;
 }
 ?>
-<body>
+<body onload=display_ct();>
 	<div class="preloader">
         <div class="lds-ripple">
             <div class="lds-pos"></div>

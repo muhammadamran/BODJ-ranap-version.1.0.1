@@ -14,5 +14,8 @@
     <script src="assets/mode/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js"></script>
     <script src="assets/mode/extra-libs/jvector/jquery-jvectormap-world-mill-en.js"></script>
     <script src="assets/mode/dist/js/pages/dashboards/dashboard1.min.js"></script>
+    <script src="assets/mode/extra-libs/sparkline/sparkline.js"></script>
+    <script src="assets/mode/extra-libs/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="assets/mode/dist/js/pages/datatable/datatable-basic.init.js"></script>
 </body>
 </html>
