@@ -12,8 +12,8 @@
                 <li class="nav-small-cap">
                     <span class="hide-menu">Applications</span>
                 </li>
-                <li class="sidebar-item <?= !empty($_GET['m']) && $_GET['m'] == 'data-pasien' ? 'selected' : '' ?>">
-                    <a class="sidebar-link" href="index.php?m=data-pasien&s=data-pasien" aria-expanded="false">
+                <li class="sidebar-item <?= !empty($_GET['m']) && $_GET['m'] == 'datapasien' ? 'selected' : '' ?>">
+                    <a class="sidebar-link" href="index.php?m=datapasien&s=datapasien" aria-expanded="false">
                         <i data-feather="tag" class="feather-icon"></i>
                         <span class="hide-menu">Data Pasien</span>
                     </a>
@@ -41,8 +41,8 @@
                         <span class="hide-menu">Laporan</span>
                     </a>
                     <ul aria-expanded="false" class="collapse  first-level base-level-line">
-                        <li class="sidebar-item <?= !empty($_GET['m']) && $_GET['m'] == 'soap-report' ? 'active' : '' ?>">
-                            <a href="index.php?m=soap-report&s=soap-report" class="sidebar-link">
+                        <li class="sidebar-item <?= !empty($_GET['m']) && $_GET['m'] == 'soapreport' ? 'active' : '' ?>">
+                            <a href="index.php?m=soapreport&s=soapreport" class="sidebar-link">
                                 <span class="hide-menu"> SOAP Count Per-Pasien</span>
                             </a>
                         </li>
@@ -54,6 +54,7 @@
                     </ul>
                 </li>
                 <li class="list-divider"></li>
+                <?php if($_SESSION['NIK']=='3281705') { ?>
                 <li class="nav-small-cap">
                     <span class="hide-menu">Administrator</span>
                 </li>
@@ -63,6 +64,7 @@
                         <span class="hide-menu">Data Pengguna</span>
                     </a>
                 </li>
+                <?php } ?>
                 <li class="list-divider"></li>
             </ul>
         </nav>

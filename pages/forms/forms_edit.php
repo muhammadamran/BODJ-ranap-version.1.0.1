@@ -30,6 +30,12 @@ $row = $data->fetch_assoc()
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
+                <a href="index.php?m=forms&s=forms"><button class="btn btn-dark btn-circle"><i class="fas fa-arrow-circle-left"></i></button></a>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-12">
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Update Data Buku Operan Dokter Jaga Rawat Inap</h4>
@@ -42,6 +48,7 @@ $row = $data->fetch_assoc()
                                     <div class="input-group">
                                         <input type="text" class="form-control" name="dokter_jaga" value="<?php echo $_SESSION['nama_lengkap'];?>" placeholder="Dokter Jaga..." readonly/>
                                         <input type="text" class="form-control" name="date_created" value="<?php echo date('Y-m-d h:m:i');?>" placeholder="Dokter Jaga..." readonly/>
+                                        <input type="hidden" class="form-control" name="kd_soap" value="<?php echo $row['kd_soap']; ?>"/>
                                     </div>
                                 </div>
                             </div>

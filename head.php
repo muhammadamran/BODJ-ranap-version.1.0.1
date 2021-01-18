@@ -22,6 +22,13 @@
 		background: #fff;
 		/* border-radius: 100%; */
 	}
+
+  .lingkaran-detail{
+    width: 200px;
+    height: 200px;
+    background: #fff;
+    border-radius: 100%; 
+  }
 </style>
 <script type="text/javascript"> 
   function display_c(){

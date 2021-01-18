@@ -12,6 +12,18 @@ if ($jam > '05:30' && $jam < '10:00') {
 } else {
     $salam = 'Malam';
 }
+
+$t_pasien = $db->query('SELECT COUNT(*) AS total_pasien FROM tb_soap GROUP BY no_rm');
+$pow = $t_pasien->fetch_assoc();
+
+$count=array($pow['total_pasien']);
+echo count($count);
+
+$t_dokter = $db->query('SELECT COUNT(*) AS total_dokter FROM tb_user WHERE role="dokter"');
+$pow2 = $t_dokter->fetch_assoc();
+
+$t_soap = $db->query('SELECT COUNT(*) AS total_soap FROM tb_soap ');
+$pow3 = $t_soap->fetch_assoc();
 ?>
 <div class="page-wrapper">
 	<div class="page-breadcrumb">
@@ -43,7 +55,8 @@ if ($jam > '05:30' && $jam < '10:00') {
 					<div class="d-flex d-lg-flex d-md-block align-items-center">
 						<div>
 							<div class="d-inline-flex align-items-center">
-								<h2 class="text-dark mb-1 font-weight-medium">236</h2>
+								<!-- <h2 class="text-dark mb-1 font-weight-medium"><?= count($count) ?></h2> -->
+								<h2 class="text-dark mb-1 font-weight-medium">-</h2>
 							</div>
 							<h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Jumlah Pasien</h6>
 						</div>
@@ -57,7 +70,7 @@ if ($jam > '05:30' && $jam < '10:00') {
 				<div class="card-body">
 					<div class="d-flex d-lg-flex d-md-block align-items-center">
 						<div>
-							<h2 class="text-dark mb-1 w-100 text-truncate font-weight-medium">18,306</h2>
+							<h2 class="text-dark mb-1 w-100 text-truncate font-weight-medium"><?= $pow2['total_dokter']; ?></h2>
 							<h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Jumlah Dokter</h6>
 						</div>
 						<div class="ml-auto mt-md-3 mt-lg-0">
@@ -71,7 +84,7 @@ if ($jam > '05:30' && $jam < '10:00') {
 					<div class="d-flex d-lg-flex d-md-block align-items-center">
 						<div>
 							<div class="d-inline-flex align-items-center">
-								<h2 class="text-dark mb-1 font-weight-medium">1538</h2>
+								<h2 class="text-dark mb-1 font-weight-medium"><?= $pow3['total_soap']; ?></h2>
 							</div>
 							<h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Riwayat SOAP</h6>
 						</div>
@@ -83,28 +96,41 @@ if ($jam > '05:30' && $jam < '10:00') {
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-lg-4 col-md-12">
+			<div class="col-md-4 col-lg-4">
 				<div class="card">
 					<div class="card-body">
-						<h4 class="card-title">Pasien Per-Jenis Kelamin</h4>
-						<div id="campaign-v2" class="mt-2" style="height:283px; width:100%;"></div>
-						<ul class="list-style-none mb-0">
-							<li>
-								<i class="fas fa-circle text-primary font-10 mr-2"></i>
-								<span class="text-muted">Direct Sales</span>
-								<span class="text-dark float-right font-weight-medium">$2346</span>
-							</li>
-							<li class="mt-3">
-								<i class="fas fa-circle text-danger font-10 mr-2"></i>
-								<span class="text-muted">Referral Sales</span>
-								<span class="text-dark float-right font-weight-medium">$2108</span>
-							</li>
-							<li class="mt-3">
-								<i class="fas fa-circle text-cyan font-10 mr-2"></i>
-								<span class="text-muted">Affiliate Sales</span>
-								<span class="text-dark float-right font-weight-medium">$1204</span>
-							</li>
-						</ul>
+						<h4 class="card-title">Notifikasi SOAP Dokter</h4>
+						<div class="mt-4 activity">
+							<!-- MULAI -->
+							<?php 
+                                $sesi= $_SESSION['nama_lengkap'];
+                                $data = $db->query("SELECT a.kd_soap,a.no_rm,a.nama_pasien,a.kelas,a.dokter_jaga,						b.kd_soap,b.status,b.date_add
+                                					FROM tb_soap a JOIN tb_soaplog b
+                                					ON a.kd_soap=b.kd_soap
+                                					ORDER BY b.kd_soap DESC LIMIT 5", 0);
+                                // $data = $db->query("SELECT * FROM `tb_soap` ORDER BY `tb_soap`.`tgl_jaga` DESC", 0);
+                                while($row = $data->fetch_assoc()) {
+                            ?>
+							<div class="d-flex align-items-start border-left-line">
+								<div>
+									<a href="javascript:void(0)" class="btn btn-cyan btn-circle mb-2 btn-item">
+										<i data-feather="bell"></i>
+									</a>
+								</div>
+								<div class="ml-3 mt-2">
+									<?php if ($row['status']=='0') { ?>
+										<h5 class="text-dark font-weight-medium mb-2">SOAP Baru dari <?= $row['dokter_jaga']; ?>!</h5>
+										<p class="font-14 mb-2 text-muted">Dengan Pasien a.n <?= $row['nama_pasien']; ?><br> <?= $row['no_rm']; ?></p>
+									<?php }elseif ($row['status']=='1') { ?>
+										<h5 class="text-dark font-weight-medium mb-2">SOAP Update dari <?= $row['dokter_jaga']; ?>!</h5>
+										<p class="font-14 mb-2 text-muted">Dengan Pasien a.n <?= $row['nama_pasien']; ?><br> <?= $row['no_rm']; ?></p>
+									<?php } ?>
+									<span class="font-weight-light font-14 mb-1 d-block text-muted"><?= tanggal_indo($row['date_add']); ?></span>
+								</div>
+							</div>
+                            <?php } ?>
+							<!-- END MULAI -->
+						</div>
 					</div>
 				</div>
 			</div>
@@ -116,31 +142,6 @@ if ($jam > '05:30' && $jam < '10:00') {
 						<ul class="list-inline text-center mt-5 mb-2">
 							<li class="list-inline-item text-muted font-italic">Sales for this month</li>
 						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12 col-lg-12">
-				<div class="card">
-					<div class="card-body">
-						<h4 class="card-title">SOAP Dokter Terbaru</h4>
-						<div class="mt-12 activity">
-							<!-- MULAI -->
-							<div class="d-flex align-items-start border-left-line">
-								<div>
-									<a href="javascript:void(0)" class="btn btn-cyan btn-circle mb-2 btn-item">
-										<i data-feather="bell"></i>
-									</a>
-								</div>
-								<div class="ml-3 mt-2">
-									<h5 class="text-dark font-weight-medium mb-2">Notification Pending Order!</h5>
-									<p class="font-14 mb-2 text-muted">One Pending order from Ryne <br> Doe</p>
-									<span class="font-weight-light font-14 mb-1 d-block text-muted">2 Hours Ago</span>
-								</div>
-							</div>
-							<!-- END MULAI -->
-						</div>
 					</div>
 				</div>
 			</div>

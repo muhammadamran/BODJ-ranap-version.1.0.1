@@ -24,7 +24,7 @@ if ($aksi == 'insert') {
                         VALUES 
                         ("'.$username.'","'.$password.'","'.$NIK.'","'.$nama_lengkap.'","'.$tempat_lahir.'","'.$tgl_lahir.'","'.$agama.'","'.$jenis_kelamin.'","'.$status_pernikahan.'","'.$status_pegawai.'","'.$jabatan.'","'.$email.'","'.$alamat.'","'.$telepon.'","'.$role.'")');
     if ($insert) {
-        echo '<script>alert("Data berhasil ditambahkan");location.href = "../../index.php?m=user&s=user"</script>';
+        echo '<script>alert("Data berhasil ditambahkan");location.href = "../../index.php?m=pengguna&s=pengguna"</script>';
     } else {
         echo '<script>alert("Data gagal ditambahkan");history.go(-1)</script>';
     }
@@ -65,7 +65,7 @@ if ($aksi == 'insert') {
                                             WHERE id="'.$id.'"');
 
     if ($update) {
-        echo '<script>alert("Data berhasil diUpdate");location.href = "../../index.php?m=user&s=user"</script>';
+        echo '<script>alert("Data berhasil diUpdate");location.href = "../../index.php?m=pengguna&s=pengguna"</script>';
     } else {
         echo '<script>alert("Data gagal diUpdate");history.go(-1)</script>';
     }
@@ -76,7 +76,7 @@ if ($aksi == 'insert') {
     $hapus = $db->query('DELETE FROM tb_user WHERE id="'.$id.'"');
 
     if ($hapus) {
-        echo '<script>alert("Data berhasil dihapus");location.href = "../../index.php?m=user&s=user"</script>';
+        echo '<script>alert("Data berhasil dihapus");location.href = "../../index.php?m=pengguna&s=pengguna"</script>';
     } else {
         echo '<script>alert("Data gagal dihapus");history.go(-1)</script>';
     }
@@ -88,7 +88,7 @@ if ($aksi == 'insert') {
     $change = $db->query('UPDATE tb_user SET password="'.$password.'" WHERE id="'.$id.'"');
 
     if ($change) {
-        echo '<script>alert("Password berhasil diganti");location.href = "../../index.php?m=user&s=user"</script>';
+        echo '<script>alert("Password berhasil diganti");location.href = "../../index.php?m=pengguna&s=pengguna"</script>';
     } else {
         echo '<script>alert("Password gagal diganti");history.go(-1)</script>';
     }

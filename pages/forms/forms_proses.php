@@ -3,6 +3,7 @@ include '../../db/db.php';
 $aksi = $_GET['aksi'];
 // PROSES INPUT
 if ($aksi == 'insert') {
+    $kd_soap = $_POST['kd_soap'];
     $no_rm = $_POST['no_rm'];
     $nama_pasien = $_POST['nama_pasien'];
     $kelas = $_POST['kelas'];
@@ -24,9 +25,14 @@ if ($aksi == 'insert') {
     move_uploaded_file($file_tmp, "../../assets/uploads/object/".$path);
     
     $insert = $db->query('INSERT INTO tb_soap 
-                        (no_rm,nama_pasien,kelas,dokter_jaga,DPJP,subject,object,assesment,plan,keterangan,date_created,tgl_jaga,berkas) 
+                        (kd_soap,no_rm,nama_pasien,kelas,dokter_jaga,DPJP,subject,object,assesment,plan,keterangan,date_created,tgl_jaga,berkas) 
                         VALUES 
-                        ("'.$no_rm.'","'.$nama_pasien.'","'.$kelas.'","'.$dokter_jaga.'","'.$DPJP.'","'.$subject.'","'.$object.'","'.$assesment.'","'.$plan.'","'.$keterangan.'","'.$date_created.'","'.$tgl_jaga.'","'.$path.'")');
+                        ("'.$kd_soap.'","'.$no_rm.'","'.$nama_pasien.'","'.$kelas.'","'.$dokter_jaga.'","'.$DPJP.'","'.$subject.'","'.$object.'","'.$assesment.'","'.$plan.'","'.$keterangan.'","'.$date_created.'","'.$tgl_jaga.'","'.$path.'")');
+
+    $insert2 = $db->query('INSERT INTO tb_soaplog
+                    (kd_soap,status,date_add) 
+                    VALUES 
+                    ("'.$kd_soap.'","0","'.$date_created.'")');
     if ($insert) {
         echo '<script>alert("Data berhasil ditambahkan");location.href = "../../index.php?m=forms&s=forms"</script>';
     } else {
@@ -35,6 +41,7 @@ if ($aksi == 'insert') {
 // PROSES DATA UPDATE
 } else if ($aksi == 'update') {
     $id = $_GET['id'];
+    $kd_soap = $_POST['kd_soap'];
     $no_rm = $_POST['no_rm'];
     $nama_pasien = $_POST['nama_pasien'];
     $kelas = $_POST['kelas'];
@@ -63,6 +70,12 @@ if ($aksi == 'insert') {
                                             date_created="'.$date_created.'",
                                             tgl_jaga="'.$tgl_jaga.'"
                                             WHERE id="'.$id.'"');
+
+    $insert2 = $db->query('INSERT INTO tb_soaplog
+                    (kd_soap,status,date_add) 
+                    VALUES 
+                    ("'.$kd_soap.'","1","'.$date_created.'")');
+
 
     if ($update) {
         echo '<script>alert("Data berhasil diUpdate");location.href = "../../index.php?m=forms&s=forms"</script>';
