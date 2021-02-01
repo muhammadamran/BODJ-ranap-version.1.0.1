@@ -75,7 +75,7 @@
                         <span class="micon dw dw-push-pin-1"></span><span class="mtext">Bedah Central (O.K)</span>
                     </a>
                 </li>
-                <<!-- br>
+                <!-- br>
                 <li>
                     <div class="sidebar-small-cap">Penunjang Medis</div>
                 </li>
