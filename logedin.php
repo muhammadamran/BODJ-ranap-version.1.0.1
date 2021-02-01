@@ -79,7 +79,7 @@ $loginArea = login($data);
 if ($loginArea == 2) {
   echo '<script>alert("Hello, ' . $nama_lengkap . '. kamu berhasil login");location.href = "index.php"</script>';
 } else if ($loginArea == 1) {
+  echo '<script>alert("Gagal Login | Periksa Kembali NIP atau Password anda!");window.history.go(-1);</script>';
   echo '<script>alert("Gagal Login");window.history.go(-1);</script>';
-  header("Location: ./notfound.php");
 }
 ?>

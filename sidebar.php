@@ -1,72 +1,110 @@
-<aside class="left-sidebar" data-sidebarbg="skin6">
-    <div class="scroll-sidebar" data-sidebarbg="skin6">
-        <nav class="sidebar-nav">
-            <ul id="sidebarnav">
-                <li class="sidebar-item <?= empty($_GET['m']) ? 'selected' : '' ?>">
-                    <a class="sidebar-link sidebar-link" href="index.php" aria-expanded="false">
-                        <i data-feather="home" class="feather-icon"></i>
-                        <span class="hide-menu">Dashboard</span>
-                    </a>
-                </li>
-                <li class="list-divider"></li>
-                <li class="nav-small-cap">
-                    <span class="hide-menu">Applications</span>
-                </li>
-                <li class="sidebar-item <?= !empty($_GET['m']) && $_GET['m'] == 'datapasien' ? 'selected' : '' ?>">
-                    <a class="sidebar-link" href="index.php?m=datapasien&s=datapasien" aria-expanded="false">
-                        <i data-feather="tag" class="feather-icon"></i>
-                        <span class="hide-menu">Data Pasien</span>
-                    </a>
-                </li>
-                <li class="list-divider"></li>
-                <li class="nav-small-cap">
-                    <span class="hide-menu">Components</span>
-                </li>
-                <li class="sidebar-item"> 
-                    <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
-                        <i data-feather="file-text" class="feather-icon"></i>
-                        <span class="hide-menu">Forms </span>
-                    </a>
-                    <ul aria-expanded="false" class="collapse  first-level base-level-line">
-                        <li class="sidebar-item <?= !empty($_GET['m']) && $_GET['m'] == 'forms' ? 'active' : '' ?>">
-                            <a href="index.php?m=forms&s=forms" class="sidebar-link">
-                            <span class="hide-menu"> Input BODJ</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sidebar-item"> 
-                    <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
-                        <i data-feather="bar-chart" class="feather-icon"></i>
-                        <span class="hide-menu">Laporan</span>
-                    </a>
-                    <ul aria-expanded="false" class="collapse  first-level base-level-line">
-                        <li class="sidebar-item <?= !empty($_GET['m']) && $_GET['m'] == 'soapreport' ? 'active' : '' ?>">
-                            <a href="index.php?m=soapreport&s=soapreport" class="sidebar-link">
-                                <span class="hide-menu"> SOAP Count Per-Pasien</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item <?= !empty($_GET['m']) && $_GET['m'] == 'soapriwayat' ? 'active' : '' ?>">
-                            <a href="index.php?m=soapriwayat&s=soapriwayat" class="sidebar-link">
-                                <span class="hide-menu"> Riwayat SOAP Pasien </span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="list-divider"></li>
-                <?php if($_SESSION['NIK']=='3281705') { ?>
-                <li class="nav-small-cap">
-                    <span class="hide-menu">Administrator</span>
-                </li>
-                <li class="sidebar-item <?= !empty($_GET['m']) && $_GET['m'] == 'pengguna' ? 'selected' : '' ?>">
-                    <a class="sidebar-link" href="index.php?m=pengguna&s=pengguna" aria-expanded="false">
-                        <i data-feather="tag" class="feather-icon"></i>
-                        <span class="hide-menu">Data Pengguna</span>
-                    </a>
-                </li>
-                <?php } ?>
-                <li class="list-divider"></li>
-            </ul>
-        </nav>
+<div class="left-side-bar">
+    <div class="brand-logo">
+        <a href="index.php">
+            <!-- <img src="assets/mode/images/logo-icon.png" alt="" class="dark-logo"> -->
+            <img src="assets/mode/images/logo-icon.png" alt="" class="light-logo">
+            <b>BODJ</b> <small>Rawat Inap</small>
+        </a>
+        <div class="close-sidebar" data-toggle="left-sidebar-close">
+            <i class="ion-close-round"></i>
+        </div>
     </div>
-</aside>
+    <div class="menu-block customscroll">
+        <div class="sidebar-menu">
+            <ul id="accordion-menu">
+                <br>
+                <li>
+                    <div class="sidebar-small-cap">Menu</div>
+                </li>
+                <li class="dropdown <?= empty($_GET['m']) ? 'show' : '' ?>">
+                    <a href="index.php" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-time-management"></span><span class="mtext">Beranda</span>
+                    </a>
+                </li>
+                <li class="dropdown <?= !empty($_GET['m']) && $_GET['m'] == 'MDashboard' ? 'show' : '' ?>">
+                    <a href="index.php?m=MDashboard&s=MDashboard" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-analytics-11"></span><span class="mtext">Dashboard</span>
+                    </a>
+                </li>
+                <br>
+                <li>
+                    <div class="sidebar-small-cap">BODJ Rawat Inap</div>
+                </li>
+                <li class="dropdown <?= !empty($_GET['m']) && $_GET['m'] == 'MInputBODJ' ? 'show' : '' ?>">
+                    <a href="javascript:;" class="dropdown-toggle">
+                        <span class="micon dw dw-edit2"></span><span class="mtext">Forms BODJ</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="index.php?m=MInputBODJ&s=MInputBODJ">Input BODJ</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown <?= !empty($_GET['m']) && $_GET['m'] == 'MPrint' ? 'show' : '' ?>">
+                    <a href="index.php?m=MPrint&s=MPrint" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-analytics-5"></span><span class="mtext">Search / Print</span>
+                    </a>
+                </li>
+                <li class="dropdown <?= !empty($_GET['m']) && $_GET['m'] == 'MLaporan' ? 'show' : '' ?>">
+                    <a href="javascript:;" class="dropdown-toggle">
+                        <span class="micon dw dw-analytics-20"></span><span class="mtext">Laporan BODJ</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="index.php?m=MLaporan&s=MLaporan">Riwayat BODJ Pasien</a></li>
+                    </ul>
+                </li>
+                <br>
+                <li>
+                    <div class="sidebar-small-cap">Pelayanan Medis</div>
+                </li>
+                <li class="dropdown <?= !empty($_GET['m']) && $_GET['m'] == 'ARawatJalan' ? 'show' : '' ?>">
+                    <a href="index.php?m=ARawatJalan&s=ARawatJalan" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-stethoscope"></span><span class="mtext">Rawat Jalan</span>
+                    </a>
+                </li>
+                <li class="dropdown <?= !empty($_GET['m']) && $_GET['m'] == 'ARawatInap' ? 'show' : '' ?>">
+                    <a href="index.php?m=ARawatInap&s=ARawatInap" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-hospital"></span><span class="mtext">Rawat Inap</span>
+                    </a>
+                </li>
+                <li class="dropdown <?= !empty($_GET['m']) && $_GET['m'] == 'AHemodialisa' ? 'show' : '' ?>">
+                    <a href="index.php?m=AHemodialisa&s=AHemodialisa" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-fuel"></span><span class="mtext">Hemodialisa</span>
+                    </a>
+                </li>
+                <li class="dropdown <?= !empty($_GET['m']) && $_GET['m'] == 'ABedahCentral' ? 'show' : '' ?>">
+                    <a href="index.php?m=ABedahCentral&s=ABedahCentral" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-push-pin-1"></span><span class="mtext">Bedah Central (O.K)</span>
+                    </a>
+                </li>
+                <<!-- br>
+                <li>
+                    <div class="sidebar-small-cap">Penunjang Medis</div>
+                </li>
+                <li class="dropdown <?= !empty($_GET['m']) && $_GET['m'] == 'BFarmasi' ? 'show' : '' ?>">
+                    <a href="index.php?m=BFarmasi&s=BFarmasi" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-syringe"></span><span class="mtext">Farmasi</span>
+                    </a>
+                </li>
+                <li class="dropdown <?= !empty($_GET['m']) && $_GET['m'] == 'BLab' ? 'show' : '' ?>">
+                    <a href="index.php?m=BLab&s=BLab" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-billboard"></span><span class="mtext">Laboratorium</span>
+                    </a>
+                </li>
+                <li class="dropdown <?= !empty($_GET['m']) && $_GET['m'] == 'BRadiologi' ? 'show' : '' ?>">
+                    <a href="index.php?m=BRadiologi&s=BRadiologi" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-target"></span><span class="mtext">Radiologi</span>
+                    </a>
+                </li> -->
+                <br>
+                <li>
+                    <div class="sidebar-small-cap">Tentang Aplikasi</div>
+                </li>
+                <li class="dropdown <?= !empty($_GET['m']) && $_GET['m'] == 'Pabout' ? 'show' : '' ?>">
+                    <a href="index.php?m=Pabout&s=Pabout" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-question"></span><span class="mtext">BODJ Rawat Inap</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="mobile-menu-overlay"></div>

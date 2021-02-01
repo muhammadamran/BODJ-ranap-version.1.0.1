@@ -1,62 +1,94 @@
-<header class="topbar" data-navbarbg="skin6">
-    <nav class="navbar top-navbar navbar-expand-md">
-        <div class="navbar-header" data-logobg="skin6">
-            <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)">
-                <i class="ti-menu ti-close"></i>
-            </a>
-            <div class="navbar-brand">
-                <a href="index.php">
-                    <b class="logo-icon">
-                        <img src="assets/mode/images/logo-icon.png" alt="homepage" class="dark-logo" />
-                    </b>
-                    <span class="logo-text">
-                        <img src="assets/mode/images/logo-text.png" alt="homepage" class="dark-logo" />
-                    </span>
+<div class="header">
+    <div class="header-left">
+        <div class="menu-icon dw dw-menu"></div>
+        &nbsp;&nbsp;&nbsp;<span class="micon dw dw-wall-clock1"></span> &nbsp;<span id='ct' ></span>
+    </div>
+    <div class="header-right">
+        <div class="dashboard-setting user-notification">
+            <div class="dropdown">
+                <a class="dropdown-toggle no-arrow" href="javascript:;" data-toggle="right-sidebar">
+                    <i class="dw dw-settings2"></i>
                 </a>
             </div>
-                <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="ti-more"></i>
-                </a>
         </div>
-        <div class="navbar-collapse collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav float-left mr-auto ml-3 pl-1">
-                <li class="nav-item d-none d-md-block">
-                    <i class="far fa-clock"></i> &nbsp;<span id='ct' ></span>
-                </li>
-            </ul>
-            <ul class="navbar-nav float-right">
-                <li class="nav-item d-none d-md-block">
-                    <a class="nav-link" href="javascript:void(0)">
-                        <form>
-                            <div class="customize-input">
-                                <input class="form-control custom-shadow custom-radius border-0 bg-white" type="search" placeholder="Search" aria-label="Search">
-                                <i class="form-control-icon" data-feather="search"></i>
-                            </div>
-                        </form>
-                    </a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <!-- <img src="assets/mode/images/users/profile-pic.jpg" alt="user" class="rounded-circle" width="40"> -->
+        <div class="user-notification">
+            <div class="dropdown">
+                <a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
+                    <i class="icon-copy dw dw-notification"></i>
+                    <span class="badge notification-active"></span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <div class="notification-list mx-h-350 customscroll">
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <img src="https://www.smkn2terbanggibesar.sch.id/wp-content/uploads/2018/06/avatar.png" alt="">
+                                    <h3><?php echo $_SESSION['nama_lengkap'];?></h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="assets/vendors/images/photo1.jpg" alt="">
+                                    <h3>Lea R. Frith</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="assets/vendors/images/photo2.jpg" alt="">
+                                    <h3>Erik L. Richards</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="assets/vendors/images/photo3.jpg" alt="">
+                                    <h3>John Doe</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="assets/vendors/images/photo4.jpg" alt="">
+                                    <h3>Renee I. Hansen</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="assets/vendors/images/img.jpg" alt="">
+                                    <h3>Vicki M. Coleman</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed...</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="user-info-dropdown">
+            <div class="dropdown">
+                <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                    <span class="user-icon">
                         <?php
                         if ($_SESSION['foto']==NULL) { ?>
-                            <img src="assets/img/user/user-13.png" alt="user" class="rounded-circle" width="40"/>   
+                            <img src="https://www.smkn2terbanggibesar.sch.id/wp-content/uploads/2018/06/avatar.png" alt="">
                         <?php }else{ ?>
-                            <img src="<?php echo 'assets/img/user/'. $_SESSION['foto'];?>" alt="user" class="rounded-circle" width="40"/>   
+                            <img src="<?php echo 'assets/img/user/'. $_SESSION['foto'];?>" alt="user" class="rounded-circle" width="40"/>
                         <?php } ?>
-                        <span class="ml-2 d-none d-lg-inline-block">
-                        <span>Hello,</span> 
-                        <span class="text-dark"><?php echo $_SESSION['nama_lengkap'];?></span> 
-                            <i data-feather="chevron-down" class="svg-icon"></i>
-                        </span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
-                        <a class="dropdown-item" href="index.php?m=profil&s=profil"><i data-feather="user" class="svg-icon mr-2 ml-1"></i>My Profile</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="logout.php"><i data-feather="power" class="svg-icon mr-2 ml-1"></i>Logout</a>
-                    </div>
-                </li>
-            </ul>
+                    </span>
+                    <span class="user-name">
+                        <?= $_SESSION['nama_lengkap']; ?>
+                    </span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                    <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
+                    <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Setting</a>
+                    <a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Help</a>
+                    <a class="dropdown-item" href="logout.php"><i class="dw dw-logout"></i> Log Out</a>
+                </div>
+            </div>
         </div>
-    </nav>
-</header>
+    </div>
+</div>

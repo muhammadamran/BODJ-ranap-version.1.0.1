@@ -1,6 +1,7 @@
 <?php 
   session_start();
   include "db/db.php";
+  include "db/pg.php";
 
   $url = $_SERVER['REQUEST_URI'];
   $get_api = explode('/', $url);
