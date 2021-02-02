@@ -1,67 +1,241 @@
-<div class="page-wrapper">
-    <div class="page-breadcrumb">
-        <div class="row">
-            <div class="col-7 align-self-center">
-                <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Data forms Rawat Inap</h4>
-                <div class="d-flex align-items-center">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb m-0 p-0">
-                            <li class="breadcrumb-item"><a href="index.php" class="text-muted">Dashboard</a></li>
-                            <li class="breadcrumb-item text-muted active" aria-current="page">Input forms</li>
-                        </ol>
-                    </nav>
+<div class="main-container">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="title">
+                            <h3><span class="micon dw dw-edit2"></span> Input Form BODJ</h3>
+                        </div>
+                        <nav aria-label="breadcrumb" role="navigation">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Input Form BODJ</li>
+                            </ol>
+                            <hr>
+                            <ol class="breadcrumb">
+                                <?php
+                                $result_t = pg_query($pg, "SELECT COUNT(*) AS jumlah FROM infokunjunganrj_v WHERE DATE(tgl_pendaftaran) = CURRENT_DATE");
+                                $row_t = pg_fetch_assoc($result_t);
+                                ?>
+                                <li class="breadcrumb-item">
+                                    <label>Berikut merupakan inputan SOAP dari BODJ Rawat Inap yang dilakukan oleh masing-masing dokter pada pasien Rawat Inap.</label> <br><hr>
+                                    <label>Klik icon <button type="button" class="btn btn-outline-primary"><i class="icon-copy ion-plus-circled"></i></button> untuk menambahkan data BODJ Rawat Inap</label>
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="col-md-6 col-sm-12 text-center">
+                        <img src="mode/vendors/images/02.png">
+                    </div>
                 </div>
             </div>
-            <div class="col-5 align-self-center">
-                <div class="customize-input float-right">
-                    <select class="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius">
-                        <option selected>Aug 19</option>
-                        <option value="1">July 19</option>
-                        <option value="2">Jun 19</option>
-                    </select>
+            <!-- Large modal -->
+            <div class="modal fade bs-example-modal-lg" id="addsoap" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <strong class="modal-title" id="myLargeModalLabel">Tambah Data Buku Operan Dokter Jaga Rawat Inap</strong>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+                        <div class="modal-header">
+                            <small class="card-subtitle">Klik  <button class="btn waves-effect waves-light btn-sm btn-primary">Simpan</button> Untuk menambahkan data Buku Operan Dokter Jaga Rawat Inap.</small>
+                        </div>
+                        <form action="pages/MInputBODJ/MInputBODJ_proses.php?aksi=insert" method="POST" enctype="multipart/form-data">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <label class="col-lg-3 col-form-label">Dokter Jaga</label>
+                                    <div class="col-lg-9">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="dokter_jaga" value="<?php echo $_SESSION['nama_lengkap'];?>" placeholder="Dokter Jaga..." readonly/>
+                                            <input type="text" class="form-control" name="date_created" value="<?php echo date('Y-m-d h:m:i');?>" placeholder="Dokter Jaga..." readonly/>
+                                            <input type="hidden" name="kd_soap" value="<?= date('Ymd');?><?= $_SESSION['id'];?><?= $_SESSION['NIK'];?><?= $sub_kalimat; ?>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="col-lg-3 col-form-label">Tanggal Jaga</label>
+                                    <div class="col-lg-9">
+                                        <div class="input-group">
+                                            <input type="date" class="form-control" name="tgl_jaga" placeholder="Tanggal Jaga..." required/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="col-lg-3 col-form-label">No. Rekam Medis</label>
+                                    <div class="col-lg-9">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="no_rm" placeholder="No. Rekam Medis..." required/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="col-lg-3 col-form-label">Nama Pasien</label>
+                                    <div class="col-lg-9">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="nama_pasien" placeholder="Nama Pasien..." required/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="col-lg-3 col-form-label">Kelas</label>
+                                    <div class="col-lg-9">
+                                        <div class="input-group">
+                                            <select class="form-control" name="kelas" placeholder="Kelas..." required>
+                                                <option value="">-- Pilih Kelas --</option>
+                                                <option value="HCU">HCU</option>
+                                                <option value="VVIP">VVIP</option>
+                                                <option value="VIP">VIP</option>
+                                                <option value="Kelas I">Kelas I</option>
+                                                <option value="Kelas II">Kelas II</option>
+                                                <option value="Kelas III">Kelas III</option>
+                                                <option value="Tanpa Kelas">Tanpa Kelas</option>
+                                                <option value="Isolasi 209">Isolasi 209</option>
+                                                <option value="Isolasi 210">Isolasi 210</option>
+                                                <option value="Asoka">Asoka</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="col-lg-3 col-form-label">DPJP</label>
+                                    <div class="col-lg-9">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="DPJP" placeholder="DPJP..." required/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div align="center">
+                                    <h1>S</h1>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <label class="col-lg-3 col-form-label">Subject</label>
+                                    <div class="col-lg-9">
+                                        <div class="input-group">
+                                            <textarea type="text" class="ckeditor" id="ckedtor" name="subject" placeholder="Subject..." required></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div align="center">
+                                    <h1>O</h1>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <label class="col-lg-3 col-form-label">Object</label>
+                                    <div class="col-lg-9">
+                                        <div class="input-group">
+                                            <textarea type="text" class="ckeditor" id="ckedtor" name="object" placeholder="Object..." required></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div align="center">
+                                    <h1>A</h1>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <label class="col-lg-3 col-form-label">Assesment</label>
+                                    <div class="col-lg-9">
+                                        <div class="input-group">
+                                            <textarea type="text" class="ckeditor" id="ckedtor" name="assesment" placeholder="Assesment..." required></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div align="center">
+                                    <h1>P</h1>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <label class="col-lg-3 col-form-label">Upload Berkas Digital(Optional)</label>
+                                    <div class="col-lg-9">
+                                        <div class="input-group">
+                                            <input type="file" class="form-control" name="berkas" placeholder="berkas..."/>
+                                        </div>
+                                        <small>Upload File Max:100MB (docx,pdf,xlxs,mp4)</small>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="col-lg-3 col-form-label">Plan</label>
+                                    <div class="col-lg-9">
+                                        <div class="input-group">
+                                            <textarea type="text" class="ckeditor" id="ckedtor" name="plan" placeholder="Plan..." required></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div align="center">
+                                    <h1>Keterangan</h1>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <label class="col-lg-3 col-form-label">Keterangan</label>
+                                    <div class="col-lg-9">
+                                        <div class="input-group">
+                                            <textarea type="text" class="ckeditor" id="ckedtor" name="keterangan" placeholder="Keterangan..." required></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <a href="index.php?m=forms&s=forms_add" class="btn btn-success"><i class="fa fa-plus"></i> Add forms</a>
-                        <hr>
-                        <h4 class="card-title">Data Buku Operan Dokter Jaga Rawat Inap</h4>
-                        <h6 class="card-subtitle">Klik  <button class="btn waves-effect waves-light btn-sm btn-success"><i class="fa fa-plus"></i> Add forms</button> Untuk menambahkan data Buku Operan Dokter Jaga Rawat Inap.</h6>
-                        <div class="table-responsive">
-                            <table id="multi_col_order"
-                            class="table table-striped table-bordered display no-wrap" style="width:100%">
+            <!-- Large modal -->
+            <div class="card-box mb-30">
+                <div class="pd-20">
+                    <a href="#" class="btn btn-outline-primary" data-toggle="modal" data-target="#addsoap">
+                        <i class="icon-copy ion-plus-circled"></i>
+                    </a>
+                </div>
+                <div class="table-responsive">
+                    <div class="pb-20">
+                        <table class="table hover multiple-select-row data-table-export nowrap">
                             <thead>
                                 <tr>
+                                    <th class="table-plus datatable-nosort">No. RM</th>
+                                    <th>Nama Pasien</th>
                                     <th>Tanggal Jaga</th>
                                     <th>Dokter Jaga</th>
-                                    <th>Identitas Pasien</th>
-                                    <th>SOAP</th>
+                                    <th>Kelas Pelayanan</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                <!-- DATA -->
                                 <?php 
                                 $sesi= $_SESSION['nama_lengkap'];
                                 $data = $db->query("SELECT * FROM tb_soap WHERE dokter_jaga='$sesi' ORDER BY tgl_jaga ASC", 0);
-                                // $data = $db->query("SELECT * FROM `tb_soap` ORDER BY `tb_soap`.`tgl_jaga` DESC", 0);
                                 while($row = $data->fetch_assoc()) {
                                     ?>
                                     <tr>
-                                        <td><?= $row['tgl_jaga'] == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row['tgl_jaga'] ?></td>
-                                        <td><?= $row['dokter_jaga'] == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row['dokter_jaga'] ?></td>
-                                        <td><?= $row['no_rm'] == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row['no_rm'] ?> | <?= $row['nama_pasien'] == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row['nama_pasien'] ?> | <?= $row['kelas'] == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row['kelas'] ?></td>
                                         <td>
-                                            <a href="#" data-toggle="modal" data-target="#detailsoap<?= $row['id']?>"><span class="btn btn-dark btn-sm"><i class="icon-bag"></i> </span></a>
+                                            <div class="dropdown">
+                                                <a class="btn btn-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                                    <?= $row['no_rm'] == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row['no_rm'] ?>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#detailsoap<?= $row['id']?>">Data SOAP</a>
+                                                    <a class="dropdown-item" href="#">Resume Perawatan</a>
+                                                    <a class="dropdown-item" href="#">Riwayat Perawatan</a>
+                                                </div>
+                                            </div>
                                         </td>
+                                        <td><?= $row['nama_pasien'] == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row['nama_pasien'] ?></td>
+                                        <td><?= $row['tgl_jaga'] == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : tanggal_indo($row['tgl_jaga']) ?></td>
+                                        <td><?= $row['dokter_jaga'] == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row['dokter_jaga'] ?></td>
+                                        <td><?= $row['kelas'] == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row['kelas'] ?></td>
                                         <td>
-                                            <a href="index.php?m=forms&s=forms_edit&id=<?= $row['id'] ?>" class="btn btn-light btn-sm"><i class="icon-pencil"></i></a>
-                                            <a href="#" data-toggle="modal" data-target="#updatefile<?= $row['id']?>"><span class="btn btn-warning btn-sm"><i class="icon-picture"></i> </span></a>
-                                            <a onclick="deleteData(<?= $row['id'] ?>)" class="btn btn-danger btn-sm" style="color:#fff;cursor:pointer"><i class="icon-trash"></i></a>
+                                            <a href="index.php?m=forms&s=forms_edit&id=<?= $row['id'] ?>" class="btn btn-light btn-sm"><i class="icon-copy ion-edit"></i></a>
+                                            <a href="#" data-toggle="modal" data-target="#updatefile<?= $row['id']?>"><span class="btn btn-warning btn-sm"><i class="icon-copy ion-android-image"></i> </span></a>
+                                            <a onclick="deleteData(<?= $row['id'] ?>)" class="btn btn-danger btn-sm" style="color:#fff;cursor:pointer"><i class="icon-copy ion-trash-b"></i></a>
                                         </td>
                                     </tr>
                                     <!-- DETAIL SOAP & KETERANGAN -->
@@ -102,7 +276,7 @@
                                                         <label class="col-lg-3 col-form-label">Subject</label>
                                                         <div class="col-lg-9">
                                                             <div class="input-group">
-                                                                <textarea type="text" class="form-control" name="subject" placeholder="Subject..." readonly><?php echo $row['subject']; ?></textarea>
+                                                                <textarea type="text" class="ckeditor" id="ckedtor" name="subject" placeholder="Subject..." readonly><?php echo $row['subject']; ?></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -115,7 +289,7 @@
                                                         <label class="col-lg-3 col-form-label">Object</label>
                                                         <div class="col-lg-9">
                                                             <div class="input-group">
-                                                                <textarea type="text" class="form-control" name="object" placeholder="Object..." readonly><?php echo $row['object']; ?></textarea>
+                                                                <textarea type="text" class="ckeditor" id="ckedtor" name="object" placeholder="Object..." readonly><?php echo $row['object']; ?></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -128,7 +302,7 @@
                                                         <label class="col-lg-3 col-form-label">Assesment</label>
                                                         <div class="col-lg-9">
                                                             <div class="input-group">
-                                                                <textarea type="text" class="form-control" name="assesment" placeholder="Assesment..." readonly><?php echo $row['assesment']; ?></textarea>
+                                                                <textarea type="text" class="ckeditor" id="ckedtor" name="assesment" placeholder="Assesment..." readonly><?php echo $row['assesment']; ?></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -156,7 +330,7 @@
                                                         <label class="col-lg-3 col-form-label">Plan</label>
                                                         <div class="col-lg-9">
                                                             <div class="input-group">
-                                                                <textarea type="text" class="form-control" name="plan" placeholder="Plan..." readonly><?php echo $row['plan']; ?></textarea>
+                                                                <textarea type="text" class="ckeditor" id="ckedtor" name="plan" placeholder="Plan..." readonly><?php echo $row['plan']; ?></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -169,7 +343,7 @@
                                                         <label class="col-lg-3 col-form-label">Keterangan</label>
                                                         <div class="col-lg-9">
                                                             <div class="input-group">
-                                                                <textarea type="text" class="form-control" name="keterangan" placeholder="Keterangan..." readonly><?php echo $row['keterangan']; ?></textarea>
+                                                                <textarea type="text" class="ckeditor" id="ckedtor" name="keterangan" placeholder="Keterangan..." readonly><?php echo $row['keterangan']; ?></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -228,24 +402,10 @@
                                     </div>
                                     <!-- END UPDATE FILE -->
                                 <?php } ?>
+                                <!-- END DATA -->
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<footer class="footer text-center text-muted">
-    All Rights Reserved by Adminmart. Designed and Developed by <a
-    href="https://wrappixel.com">WrapPixel</a>.
-</footer>
-</div>
-<script>
-  function deleteData(id) {
-    var r = confirm("Anda yakin ingin menghapus ini");
-    if (r == true) {
-      location.href = "pages/forms/forms_proses.php?aksi=hapus&id=" + id;
-  }
-}
-</script>

@@ -15,7 +15,9 @@
   <link rel="stylesheet" type="text/css" href="mode/src/plugins/datatables/css/responsive.bootstrap4.min.css">
 
   <link rel="stylesheet" type="text/css" href="mode/src/plugins/fullcalendar/fullcalendar.css">
-  
+
+  <script type="text/javascript" src="mode/ckeditor/ckeditor.js"></script>
+
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
   <script>
