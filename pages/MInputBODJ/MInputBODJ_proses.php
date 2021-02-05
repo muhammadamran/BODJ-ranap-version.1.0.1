@@ -34,7 +34,7 @@ if ($aksi == 'insert') {
                     VALUES 
                     ("'.$kd_soap.'","0","'.$date_created.'")');
     if ($insert) {
-        echo '<script>alert("Data berhasil ditambahkan");location.href = "../../index.php?m=forms&s=forms"</script>';
+        echo '<script>alert("Data berhasil ditambahkan");location.href = "../../index.php?m=MInputBODJ&s=MInputBODJ"</script>';
     } else {
         echo '<script>alert("Data gagal ditambahkan");history.go(-1)</script>';
     }
@@ -78,7 +78,7 @@ if ($aksi == 'insert') {
 
 
     if ($update) {
-        echo '<script>alert("Data berhasil diUpdate");location.href = "../../index.php?m=forms&s=forms"</script>';
+        echo '<script>alert("Data berhasil diUpdate");location.href = "../../index.php?m=MInputBODJ&s=MInputBODJ"</script>';
     } else {
         echo '<script>alert("Data gagal diUpdate");history.go(-1)</script>';
     }
@@ -89,7 +89,7 @@ if ($aksi == 'insert') {
     $hapus = $db->query('DELETE FROM tb_soap WHERE id="'.$id.'"');
 
     if ($hapus) {
-        echo '<script>alert("Data berhasil dihapus");location.href = "../../index.php?m=forms&s=forms"</script>';
+        echo '<script>alert("Data berhasil dihapus");location.href = "../../index.php?m=MInputBODJ&s=MInputBODJ"</script>';
     } else {
         echo '<script>alert("Data gagal dihapus");history.go(-1)</script>';
     }
