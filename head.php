@@ -2,11 +2,13 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>BODJ Rawat Inap- &copy; RS. Khusus Ginjal Ny.R.A. Habibie </title>
+  <title>BODJ Rawat Inap - &copy; RS. Khusus Ginjal Ny.R.A. Habibie </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/mode/images/logo-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/mode/images/logo-icon.png">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/mode/images/logo-icon.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" type="text/css" href="mode/vendors/styles/core.css">
   <link rel="stylesheet" type="text/css" href="mode/vendors/styles/icon-font.min.css">
   <link rel="stylesheet" type="text/css" href="mode/vendors/styles/style.css">
@@ -17,9 +19,6 @@
   <link rel="stylesheet" type="text/css" href="mode/src/plugins/fullcalendar/fullcalendar.css">
 
   <script type="text/javascript" src="mode/ckeditor/ckeditor.js"></script>
-
-  <link rel="stylesheet" href="assets/plugins/select2/css/select2.min.css">
-  <link rel="stylesheet" href="assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>

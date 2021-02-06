@@ -15,47 +15,46 @@ function generate_string($input, $strength = 16) {
 $kalimat = generate_string($permitted_chars, 20);;
 $sub_kalimat = substr($kalimat,-5);
 ?>
-<div class="page-wrapper">
-    <div class="page-breadcrumb">
-        <div class="row">
-            <div class="col-7 align-self-center">
-                <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Data forms Rawat Inap</h4>
-                <div class="d-flex align-items-center">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb m-0 p-0">
-                            <li class="breadcrumb-item"><a href="index.php" class="text-muted">Dashboard</a></li>
-                            <li class="breadcrumb-item text-muted active" aria-current="page">Input forms</li>
-                        </ol>
-                    </nav>
+<div class="main-container">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="title">
+                            <h3><span class="micon dw dw-edit2"></span> Input Form BODJ</h3>
+                        </div>
+                        <nav aria-label="breadcrumb" role="navigation">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Input Form BODJ</li>
+                            </ol>
+                            <hr>
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <label>Silahkan lakukan inputan SOAP dari BODJ Rawat Inap yang dilakukan oleh masing-masing dokter pada pasien Rawat Inap.</label> <br><hr>
+                                    <label>Klik button <button type="button" class="btn btn-primary">Simpan</button> untuk menambahkan data BODJ Rawat Inap</label>
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="col-md-6 col-sm-12 text-center">
+                        <img src="mode/vendors/images/02.png">
+                    </div>
                 </div>
             </div>
-            <div class="col-5 align-self-center">
-                <div class="customize-input float-right">
-                    <select class="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius">
-                        <option selected>Aug 19</option>
-                        <option value="1">July 19</option>
-                        <option value="2">Jun 19</option>
-                    </select>
+
+            <div class="row">
+                <div class="col-sm-12 text-left">
+                    <button type="button" class="btn btn-dark" onclick="history.go(-1)"><i class="icon-copy ion-arrow-left-a"></i></button>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <a href="index.php?m=forms&s=forms"><button class="btn btn-dark btn-circle"><i class="fas fa-arrow-circle-left"></i></button></a>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Tambah Data Buku Operan Dokter Jaga Rawat Inap</h4>
-                        <h6 class="card-subtitle">Klik  <button class="btn waves-effect waves-light btn-sm btn-primary">Simpan</button> Untuk menambahkan data Buku Operan Dokter Jaga Rawat Inap.</h6>
-                        <hr>
-                        <form class="form-horizontal form-bordered" action="pages/forms/forms_proses.php?aksi=insert" method="POST" enctype="multipart/form-data">
-                            <div class="form-group row">
+            <br>
+            <div class="card-box mb-30">
+                <div class="responsive">
+                    <div class="pd-20">
+                        <form action="pages/MInputBODJ/MInputBODJ_proses.php?aksi=insert" method="POST" enctype="multipart/form-data">
+                            <div class="row">
                                 <label class="col-lg-3 col-form-label">Dokter Jaga</label>
                                 <div class="col-lg-9">
                                     <div class="input-group">
@@ -65,7 +64,7 @@ $sub_kalimat = substr($kalimat,-5);
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group row">
+                            <div class="row">
                                 <label class="col-lg-3 col-form-label">Tanggal Jaga</label>
                                 <div class="col-lg-9">
                                     <div class="input-group">
@@ -73,134 +72,83 @@ $sub_kalimat = substr($kalimat,-5);
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">No. Rekam Medis</label>
+                            <div class="row">
+                                <label class="col-lg-3 col-form-label">No. Rekam Medis / Nama Pasien</label>
                                 <div class="col-lg-9">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="no_rm" placeholder="No. Rekam Medis..." required/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Nama Pasien</label>
-                                <div class="col-lg-9">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" name="nama_pasien" placeholder="Nama Pasien..." required/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Kelas</label>
-                                <div class="col-lg-9">
-                                    <div class="input-group">
-                                        <select class="form-control" name="kelas" placeholder="Kelas..." required>
-                                            <option value="">-- Pilih Kelas --</option>
-                                            <option value="HCU">HCU</option>
-                                            <option value="VVIP">VVIP</option>
-                                            <option value="VIP">VIP</option>
-                                            <option value="Kelas I">Kelas I</option>
-                                            <option value="Kelas II">Kelas II</option>
-                                            <option value="Kelas III">Kelas III</option>
-                                            <option value="Tanpa Kelas">Tanpa Kelas</option>
-                                            <option value="Isolasi 209">Isolasi 209</option>
-                                            <option value="Isolasi 210">Isolasi 210</option>
-                                            <option value="Asoka">Asoka</option>
+                                        <select class="custom-select2 form-control" name="no_rm" style="width: 100%; height: 38px;" required="required">
+                                            <optgroup label="Pilih Data No.Rekam Medis / Nama Pasien">
+                                                <option value="">Pilih Data No.Rekam Medis / Nama Pasien</option>
+                                                <?php
+                                                $result = pg_query($pg, "SELECT * FROM pasien_m ORDER BY create_time DESC LIMIT 5000");
+                                                while ($row = pg_fetch_assoc($result)) {
+                                                    ?>
+                                                    <option value="<?= $row['no_rekam_medik'] ?> | <?= $row['namadepan'] ?> <?= $row['nama_pasien'] ?>"><?= $row['no_rekam_medik'] ?> | <?= $row['namadepan'] ?> <?= $row['nama_pasien'] ?></option>
+                                                <?php } ?>
+                                            </optgroup>
                                         </select>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group row">
+                            <div class="row">
+                                <label class="col-lg-3 col-form-label">Kelas</label>
+                                <div class="col-lg-9">
+                                    <div class="input-group">
+                                        <select class="custom-select2 form-control" name="kelas" style="width: 100%; height: 38px;" required="required">
+                                            <optgroup label="Pilih Kelas Pelayanan">
+                                                <option value="">Pilih Kelas Pelayanan</option>
+                                                <?php
+                                                $result = pg_query($pg, "SELECT * FROM kelaspelayanan_m");
+                                                while ($row = pg_fetch_assoc($result)) {
+                                                    ?>
+                                                    <option value="<?= $row['kelaspelayanan_nama'] ?>"><?= $row['kelaspelayanan_nama'] ?></option>
+                                                <?php } ?>
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <label class="col-lg-3 col-form-label">DPJP</label>
                                 <div class="col-lg-9">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="DPJP" placeholder="DPJP..." required/>
+                                        <select class="custom-select2 form-control" name="DPJP" style="width: 100%; height: 38px;" required="required">
+                                            <optgroup label="Pilih DPJP">
+                                                <option value="">Pilih DPJP</option>
+                                                <?php
+                                                $data = $db->query("SELECT * FROM tb_dpjp", 0);
+                                                while($row = $data->fetch_assoc()) {
+                                                    ?>
+                                                    <option value="<?= $row['gelar_depan'] ?><?= $row['nama_dpjp'] ?><?= $row['gelar_belakang'] ?>"><?= $row['gelar_depan'] ?><?= $row['nama_dpjp'] ?><?= $row['gelar_belakang'] ?></option>
+                                                <?php } ?>
+                                            </optgroup>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
-                            <hr>
-                            <div align="center">
-                                <h1>S</h1>
-                            </div>
-                            <hr>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Subject</label>
-                                <div class="col-lg-9">
+                            <div class="row">
+                                <div align="center">
+                                    <h5>Subject</h5>
+                                </div>
+                                <div class="col-lg-6">
                                     <div class="input-group">
-                                        <textarea type="text" class="form-control" name="subject" placeholder="Subject..." required></textarea>
+                                        <textarea type="text" class="ckeditor" id="ckedtor" name="subject" placeholder="Subject..." required="required"></textarea>
                                     </div>
                                 </div>
-                            </div>
-                            <hr>
-                            <div align="center">
-                                <h1>O</h1>
-                            </div>
-                            <hr>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Object</label>
-                                <div class="col-lg-9">
+                                <div align="center">
+                                    <h5>Object</h5>
+                                </div>
+                                <div class="col-lg-6">
                                     <div class="input-group">
-                                        <textarea type="text" class="form-control" name="object" placeholder="Object..." required></textarea>
+                                        <textarea type="text" class="ckeditor" id="ckedtor" name="object" placeholder="Object..." required="required"></textarea>
                                     </div>
                                 </div>
                             </div>
-                            <hr>
-                            <div align="center">
-                                <h1>A</h1>
-                            </div>
-                            <hr>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Assesment</label>
-                                <div class="col-lg-9">
-                                    <div class="input-group">
-                                        <textarea type="text" class="form-control" name="assesment" placeholder="Assesment..." required></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
-                            <div align="center">
-                                <h1>P</h1>
-                            </div>
-                            <hr>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Upload Berkas Digital(Optional)</label>
-                                <div class="col-lg-9">
-                                    <div class="input-group">
-                                        <input type="file" class="form-control" name="berkas" placeholder="berkas..."/>
-                                    </div>
-                                    <small>Upload File Max:100MB (docx,pdf,xlxs,mp4)</small>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Plan</label>
-                                <div class="col-lg-9">
-                                    <div class="input-group">
-                                        <textarea type="text" class="form-control" name="plan" placeholder="Plan..." required></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
-                            <div align="center">
-                                <h1>Keterangan</h1>
-                            </div>
-                            <hr>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Keterangan</label>
-                                <div class="col-lg-9">
-                                    <div class="input-group">
-                                        <textarea type="text" class="form-control" name="keterangan" placeholder="Keterangan..." required></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-block btn-primary">Simpan Data</button>
-                                    </div>
-                                </div>   
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Simpan</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-    </div>

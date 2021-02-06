@@ -35,7 +35,7 @@
                         <span class="micon dw dw-edit2"></span><span class="mtext">Forms BODJ</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="index.php?m=MInputBODJ&s=MInputBODJ">Input BODJ</a></li>
+                        <li><a href="index.php?m=MInputBODJ&s=MInputBODJ" class="<?= !empty($_GET['m']) && $_GET['m'] == 'MInputBODJ' ? 'active' : '' ?>">Input BODJ</a></li>
                     </ul>
                 </li>
                 <li class="dropdown <?= !empty($_GET['m']) && $_GET['m'] == 'MPrint' ? 'show' : '' ?>">

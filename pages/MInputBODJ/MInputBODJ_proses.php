@@ -5,7 +5,6 @@ $aksi = $_GET['aksi'];
 if ($aksi == 'insert') {
     $kd_soap = $_POST['kd_soap'];
     $no_rm = $_POST['no_rm'];
-    $nama_pasien = $_POST['nama_pasien'];
     $kelas = $_POST['kelas'];
     $dokter_jaga = $_POST['dokter_jaga'];
     $DPJP = $_POST['DPJP'];
@@ -14,20 +13,31 @@ if ($aksi == 'insert') {
     $assesment = $_POST['assesment'];
     $plan = $_POST['plan'];
     $keterangan = $_POST['keterangan'];
-    // $status_pasien = $_POST['status_pasien'];
     $date_created = $_POST['date_created'];
     $tgl_jaga = $_POST['tgl_jaga'];
-    // $berkas = $_POST['berkas'];
 
-    $path = $_FILES['berkas']['name'];
+    // LAB
+    $pathl = $_FILES['berkas']['name'];
     $file_tmp = $_FILES['berkas']['tmp_name'];
 
-    move_uploaded_file($file_tmp, "../../assets/uploads/object/".$path);
+    move_uploaded_file($file_tmp, "../../assets/uploads/object/".$pathl);
+
+    // Rontgent
+    $pathr = $_FILES['rontgent']['name'];
+    $file_tmp = $_FILES['rontgent']['tmp_name'];
+
+    move_uploaded_file($file_tmp, "../../assets/uploads/object/".$pathr);
+    
+    // EKG
+    $pathe = $_FILES['ekg']['name'];
+    $file_tmp = $_FILES['ekg']['tmp_name'];
+
+    move_uploaded_file($file_tmp, "../../assets/uploads/object/".$pathe);
     
     $insert = $db->query('INSERT INTO tb_soap 
-                        (kd_soap,no_rm,nama_pasien,kelas,dokter_jaga,DPJP,subject,object,assesment,plan,keterangan,date_created,tgl_jaga,berkas) 
+                        (kd_soap,no_rm,kelas,dokter_jaga,DPJP,subject,object,assesment,plan,keterangan,date_created,tgl_jaga,berkas,rontgent,ekg) 
                         VALUES 
-                        ("'.$kd_soap.'","'.$no_rm.'","'.$nama_pasien.'","'.$kelas.'","'.$dokter_jaga.'","'.$DPJP.'","'.$subject.'","'.$object.'","'.$assesment.'","'.$plan.'","'.$keterangan.'","'.$date_created.'","'.$tgl_jaga.'","'.$path.'")');
+                        ("'.$kd_soap.'","'.$no_rm.'","'.$kelas.'","'.$dokter_jaga.'","'.$DPJP.'","'.$subject.'","'.$object.'","'.$assesment.'","'.$plan.'","'.$keterangan.'","'.$date_created.'","'.$tgl_jaga.'","'.$pathl.'","'.$pathr.'","'.$pathe.'")');
 
     $insert2 = $db->query('INSERT INTO tb_soaplog
                     (kd_soap,status,date_add) 
@@ -52,10 +62,8 @@ if ($aksi == 'insert') {
     $assesment = $_POST['assesment'];
     $plan = $_POST['plan'];
     $keterangan = $_POST['keterangan'];
-    // $status_pasien = $_POST['status_pasien'];
     $date_created = $_POST['date_created'];
     $tgl_jaga = $_POST['tgl_jaga'];
-    // $berkas = $_POST['berkas'];
     
     $update = $db->query('UPDATE tb_soap SET no_rm="'.$no_rm.'",
                                             nama_pasien="'.$nama_pasien.'",

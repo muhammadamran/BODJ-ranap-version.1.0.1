@@ -24,13 +24,10 @@
           include "notfound.php";
         }
       }
-
       include "footer.php";
     } else {
       include "login.php";
     }
   }
-
-
 ?>
 
