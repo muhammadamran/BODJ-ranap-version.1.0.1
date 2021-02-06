@@ -2,200 +2,235 @@
 $data = $db->query('SELECT * FROM tb_soap WHERE id="'.$_GET['id'].'"');
 $row = $data->fetch_assoc()
 ?>
-<div class="page-wrapper">
-    <div class="page-breadcrumb">
-        <div class="row">
-            <div class="col-7 align-self-center">
-                <h4 class="page-title text-truncate text-dark font-weight-medium mb-1">Data forms Rawat Inap</h4>
-                <div class="d-flex align-items-center">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb m-0 p-0">
-                            <li class="breadcrumb-item"><a href="index.php" class="text-muted">Dashboard</a></li>
-                            <li class="breadcrumb-item text-muted active" aria-current="page">Input forms</li>
-                        </ol>
-                    </nav>
+<div class="main-container">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="title">
+                            <h3><span class="micon dw dw-edit2"></span> Input Form BODJ</h3>
+                        </div>
+                        <nav aria-label="breadcrumb" role="navigation">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Input Form BODJ</li>
+                            </ol>
+                            <hr>
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <label>Silahkan lakukan inputan SOAP dari BODJ Rawat Inap yang dilakukan oleh masing-masing dokter pada pasien Rawat Inap.</label> <br><hr>
+                                    <label>Klik button <button type="button" class="btn btn-primary">Simpan</button> untuk menambahkan data BODJ Rawat Inap</label>
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="col-md-6 col-sm-12 text-center">
+                        <img src="mode/vendors/images/02.png">
+                    </div>
                 </div>
             </div>
-            <div class="col-5 align-self-center">
-                <div class="customize-input float-right">
-                    <select class="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius">
-                        <option selected>Aug 19</option>
-                        <option value="1">July 19</option>
-                        <option value="2">Jun 19</option>
-                    </select>
+
+            <div class="row">
+                <div class="col-sm-12 text-left">
+                    <button type="button" class="btn btn-dark" onclick="history.go(-1)"><i class="icon-copy ion-arrow-left-a"></i></button>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <a href="index.php?m=forms&s=forms"><button class="btn btn-dark btn-circle"><i class="fas fa-arrow-circle-left"></i></button></a>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Update Data Buku Operan Dokter Jaga Rawat Inap</h4>
-                        <h6 class="card-subtitle">Klik  <button class="btn waves-effect waves-light btn-sm btn-primary">Update</button> Untuk memperbarui data Buku Operan Dokter Jaga Rawat Inap.</h6>
-                        <hr>
-                        <form class="form-horizontal form-bordered" action="pages/forms/forms_proses.php?aksi=update&id=<?= $_GET['id'] ?>" method="POST">
-                            <div class="form-group row">
+            <br>
+            <div class="card-box mb-30">
+                <div class="responsive">
+                    <div class="pd-20">
+                        <form action="pages/MInputBODJ/MInputBODJ_proses.php?aksi=update&id=<?= $_GET['id'] ?>" method="POST" enctype="multipart/form-data">
+                            <div class="row">
                                 <label class="col-lg-3 col-form-label">Dokter Jaga</label>
                                 <div class="col-lg-9">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="dokter_jaga" value="<?php echo $_SESSION['nama_lengkap'];?>" placeholder="Dokter Jaga..." readonly/>
-                                        <input type="text" class="form-control" name="date_created" value="<?php echo date('Y-m-d h:m:i');?>" placeholder="Dokter Jaga..." readonly/>
-                                        <input type="hidden" class="form-control" name="kd_soap" value="<?php echo $row['kd_soap']; ?>"/>
+                                        <input type="text" class="form-control" name="dokter_jaga" value="<?= $row['dokter_jaga'];?>" placeholder="Dokter Jaga..." readonly/>
+                                        <input type="text" class="form-control" name="date_created" value="<?= $row['date_created'];?>" placeholder="Dokter Jaga..." readonly/>
+                                        <input type="hidden" name="kd_soap" value="<?= $row['kd_soap']; ?>">
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group row">
+                            <div class="row">
                                 <label class="col-lg-3 col-form-label">Tanggal Jaga</label>
                                 <div class="col-lg-9">
                                     <div class="input-group">
-                                        <input type="date" class="form-control" name="tgl_jaga" value="<?php echo $row['tgl_jaga']; ?>" placeholder="Tanggal Jaga..." required/>
+                                        <input type="date" class="form-control" name="tgl_jaga" placeholder="Tanggal Jaga..." value="<?= $row['tgl_jaga'];?>" required/>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">No. Rekam Medis</label>
+                            <div class="row">
+                                <label class="col-lg-3 col-form-label">No. Rekam Medis / Nama Pasien</label>
                                 <div class="col-lg-9">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="no_rm" value="<?php echo $row['no_rm']; ?>" placeholder="No. Rekam Medis..." required/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Nama Pasien</label>
-                                <div class="col-lg-9">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" name="nama_pasien" value="<?php echo $row['nama_pasien']; ?>" placeholder="Nama Pasien..." required/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Kelas</label>
-                                <div class="col-lg-9">
-                                    <div class="input-group">
-                                        <!-- <input type="text" class="form-control" name="kelas" value="<?php echo $row['kelas']; ?>" placeholder="Kelas..." required/> -->
-                                        <select class="form-control" name="kelas" placeholder="Kelas..." required>
-                                            <option value="<?php echo $row['kelas']; ?>"><?php echo $row['kelas']; ?></option>
-                                            <option value="">-- Pilih Kelas --</option>
-                                            <option value="HCU">HCU</option>
-                                            <option value="VVIP">VVIP</option>
-                                            <option value="VIP">VIP</option>
-                                            <option value="Kelas I">Kelas I</option>
-                                            <option value="Kelas II">Kelas II</option>
-                                            <option value="Kelas III">Kelas III</option>
-                                            <option value="Tanpa Kelas">Tanpa Kelas</option>
-                                            <option value="Isolasi 209">Isolasi 209</option>
-                                            <option value="Isolasi 210">Isolasi 210</option>
-                                            <option value="Asoka">Asoka</option>
+                                        <select class="custom-select2 form-control" name="no_rm" style="width: 100%; height: 38px;" required="required">
+                                            <optgroup label="Pilih Data No.Rekam Medis / Nama Pasien">
+                                                <option value="<?= $row['no_rm'] ?>"><?= $row['no_rm'] ?></option>
+                                                <?php
+                                                $result_a = pg_query($pg, "SELECT * FROM pasien_m ORDER BY create_time DESC LIMIT 5000");
+                                                while ($row_a = pg_fetch_assoc($result_a)) {
+                                                    ?>
+                                                    <option value="<?= $row_a['no_rekam_medik'] ?> | <?= $row_a['namadepan'] ?> <?= $row_a['nama_pasien'] ?>"><?= $row_a['no_rekam_medik'] ?> | <?= $row_a['namadepan'] ?> <?= $row_a['nama_pasien'] ?></option>
+                                                <?php } ?>
+                                            </optgroup>
                                         </select>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group row">
+                            <div class="row">
+                                <label class="col-lg-3 col-form-label">Kelas</label>
+                                <div class="col-lg-9">
+                                    <div class="input-group">
+                                        <select class="custom-select2 form-control" name="kelas" style="width: 100%; height: 38px;" required="required">
+                                            <optgroup label="Pilih Kelas Pelayanan">
+                                                <option value="<?= $row['kelas'] ?>"><?= $row['kelas'] ?></option>
+                                                <?php
+                                                $result_b = pg_query($pg, "SELECT * FROM kelaspelayanan_m");
+                                                while ($row_b = pg_fetch_assoc($result_b)) {
+                                                    ?>
+                                                    <option value="<?= $row_b['kelaspelayanan_nama'] ?>"><?= $row_b['kelaspelayanan_nama'] ?></option>
+                                                <?php } ?>
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <label class="col-lg-3 col-form-label">DPJP</label>
                                 <div class="col-lg-9">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="DPJP" value="<?php echo $row['DPJP']; ?>" placeholder="DPJP..." required/>
+                                        <select class="custom-select2 form-control" name="DPJP" style="width: 100%; height: 38px;" required="required">
+                                            <optgroup label="Pilih DPJP">
+                                                <option value="<?= $row['DPJP'] ?>"><?= $row['DPJP'] ?></option>
+                                                <?php
+                                                $data_c = $db->query("SELECT * FROM tb_dpjp", 0);
+                                                while($row_c = $data_c->fetch_assoc()) {
+                                                    ?>
+                                                    <option value="<?= $row_c['gelar_depan'] ?><?= $row_c['nama_dpjp'] ?><?= $row_c['gelar_belakang'] ?>"><?= $row_c['gelar_depan'] ?><?= $row_c['nama_dpjp'] ?><?= $row_c['gelar_belakang'] ?></option>
+                                                <?php } ?>
+                                            </optgroup>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
                             <hr>
                             <div align="center">
-                                <h1>S</h1>
+                                <h5>Subject</h5>
                             </div>
                             <hr>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Subject</label>
-                                <div class="col-lg-9">
+                            <div class="row">
+                                <div class="col-lg-12">
                                     <div class="input-group">
-                                        <textarea type="text" class="form-control" name="subject" placeholder="Subject..." required><?php echo $row['subject']; ?></textarea>
+                                        <textarea type="text" class="ckeditor" id="ckedtor" name="subject" placeholder="Subject..." required="required"><?= $row['subject'] ?></textarea>
                                     </div>
                                 </div>
                             </div>
                             <hr>
                             <div align="center">
-                                <h1>O</h1>
+                                <h5>Object</h5>
                             </div>
                             <hr>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Object</label>
-                                <div class="col-lg-9">
+                            <div class="row">
+                                <div class="col-lg-12">
                                     <div class="input-group">
-                                        <textarea type="text" class="form-control" name="object" placeholder="Object..." required><?php echo $row['object']; ?></textarea>
+                                        <textarea type="text" class="ckeditor" id="ckedtor" name="object" placeholder="Object..." required="required"><?= $row['object'] ?></textarea>
                                     </div>
                                 </div>
                             </div>
                             <hr>
                             <div align="center">
-                                <h1>A</h1>
+                                <h5>Assesment</h5>
                             </div>
                             <hr>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Assesment</label>
-                                <div class="col-lg-9">
+                            <div class="row">
+                                <div class="col-lg-12">
                                     <div class="input-group">
-                                        <textarea type="text" class="form-control" name="assesment" placeholder="Assesment..." required><?php echo $row['assesment']; ?></textarea>
+                                        <textarea type="text" class="ckeditor" id="ckedtor" name="assesment" placeholder="Assesment..." required="required"><?= $row['assesment'] ?></textarea>
                                     </div>
                                 </div>
                             </div>
                             <hr>
                             <div align="center">
-                                <h1>P</h1>
+                                <h5>Plan</h5>
                             </div>
                             <hr>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Berkas Digital Sebelumnya</label>
-                                <div class="col-lg-9">
-                                    <?php
-                                    if ($row['berkas']==NULL) { ?>
-                                        <div align="center">
-                                            <img src="assets/uploads/object/icon/notfound.png" class="lingkaran" alt="" />
-                                        </div>
-                                    <?php }else{ ?>
-                                        <div align="center">
-                                            <img src="<?php echo 'assets/uploads/object/'. $row['berkas'];?>" class="lingkaran" alt="" />
-                                        </div>   
-                                    <?php } ?>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Plan</label>
-                                <div class="col-lg-9">
+                            <div class="row">
+                                <div class="col-lg-12">
                                     <div class="input-group">
-                                        <textarea type="text" class="form-control" name="plan" placeholder="Plan..." required><?php echo $row['plan']; ?></textarea>
+                                        <textarea type="text" class="ckeditor" id="ckedtor" name="plan" placeholder="Plan..." required="required"><?= $row['plan'] ?></textarea>
                                     </div>
                                 </div>
                             </div>
                             <hr>
                             <div align="center">
-                                <h1>Keterangan</h1>
+                                <h5>Keterangan</h5>
                             </div>
                             <hr>
-                            <div class="form-group row">
-                                <label class="col-lg-3 col-form-label">Keterangan</label>
-                                <div class="col-lg-9">
+                            <div class="row">
+                                <div class="col-lg-12">
                                     <div class="input-group">
-                                        <textarea type="text" class="form-control" name="keterangan" placeholder="Keterangan..." required><?php echo $row['keterangan']; ?></textarea>
+                                        <textarea type="text" class="ckeditor" id="ckedtor" name="keterangan" placeholder="Keterangan..." required="required"><?= $row['keterangan'] ?></textarea>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-block btn-primary">Update</button>
+                            <hr>
+                            <div align="center">
+                                <h5>Upload Berkas LAB, Rontgent & EKG Pasien</h5>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <label>LAB</label>
+                                    <div class="input-group">
+                                        <?php
+                                        if ($row['berkas']==NULL) { ?>
+                                            <div align="center">
+                                                <img src="assets/uploads/object/icon/notfound.png" class="lingkaran" alt="" />
+                                            </div>
+                                        <?php }else{ ?>
+                                            <div align="center">
+                                                <img src="<?= 'assets/uploads/object/'. $row['berkas'];?>" class="lingkaran" alt="" />
+                                            </div>   
+                                        <?php } ?>
                                     </div>
-                                </div>   
+                                </div>
+                                <div class="col-lg-4">
+                                    <label>Rontgent</label>
+                                    <div class="input-group">
+                                        <?php
+                                        if ($row['rontgent']==NULL) { ?>
+                                            <div align="center">
+                                                <img src="assets/uploads/object/icon/notfound.png" class="lingkaran" alt="" />
+                                            </div>
+                                        <?php }else{ ?>
+                                            <div align="center">
+                                                <img src="<?= 'assets/uploads/object/'. $row['rontgent'];?>" class="lingkaran" alt="" />
+                                            </div>   
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label>EKG</label>
+                                    <div class="input-group">
+                                        <?php
+                                        if ($row['ekg']==NULL) { ?>
+                                            <div align="center">
+                                                <img src="assets/uploads/object/icon/notfound.png" class="lingkaran" alt="" />
+                                            </div>
+                                        <?php }else{ ?>
+                                            <div align="center">
+                                                <img src="<?= 'assets/uploads/object/'. $row['ekg'];?>" class="lingkaran" alt="" />
+                                            </div>   
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-dark" onclick="history.go(-1)">Kembali</button>
+                                <button type="submit" class="btn btn-primary">Update</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-    </div>

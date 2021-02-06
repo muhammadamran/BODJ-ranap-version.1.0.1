@@ -38,21 +38,42 @@
 													$data = $db->query("SELECT a.kd_soap,a.no_rm,a.nama_pasien,a.kelas,a.dokter_jaga,						b.kd_soap,b.status,b.date_add
 														FROM tb_soap a JOIN tb_soaplog b
 														ON a.kd_soap=b.kd_soap
-														ORDER BY b.kd_soap DESC LIMIT 5", 0);
+														ORDER BY b.id DESC LIMIT 5", 0);
 													while($row = $data->fetch_assoc()) {
 														?>
 													<?php if ($row['status']=='0') { ?>
 													<li>
 														<div class="date"><?= tanggal_indo(date('Y-m-d',strtotime($row['date_add']))); ?></div>
 														<div class="task-name"><i class="icon-copy ion-clipboard"></i> SOAP Baru dari <?= $row['dokter_jaga']; ?></div>
-														<p>Dengan Pasien a.n <?= $row['nama_pasien']; ?><br> <?= $row['no_rm']; ?>.</p>
+														<p>Dengan Pasien <br> <?= $row['no_rm']; ?>.</p>
 														<div class="task-time"><?= date('H:i',strtotime($row['date_add'])); ?> WIB</div>
 													</li>
 													<?php }elseif ($row['status']=='1') { ?>
 													<li>
 														<div class="date"><?= tanggal_indo(date('Y-m-d',strtotime($row['date_add']))); ?></div>
 														<div class="task-name"><i class="icon-copy ion-loop"></i> Update SOAP dari <?= $row['dokter_jaga']; ?></div>
-														<p>Dengan Pasien a.n <?= $row['nama_pasien']; ?><br> <?= $row['no_rm']; ?>.</p>
+														<p>Dengan Pasien <br> <?= $row['no_rm']; ?>.</p>
+														<div class="task-time"><?= date('H:i',strtotime($row['date_add'])); ?> WIB</div>
+													</li>
+													<?php }elseif ($row['status']=='2') { ?>
+													<li>
+														<div class="date"><?= tanggal_indo(date('Y-m-d',strtotime($row['date_add']))); ?></div>
+														<div class="task-name"><i class="icon-copy ion-images"></i> Update Filr LAB dari <?= $row['dokter_jaga']; ?></div>
+														<p>Dengan Pasien <br> <?= $row['no_rm']; ?>.</p>
+														<div class="task-time"><?= date('H:i',strtotime($row['date_add'])); ?> WIB</div>
+													</li>
+													<?php }elseif ($row['status']=='3') { ?>
+													<li>
+														<div class="date"><?= tanggal_indo(date('Y-m-d',strtotime($row['date_add']))); ?></div>
+														<div class="task-name"><i class="icon-copy ion-images"></i> Update Filr Rontgent dari <?= $row['dokter_jaga']; ?></div>
+														<p>Dengan Pasien <br> <?= $row['no_rm']; ?>.</p>
+														<div class="task-time"><?= date('H:i',strtotime($row['date_add'])); ?> WIB</div>
+													</li>
+													<?php }elseif ($row['status']=='4') { ?>
+													<li>
+														<div class="date"><?= tanggal_indo(date('Y-m-d',strtotime($row['date_add']))); ?></div>
+														<div class="task-name"><i class="icon-copy ion-images"></i> Update Filr EKG dari <?= $row['dokter_jaga']; ?></div>
+														<p>Dengan Pasien <br> <?= $row['no_rm']; ?>.</p>
 														<div class="task-time"><?= date('H:i',strtotime($row['date_add'])); ?> WIB</div>
 													</li>
 													<?php } } ?>

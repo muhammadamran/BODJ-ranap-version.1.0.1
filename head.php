@@ -44,7 +44,7 @@
 <style type="text/css">
   .lingkaran{
     width: 300px;
-    height: 300px;
+    height: 100%;
     background: #fff;
     /* border-radius: 100%; */
   }

@@ -35,14 +35,14 @@ if ($aksi == 'insert') {
     move_uploaded_file($file_tmp, "../../assets/uploads/object/".$pathe);
     
     $insert = $db->query('INSERT INTO tb_soap 
-                        (kd_soap,no_rm,kelas,dokter_jaga,DPJP,subject,object,assesment,plan,keterangan,date_created,tgl_jaga,berkas,rontgent,ekg) 
-                        VALUES 
-                        ("'.$kd_soap.'","'.$no_rm.'","'.$kelas.'","'.$dokter_jaga.'","'.$DPJP.'","'.$subject.'","'.$object.'","'.$assesment.'","'.$plan.'","'.$keterangan.'","'.$date_created.'","'.$tgl_jaga.'","'.$pathl.'","'.$pathr.'","'.$pathe.'")');
+        (kd_soap,no_rm,kelas,dokter_jaga,DPJP,subject,object,assesment,plan,keterangan,date_created,tgl_jaga,berkas,rontgent,ekg) 
+        VALUES 
+        ("'.$kd_soap.'","'.$no_rm.'","'.$kelas.'","'.$dokter_jaga.'","'.$DPJP.'","'.$subject.'","'.$object.'","'.$assesment.'","'.$plan.'","'.$keterangan.'","'.$date_created.'","'.$tgl_jaga.'","'.$pathl.'","'.$pathr.'","'.$pathe.'")');
 
     $insert2 = $db->query('INSERT INTO tb_soaplog
-                    (kd_soap,status,date_add) 
-                    VALUES 
-                    ("'.$kd_soap.'","0","'.$date_created.'")');
+        (kd_soap,status,date_add) 
+        VALUES 
+        ("'.$kd_soap.'","0","'.$date_created.'")');
     if ($insert) {
         echo '<script>alert("Data berhasil ditambahkan");location.href = "../../index.php?m=MInputBODJ&s=MInputBODJ"</script>';
     } else {
@@ -53,7 +53,6 @@ if ($aksi == 'insert') {
     $id = $_GET['id'];
     $kd_soap = $_POST['kd_soap'];
     $no_rm = $_POST['no_rm'];
-    $nama_pasien = $_POST['nama_pasien'];
     $kelas = $_POST['kelas'];
     $dokter_jaga = $_POST['dokter_jaga'];
     $DPJP = $_POST['DPJP'];
@@ -66,31 +65,28 @@ if ($aksi == 'insert') {
     $tgl_jaga = $_POST['tgl_jaga'];
     
     $update = $db->query('UPDATE tb_soap SET no_rm="'.$no_rm.'",
-                                            nama_pasien="'.$nama_pasien.'",
-                                            kelas="'.$kelas.'",
-                                            dokter_jaga="'.$dokter_jaga.'",
-                                            DPJP="'.$DPJP.'",
-                                            subject="'.$subject.'",
-                                            object="'.$object.'",
-                                            assesment="'.$assesment.'",
-                                            plan="'.$plan.'",
-                                            keterangan="'.$keterangan.'",
-                                            date_created="'.$date_created.'",
-                                            tgl_jaga="'.$tgl_jaga.'"
-                                            WHERE id="'.$id.'"');
+        kelas="'.$kelas.'",
+        dokter_jaga="'.$dokter_jaga.'",
+        DPJP="'.$DPJP.'",
+        subject="'.$subject.'",
+        object="'.$object.'",
+        assesment="'.$assesment.'",
+        plan="'.$plan.'",
+        keterangan="'.$keterangan.'",
+        date_created="'.$date_created.'",
+        tgl_jaga="'.$tgl_jaga.'"
+        WHERE id="'.$id.'"');
 
     $insert2 = $db->query('INSERT INTO tb_soaplog
-                    (kd_soap,status,date_add) 
-                    VALUES 
-                    ("'.$kd_soap.'","1","'.$date_created.'")');
-
+        (kd_soap,status,date_add) 
+        VALUES 
+        ("'.$kd_soap.'","1","'.$date_created.'")');
 
     if ($update) {
         echo '<script>alert("Data berhasil diUpdate");location.href = "../../index.php?m=MInputBODJ&s=MInputBODJ"</script>';
     } else {
         echo '<script>alert("Data gagal diUpdate");history.go(-1)</script>';
     }
-
 // HAPUS DATA
 } else if ($aksi == 'hapus') {
     $id = $_GET['id'];

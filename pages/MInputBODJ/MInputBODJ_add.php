@@ -126,22 +126,92 @@ $sub_kalimat = substr($kalimat,-5);
                                     </div>
                                 </div>
                             </div>
+                            <hr>
+                            <div align="center">
+                                <h5>Subject</h5>
+                            </div>
+                            <hr>
                             <div class="row">
-                                <div align="center">
-                                    <h5>Subject</h5>
-                                </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-12">
                                     <div class="input-group">
                                         <textarea type="text" class="ckeditor" id="ckedtor" name="subject" placeholder="Subject..." required="required"></textarea>
                                     </div>
                                 </div>
-                                <div align="center">
-                                    <h5>Object</h5>
-                                </div>
-                                <div class="col-lg-6">
+                            </div>
+                            <hr>
+                            <div align="center">
+                                <h5>Object</h5>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-lg-12">
                                     <div class="input-group">
                                         <textarea type="text" class="ckeditor" id="ckedtor" name="object" placeholder="Object..." required="required"></textarea>
                                     </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div align="center">
+                                <h5>Assesment</h5>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="input-group">
+                                        <textarea type="text" class="ckeditor" id="ckedtor" name="assesment" placeholder="Assesment..." required="required"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div align="center">
+                                <h5>Plan</h5>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="input-group">
+                                        <textarea type="text" class="ckeditor" id="ckedtor" name="plan" placeholder="Plan..." required="required"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div align="center">
+                                <h5>Keterangan</h5>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="input-group">
+                                        <textarea type="text" class="ckeditor" id="ckedtor" name="keterangan" placeholder="Keterangan..." required="required"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div align="center">
+                                <h5>Upload Berkas LAB, Rontgent & EKG Pasien</h5>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <label>LAB</label>
+                                    <div class="input-group">
+                                        <input type="file" class="form-control" name="berkas" placeholder="berkas..."/>
+                                    </div>
+                                    <small>Upload File Max:100MB (docx,pdf,xlxs,mp4)</small>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label>Rontgent</label>
+                                    <div class="input-group">
+                                        <input type="file" class="form-control" name="rontgent" placeholder="rontgent..."/>
+                                    </div>
+                                    <small>Upload File Max:100MB (docx,pdf,xlxs,mp4)</small>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label>EKG</label>
+                                    <div class="input-group">
+                                        <input type="file" class="form-control" name="ekg" placeholder="ekg..."/>
+                                    </div>
+                                    <small>Upload File Max:100MB (docx,pdf,xlxs,mp4)</small>
                                 </div>
                             </div>
                             <div class="modal-footer">

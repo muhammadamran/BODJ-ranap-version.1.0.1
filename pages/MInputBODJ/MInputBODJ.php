@@ -73,7 +73,7 @@
                                         <td><?= $row['dokter_jaga'] == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row['dokter_jaga'] ?></td>
                                         <td><?= $row['kelas'] == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row['kelas'] ?></td>
                                         <td>
-                                            <a href="#" data-toggle="modal" data-target="#updatesoap<?= $row['id']?>"><span class="btn btn-light btn-sm"><i class="icon-copy ion-edit"></i> </span></a>
+                                            <a href="index.php?m=MInputBODJ&s=MInputBODJ_edit&id=<?= $row['id'] ?>"><span class="btn btn-light btn-sm"><i class="icon-copy ion-edit"></i> </span></a>
                                             <a href="#" data-toggle="modal" data-target="#updatefilelab<?= $row['id']?>"><span class="btn btn-warning btn-sm"><i class="icon-copy ion-android-image"></i> <b>LAB</b> </span></a>
                                             <a href="#" data-toggle="modal" data-target="#updatefilerontgen<?= $row['id']?>"><span class="btn btn-warning btn-sm"><i class="icon-copy ion-android-image"></i> <b>Rontgent</b> </span></a>
                                             <a href="#" data-toggle="modal" data-target="#updatefileekg<?= $row['id']?>"><span class="btn btn-warning btn-sm"><i class="icon-copy ion-android-image"></i> <b>EKG</b> </span></a>
@@ -94,9 +94,8 @@
                                                     <div class="row">
                                                         <div class="col-lg-6">
                                                             <p><b>Identitas Pasien</b></p>
-                                                            <p>No.Rekam Medis: <?= $row['no_rm']; ?></p>
-                                                            <p>Nama Pasien: <?= $row['nama_pasien']; ?></p>
-                                                            <p>Kelas: <?= $row['nama_pasien']; ?></p>
+                                                            <p>No.Rekam Medis | Nama Pasien: <br><?= $row['no_rm']; ?></p>
+                                                            <p>Kelas: <?= $row['kelas']; ?></p>
                                                         </div>
                                                         <div class="col-lg-6">
                                                             <p><b>Dokter</b></p>
@@ -117,7 +116,7 @@
                                                     <div class="row">
                                                         <div class="col-lg-12">
                                                             <div class="input-group">
-                                                                <textarea type="text" class="ckeditor" id="ckedtor" name="subject" placeholder="Subject..." readonly><?php echo $row['subject']; ?></textarea>
+                                                                <textarea type="text" class="ckeditor" id="ckedtor" name="subject" placeholder="Subject..." readonly><?= $row['subject']; ?></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -129,7 +128,7 @@
                                                     <div class="row">
                                                         <div class="col-lg-12">
                                                             <div class="input-group">
-                                                                <textarea type="text" class="ckeditor" id="ckedtor" name="object" placeholder="Object..." readonly><?php echo $row['object']; ?></textarea>
+                                                                <textarea type="text" class="ckeditor" id="ckedtor" name="object" placeholder="Object..." readonly><?= $row['object']; ?></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -141,7 +140,7 @@
                                                     <div class="row">
                                                         <div class="col-lg-12">
                                                             <div class="input-group">
-                                                                <textarea type="text" class="ckeditor" id="ckedtor" name="assesment" placeholder="Assesment..." readonly><?php echo $row['assesment']; ?></textarea>
+                                                                <textarea type="text" class="ckeditor" id="ckedtor" name="assesment" placeholder="Assesment..." readonly><?= $row['assesment']; ?></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -151,25 +150,9 @@
                                                     </div>
                                                     <hr>
                                                     <div class="row">
-                                                        <label class="col-lg-12 col-form-label">Berkas Digital Sebelumnya</label>
-                                                        <div class="col-lg-12">
-                                                            <?php
-                                                            if ($row['berkas']==NULL) { ?>
-                                                                <div align="center">
-                                                                    <img src="assets/uploads/object/icon/notfound.png" class="lingkaran" alt="" />
-                                                                </div>
-                                                            <?php }else{ ?>
-                                                                <div align="center">
-                                                                    <img src="<?php echo 'assets/uploads/object/'. $row['berkas'];?>" class="lingkaran" alt="" />
-                                                                </div>   
-                                                            <?php } ?>
-                                                        </div>
-                                                    </div>
-                                                    <br>
-                                                    <div class="row">
                                                         <div class="col-lg-12">
                                                             <div class="input-group">
-                                                                <textarea type="text" class="ckeditor" id="ckedtor" name="plan" placeholder="Plan..." readonly><?php echo $row['plan']; ?></textarea>
+                                                                <textarea type="text" class="ckeditor" id="ckedtor" name="plan" placeholder="Plan..." readonly><?= $row['plan']; ?></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -181,7 +164,59 @@
                                                     <div class="row">
                                                         <div class="col-lg-12">
                                                             <div class="input-group">
-                                                                <textarea type="text" class="ckeditor" id="ckedtor" name="keterangan" placeholder="Keterangan..." readonly><?php echo $row['keterangan']; ?></textarea>
+                                                                <textarea type="text" class="ckeditor" id="ckedtor" name="keterangan" placeholder="Keterangan..." readonly><?= $row['keterangan']; ?></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                    <div align="center">
+                                                        <h5>Upload Berkas LAB, Rontgent & EKG Pasien</h5>
+                                                    </div>
+                                                    <hr>
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <label>LAB</label>
+                                                            <div class="input-group">
+                                                                <?php
+                                                                if ($row['berkas']==NULL) { ?>
+                                                                    <div align="center">
+                                                                        <img src="assets/uploads/object/icon/notfound.png" class="lingkaran" alt="" />
+                                                                    </div>
+                                                                <?php }else{ ?>
+                                                                    <div align="center">
+                                                                        <img src="<?= 'assets/uploads/object/'. $row['berkas'];?>" class="lingkaran" alt="" />
+                                                                    </div>   
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <label>Rontgent</label>
+                                                            <div class="input-group">
+                                                                <?php
+                                                                if ($row['rontgent']==NULL) { ?>
+                                                                    <div align="center">
+                                                                        <img src="assets/uploads/object/icon/notfound.png" class="lingkaran" alt="" />
+                                                                    </div>
+                                                                <?php }else{ ?>
+                                                                    <div align="center">
+                                                                        <img src="<?= 'assets/uploads/object/'. $row['rontgent'];?>" class="lingkaran" alt="" />
+                                                                    </div>   
+                                                                <?php } ?>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <label>EKG</label>
+                                                            <div class="input-group">
+                                                                <?php
+                                                                if ($row['ekg']==NULL) { ?>
+                                                                    <div align="center">
+                                                                        <img src="assets/uploads/object/icon/notfound.png" class="lingkaran" alt="" />
+                                                                    </div>
+                                                                <?php }else{ ?>
+                                                                    <div align="center">
+                                                                        <img src="<?= 'assets/uploads/object/'. $row['ekg'];?>" class="lingkaran" alt="" />
+                                                                    </div>   
+                                                                <?php } ?>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -193,12 +228,12 @@
                                         </div>
                                     </div>
                                     <!-- END DETAIL SOAP & KETERANGAN -->
-                                    <!-- DETAIL SOAP & KETERANGAN -->
-                                    <div class="modal fade" id="updatefile<?= $row['id']?>" role="dialog">
+                                    <!-- DETAIL UPDATE LAB -->
+                                    <div class="modal fade" id="updatefilelab<?= $row['id']?>" role="dialog">
                                         <div class="modal-dialog modal-md">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <label class="modal-title">Update File</label>
+                                                    <label class="modal-title">Update File LAB <br> a.n <?= $row['no_rm']; ?></label>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
@@ -208,14 +243,18 @@
                                                         <div class="row">
                                                             <label class="col-lg-4 col-form-label">Upload Berkas Digital Sebelumnya</label>
                                                             <div class="col-lg-8">
-                                                                <?php
-                                                                if ($row['berkas']==NULL) { ?>
-                                                                    <div align="center">
-                                                                        <b>Tidak Ada File</b>
-                                                                    </div>
-                                                                <?php }else{ ?>
-                                                                    <img src="<?php echo 'assets/uploads/object/'. $row['berkas'];?>" class="lingkaran" alt="" />   
-                                                                <?php } ?>
+                                                                <div class="input-group">
+                                                                    <?php
+                                                                    if ($row['berkas']==NULL) { ?>
+                                                                        <div align="center">
+                                                                            <img src="assets/uploads/object/icon/notfound.png" class="lingkaran" alt="" />
+                                                                        </div>
+                                                                    <?php }else{ ?>
+                                                                        <div align="center">
+                                                                            <img src="<?= 'assets/uploads/object/'. $row['berkas'];?>" class="lingkaran" alt="" />
+                                                                        </div>   
+                                                                    <?php } ?>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="row">
@@ -223,13 +262,14 @@
                                                             <div class="col-lg-8">
                                                                 <div class="input-group">
                                                                     <input type="hidden" class="form-control" name="id" value="<?= $row['id'] ?>"/>
+                                                                    <input type="hidden" class="form-control" name="kd_soap" value="<?= $row['kd_soap'] ?>"/>
                                                                     <input type="file" class="form-control" name="berkas" value="<?= $row['berkas'] ?>"/>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <hr>
                                                         <div class="form-group">
-                                                            <button type="submit" name="updatefile" class="btn btn-block btn-primary">Update</button>
+                                                            <button type="submit" name="updatel" class="btn btn-block btn-primary">Update LAB</button>
                                                             <button type="button" class="btn btn-block btn-warning" data-dismiss="modal">Tutup</button>
                                                         </div>
                                                     </form>
@@ -237,7 +277,107 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- END UPDATE FILE -->
+                                    <!-- END UPDATE LAB -->
+                                    <!-- DETAIL UPDATE RONTGENT -->
+                                    <div class="modal fade" id="updatefilerontgen<?= $row['id']?>" role="dialog">
+                                        <div class="modal-dialog modal-md">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <label class="modal-title">Update File Rontgent <br> a.n <?= $row['no_rm']; ?></label>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form class="form-horizontal form-bordered" action="pages/MInputBODJ/MInputBODJ_file.php" method="POST" enctype="multipart/form-data">
+                                                        <div class="row">
+                                                            <label class="col-lg-4 col-form-label">Upload Berkas Digital Sebelumnya</label>
+                                                            <div class="col-lg-8">
+                                                                <div class="input-group">
+                                                                    <?php
+                                                                    if ($row['rontgent']==NULL) { ?>
+                                                                        <div align="center">
+                                                                            <img src="assets/uploads/object/icon/notfound.png" class="lingkaran" alt="" />
+                                                                        </div>
+                                                                    <?php }else{ ?>
+                                                                        <div align="center">
+                                                                            <img src="<?= 'assets/uploads/object/'. $row['rontgent'];?>" class="lingkaran" alt="" />
+                                                                        </div>   
+                                                                    <?php } ?>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <label class="col-lg-4 col-form-label">Upload Berkas Digital(Optional)</label>
+                                                            <div class="col-lg-8">
+                                                                <div class="input-group">
+                                                                    <input type="hidden" class="form-control" name="id" value="<?= $row['id'] ?>"/>
+                                                                    <input type="hidden" class="form-control" name="kd_soap" value="<?= $row['kd_soap'] ?>"/>
+                                                                    <input type="file" class="form-control" name="rontgent" value="<?= $row['rontgent'] ?>"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="form-group">
+                                                            <button type="submit" name="updater" class="btn btn-block btn-primary">Update Rontgent</button>
+                                                            <button type="button" class="btn btn-block btn-warning" data-dismiss="modal">Tutup</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END UPDATE RONTGENT -->
+                                    <!-- DETAIL UPDATE EKG -->
+                                    <div class="modal fade" id="updatefileekg<?= $row['id']?>" role="dialog">
+                                        <div class="modal-dialog modal-md">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <label class="modal-title">Update File EKG <br> a.n <?= $row['no_rm']; ?></label>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form class="form-horizontal form-bordered" action="pages/MInputBODJ/MInputBODJ_file.php" method="POST" enctype="multipart/form-data">
+                                                        <div class="row">
+                                                            <label class="col-lg-4 col-form-label">Upload Berkas Digital Sebelumnya</label>
+                                                            <div class="col-lg-8">
+                                                                <div class="input-group">
+                                                                    <?php
+                                                                    if ($row['ekg']==NULL) { ?>
+                                                                        <div align="center">
+                                                                            <img src="assets/uploads/object/icon/notfound.png" class="lingkaran" alt="" />
+                                                                        </div>
+                                                                    <?php }else{ ?>
+                                                                        <div align="center">
+                                                                            <img src="<?= 'assets/uploads/object/'. $row['ekg'];?>" class="lingkaran" alt="" />
+                                                                        </div>   
+                                                                    <?php } ?>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <label class="col-lg-4 col-form-label">Upload Berkas Digital(Optional)</label>
+                                                            <div class="col-lg-8">
+                                                                <div class="input-group">
+                                                                    <input type="hidden" class="form-control" name="id" value="<?= $row['id'] ?>"/>
+                                                                    <input type="hidden" class="form-control" name="kd_soap" value="<?= $row['kd_soap'] ?>"/>
+                                                                    <input type="file" class="form-control" name="ekg" value="<?= $row['ekg'] ?>"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                        <div class="form-group">
+                                                            <button type="submit" name="updatee" class="btn btn-block btn-primary">Update EKG</button>
+                                                            <button type="button" class="btn btn-block btn-warning" data-dismiss="modal">Tutup</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END UPDATE EKG -->
                                 <?php } ?>
                                 <!-- END DATA -->
                             </tbody>
