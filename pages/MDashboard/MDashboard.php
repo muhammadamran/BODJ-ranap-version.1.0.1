@@ -5,22 +5,22 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
                         <div class="title">
-                            <h3><span class="micon dw dw-stethoscope"></span> Rawat Jalan</h3>
+                            <h3><span class="micon dw dw-stethoscope"></span> Dashboard</h3>
                         </div>
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Rawat Jalan</li>
+                                <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
                             </ol>
                             <hr>
-                            <ol class="breadcrumb">
+                            <!-- <ol class="breadcrumb">
                                 <?php
                                     $result_t = pg_query($pg, "SELECT COUNT(*) AS jumlah FROM infokunjunganrj_v WHERE DATE(tgl_pendaftaran) = CURRENT_DATE");
                                     $row_t = pg_fetch_assoc($result_t);
                                 ?>
-                                <li class="breadcrumb-item"><h5>Jumlah Pasien Rawat Jalan <?= tanggal_indo(date('Y-m-d'));?> - <?= $row_t['jumlah']; ?> Pasien</h5> 
+                                <li class="breadcrumb-item"><h5>Jumlah Pasien Dashboard <?= tanggal_indo(date('Y-m-d'));?> - <?= $row_t['jumlah']; ?> Pasien</h5> 
                                 </li>
-                            </ol>
+                            </ol> -->
                         </nav>
                     </div>
                     <div class="col-md-6 col-sm-12 text-center">
@@ -28,78 +28,126 @@
                     </div>
                 </div>
             </div>
-            <!-- Export Datatable start -->
-            <div class="card-box mb-30">
-                <div class="pd-20">
-                    <h4 class="text-blue h4">Pasien Rawat Jalan</h4>
+            <div class="row">
+
+                <!-- SEARCH PERIODE -->
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-30">
+                    <div class="pd-20 card-box mb-30">
+                        <div class="row">
+                            <div class="col-xl-4">
+                                <img src="assets/mode/images/logo-icon.png" alt=""> <h5><b>BODJ</b> <small>Rawat Inap</small></h5>
+                            </div>
+                            <div class="col-xl-4">
+                                <h5><b>Cari Per-Periode</b><small> Buku Catatan Dokter Rawat Inap</small></h5>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-xl-5">
+                                <select class="custom-select2 form-control" name="Bulan" style="width: 100%; height: 38px;" required="required">
+                                    <optgroup label="Pilih Bulan">
+                                        <option value="">Pilih Bulan</option>
+                                        <option value="Januari">Januari</option>
+                                        <option value="Februari">Februari</option>
+                                        <option value="Maret">Maret</option>
+                                        <option value="April">April</option>
+                                        <option value="Mei">Mei</option>
+                                        <option value="Juni">Juni</option>
+                                        <option value="Juli">Juli</option>
+                                        <option value="Agustus">Agustus</option>
+                                        <option value="September">September</option>
+                                        <option value="Oktober">Oktober</option>
+                                        <option value="November">November</option>
+                                        <option value="Desember">Desember</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                            <div class="col-xl-5">
+                                <select class="custom-select2 form-control" name="Tahun" style="width: 100%; height: 38px;" required="required">
+                                    <optgroup label="Pilih Tahun">
+                                        <option value="">Pilih Tahun</option>
+                                        <option value="2010">2010</option>
+                                        <option value="2011">2011</option>
+                                        <option value="2012">2012</option>
+                                        <option value="2013">2013</option>
+                                        <option value="2014">2014</option>
+                                        <option value="2015">2015</option>
+                                        <option value="2016">2016</option>
+                                        <option value="2017">2017</option>
+                                        <option value="2018">2018</option>
+                                        <option value="2019">2019</option>
+                                        <option value="2021">2021</option>
+                                        <option value="2021">2021</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                            <div class="col-xl-2">
+                                <button type="submit" class="btn btn-primary btn-block"><i class="icon-copy ion-search"></i> Cari</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="table-responsive">
-                    <div class="pb-20">
-                        <table class="table hover multiple-select-row data-table-export nowrap">
-                            <thead>
-                                <tr>
-                                    <th class="table-plus datatable-nosort">Tgl Pendaftaran</th>
-                                    <th>No. Pendaftaran</th>
-                                    <th>No. RM</th>
-                                    <th>Nama Pasien</th>
-                                    <th>Jenis Kelamin</th>
-                                    <th>Umur</th>
-                                    <th>DPJP</th>
-                                    <th>Jenis Kasus Penyakit</th>
-                                    <th>Nama Ruangan</th>
-                                    <th>Kelas Pelayanan</th>
-                                    <th>Status Periksa</th>
-                                    <th>Status Pasien</th>
-                                    <th>Status Masuk</th>
-                                    <th>Asuransi</th>
-                                    <th>Penjamin</th>
-                                    <th>Kelompok Umur</th>
-                                    <!-- <th class="datatable-nosort">Action</th> -->
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- DATA -->
-                                <?php 
-                                $tgl = date('Y-m-d');
-                                $result = pg_query($pg, "SELECT * FROM infokunjunganrj_v WHERE DATE(tgl_pendaftaran) = CURRENT_DATE ORDER BY tgl_pendaftaran DESC");
-                                    while ($row = pg_fetch_assoc($result)) {
-                                ?>
-                                <tr>
-                                    <td><?= $row['tgl_pendaftaran'] ?></td>
-                                    <td><?= $row['no_pendaftaran'] ?></td>
-                                    <td><?= $row['no_rekam_medik'] ?></td>
-                                    <td><?= $row['namadepan'] ?> <?= $row['nama_pasien'] ?></td>
-                                    <td><?= $row['jeniskelamin'] ?></td>
-                                    <td><?= $row['umur'] ?></td>
-                                    <td><?= $row['gelardepan'] ?><?= $row['nama_pegawai'] ?>,<?= $row['gelarbelakang_nama'] ?></td>
-                                    <td><?= $row['jeniskasuspenyakit_nama'] ?></td>
-                                    <td><?= $row['ruangan_nama'] ?></td>
-                                    <td><?= $row['kelaspelayanan_nama'] ?></td>
-                                    <td><?= $row['statusperiksa'] ?></td>
-                                    <td><?= $row['statuspasien'] ?></td>
-                                    <td><?= $row['statusmasuk'] ?></td>
-                                    <td><?= $row['carabayar_nama'] ?></td>
-                                    <td><?= $row['penjamin_nama'] ?></td>
-                                    <td><?= $row['golonganumur_nama'] ?></td>
-                                    <!-- <td>
-                                        <div class="dropdown">
-                                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                                                <i class="dw dw-more"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                                <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
-                                                <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
-                                                <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
-                                            </div>
-                                        </div>
-                                    </td> -->
-                                </tr>
-                                <?php } ?>
-                                <!-- END DATA -->
-                            </tbody>
-                        </table>
+                <!-- END SEARCH PERIODE -->
+
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-30">
+                    <div class="pd-20 card-box mb-30">
+                        <div class="row">
+                            <div class="col-xl-4">
+                                <img src="assets/mode/images/logo-icon.png" alt=""> <h5><b>BODJ</b> <small>Rawat Inap</small></h5>
+                            </div>
+                            <div class="col-xl-8">
+                                <h5 align="left">Grafik ... </h5>
+                            </div>
+                        </div>
+                        <hr>
+                        <b>On Progress</b>
+                    </div>
+                </div>
+
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-30">
+                    <div class="pd-20 card-box mb-30">
+                        <div class="row">
+                            <div class="col-xl-4">
+                                <img src="assets/mode/images/logo-icon.png" alt=""> <h5><b>BODJ</b> <small>Rawat Inap</small></h5>
+                            </div>
+                            <div class="col-xl-8">
+                                <h5 align="left">Grafik ... </h5>
+                            </div>
+                        </div>
+                        <hr>
+                        <b>On Progress</b>
+                    </div>
+                </div>
+
+                
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-30">
+                    <div class="pd-20 card-box mb-30">
+                        <div class="row">
+                            <div class="col-xl-4">
+                                <img src="assets/mode/images/logo-icon.png" alt=""> <h5><b>BODJ</b> <small>Rawat Inap</small></h5>
+                            </div>
+                            <div class="col-xl-8">
+                                <h5 align="left">Grafik ... </h5>
+                            </div>
+                        </div>
+                        <hr>
+                        <b>On Progress</b>
+                    </div>
+                </div>
+
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-30">
+                    <div class="pd-20 card-box mb-30">
+                        <div class="row">
+                            <div class="col-xl-4">
+                                <img src="assets/mode/images/logo-icon.png" alt=""> <h5><b>BODJ</b> <small>Rawat Inap</small></h5>
+                            </div>
+                            <div class="col-xl-8">
+                                <h5 align="left">Grafik ... </h5>
+                            </div>
+                        </div>
+                        <hr>
+                        <b>On Progress</b>
                     </div>
                 </div>
             </div>
-            <!-- Export Datatable End -->
         </div>
