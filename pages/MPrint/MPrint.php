@@ -110,7 +110,6 @@
                             <tbody>
                                 <!-- DATA -->
                                 <?php 
-                                $sesi= $_SESSION['nama_lengkap'];
                                 $data = $db->query("SELECT * FROM tb_soap WHERE no_rm !='' ORDER BY tgl_jaga ASC", 0);
                                 while($row = $data->fetch_assoc()) {
                                     ?>
@@ -319,13 +318,11 @@
                                                                 <div class="input-group">
                                                                     <input type="hidden" class="form-control" name="id" value="<?= $row['id'] ?>"/>
                                                                     <input type="hidden" class="form-control" name="kd_soap" value="<?= $row['kd_soap'] ?>"/>
-                                                                    <input type="file" class="form-control" name="berkas" value="<?= $row['berkas'] ?>"/>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <hr>
                                                         <div class="form-group">
-                                                            <button type="submit" name="updatel" class="btn btn-block btn-primary">Update LAB</button>
                                                             <button type="button" class="btn btn-block btn-warning" data-dismiss="modal">Tutup</button>
                                                         </div>
                                                     </form>
@@ -369,13 +366,11 @@
                                                                 <div class="input-group">
                                                                     <input type="hidden" class="form-control" name="id" value="<?= $row['id'] ?>"/>
                                                                     <input type="hidden" class="form-control" name="kd_soap" value="<?= $row['kd_soap'] ?>"/>
-                                                                    <input type="file" class="form-control" name="rontgent" value="<?= $row['rontgent'] ?>"/>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <hr>
                                                         <div class="form-group">
-                                                            <button type="submit" name="updater" class="btn btn-block btn-primary">Update Rontgent</button>
                                                             <button type="button" class="btn btn-block btn-warning" data-dismiss="modal">Tutup</button>
                                                         </div>
                                                     </form>
@@ -419,13 +414,11 @@
                                                                 <div class="input-group">
                                                                     <input type="hidden" class="form-control" name="id" value="<?= $row['id'] ?>"/>
                                                                     <input type="hidden" class="form-control" name="kd_soap" value="<?= $row['kd_soap'] ?>"/>
-                                                                    <input type="file" class="form-control" name="ekg" value="<?= $row['ekg'] ?>"/>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <hr>
                                                         <div class="form-group">
-                                                            <button type="submit" name="updatee" class="btn btn-block btn-primary">Update EKG</button>
                                                             <button type="button" class="btn btn-block btn-warning" data-dismiss="modal">Tutup</button>
                                                         </div>
                                                     </form>
