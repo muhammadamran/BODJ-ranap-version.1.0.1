@@ -96,6 +96,15 @@
                 </li> -->
                 <br>
                 <li>
+                    <div class="sidebar-small-cap">Adding</div>
+                </li>
+                <li class="dropdown <?= !empty($_GET['m']) && $_GET['m'] == 'Cdpjp' ? 'show' : '' ?>">
+                    <a href="index.php?m=Cdpjp&s=Cdpjp" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-user1"></span><span class="mtext">DPJP</span>
+                    </a>
+                </li>
+                <br>
+                <li>
                     <div class="sidebar-small-cap">Tentang Aplikasi</div>
                 </li>
                 <li class="dropdown <?= !empty($_GET['m']) && $_GET['m'] == 'Pabout' ? 'show' : '' ?>">

@@ -97,4 +97,5 @@ if ($aksi == 'insert') {
     } else {
         echo '<script>alert("Data gagal dihapus");history.go(-1)</script>';
     }
+    
 }

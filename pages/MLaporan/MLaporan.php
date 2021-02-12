@@ -5,20 +5,18 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
                         <div class="title">
-                            <h3><span class="micon dw dw-stethoscope"></span> Rawat Jalan</h3>
+                            <h3><span class="micon dw dw-analytics-20"></span> Riwayat Pasien SOAP BODJ Rawat Inap</h3>
                         </div>
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Rawat Jalan</li>
+                                <li class="breadcrumb-item active" aria-current="page">Riwayat Pasien SOAP BODJ Rawat Inap</li>
                             </ol>
                             <hr>
                             <ol class="breadcrumb">
-                                <?php
-                                    $result_t = pg_query($pg, "SELECT COUNT(*) AS jumlah FROM infokunjunganrj_v WHERE DATE(tgl_pendaftaran) = CURRENT_DATE");
-                                    $row_t = pg_fetch_assoc($result_t);
-                                ?>
-                                <li class="breadcrumb-item"><h5>Jumlah Pasien Rawat Jalan <?= tanggal_indo(date('Y-m-d'));?> - <?= $row_t['jumlah']; ?> Pasien</h5> 
+                                <li class="breadcrumb-item">
+                                    <label>Berikut Riwayat SOAP dari BODJ Rawat Inap yang dilakukan oleh masing-masing dokter pada pasien Rawat Inap.</label> <br><hr>
+                                    <label>Klik icon <button type="button" class="btn btn-dark"><i class="icon-copy fi-eye"></i></button> untuk melihat Riwayat Per-Pasien</label><br>
                                 </li>
                             </ol>
                         </nav>
@@ -31,71 +29,31 @@
             <!-- Export Datatable start -->
             <div class="card-box mb-30">
                 <div class="pd-20">
-                    <h4 class="text-blue h4">Pasien Rawat Jalan</h4>
+                    <h4 class="text-blue h4">Riwayat Pasien Rawat Inap</h4>
                 </div>
                 <div class="table-responsive">
                     <div class="pb-20">
                         <table class="table hover multiple-select-row data-table-export nowrap">
                             <thead>
                                 <tr>
-                                    <th class="table-plus datatable-nosort">Tgl Pendaftaran</th>
-                                    <th>No. Pendaftaran</th>
-                                    <th>No. RM</th>
-                                    <th>Nama Pasien</th>
-                                    <th>Jenis Kelamin</th>
-                                    <th>Umur</th>
-                                    <th>DPJP</th>
-                                    <th>Jenis Kasus Penyakit</th>
-                                    <th>Nama Ruangan</th>
-                                    <th>Kelas Pelayanan</th>
-                                    <th>Status Periksa</th>
-                                    <th>Status Pasien</th>
-                                    <th>Status Masuk</th>
-                                    <th>Asuransi</th>
-                                    <th>Penjamin</th>
-                                    <th>Kelompok Umur</th>
-                                    <!-- <th class="datatable-nosort">Action</th> -->
+                                    <th class="table-plus datatable-nosort">Lihat Detail</th>
+                                    <th>Identitas Pasien</th>
+                                    <th>SOAP</th>
                                 </tr>
                             </thead>
+                            
                             <tbody>
-                                <!-- DATA -->
                                 <?php 
-                                $tgl = date('Y-m-d');
-                                $result = pg_query($pg, "SELECT * FROM infokunjunganrj_v WHERE DATE(tgl_pendaftaran) = CURRENT_DATE ORDER BY tgl_pendaftaran DESC");
-                                    while ($row = pg_fetch_assoc($result)) {
-                                ?>
-                                <tr>
-                                    <td><?= $row['tgl_pendaftaran'] ?></td>
-                                    <td><?= $row['no_pendaftaran'] ?></td>
-                                    <td><?= $row['no_rekam_medik'] ?></td>
-                                    <td><?= $row['namadepan'] ?> <?= $row['nama_pasien'] ?></td>
-                                    <td><?= $row['jeniskelamin'] ?></td>
-                                    <td><?= $row['umur'] ?></td>
-                                    <td><?= $row['gelardepan'] ?><?= $row['nama_pegawai'] ?>,<?= $row['gelarbelakang_nama'] ?></td>
-                                    <td><?= $row['jeniskasuspenyakit_nama'] ?></td>
-                                    <td><?= $row['ruangan_nama'] ?></td>
-                                    <td><?= $row['kelaspelayanan_nama'] ?></td>
-                                    <td><?= $row['statusperiksa'] ?></td>
-                                    <td><?= $row['statuspasien'] ?></td>
-                                    <td><?= $row['statusmasuk'] ?></td>
-                                    <td><?= $row['carabayar_nama'] ?></td>
-                                    <td><?= $row['penjamin_nama'] ?></td>
-                                    <td><?= $row['golonganumur_nama'] ?></td>
-                                    <!-- <td>
-                                        <div class="dropdown">
-                                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                                                <i class="dw dw-more"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                                <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
-                                                <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
-                                                <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
-                                            </div>
-                                        </div>
-                                    </td> -->
-                                </tr>
+                                $data = $db->query("SELECT tgl_jaga,no_rm,nama_pasien,kelas,dokter_jaga,DPJP,subject,object,assesment,plan,keterangan,COUNT(no_rm) AS total
+                                  FROM tb_soap GROUP BY no_rm ORDER BY id DESC", 0);
+                                while($row = $data->fetch_assoc()) {
+                                    ?>
+                                    <tr>
+                                        <td><a href="index.php?m=MLaporan&s=MLaporan_lihat&no_rm=<?= RIGHT($row['no_rm'],6) ?>" class="btn btn-sm btn-dark"><i class="icon-copy fi-eye"></i></a></td>
+                                        <td><?= $row['no_rm'] == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row['no_rm'] ?> | <?= $row['kelas'] == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row['kelas'] ?></td>
+                                        <td align="center"><button class="btn btn-warning"><i class="icon-copy ion-clipboard"></i> <?= $row['total']; ?></i></button></td>
+                                    </tr>
                                 <?php } ?>
-                                <!-- END DATA -->
                             </tbody>
                         </table>
                     </div>

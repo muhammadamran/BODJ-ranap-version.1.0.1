@@ -103,7 +103,7 @@ $row = $data->fetch_assoc()
                                             <optgroup label="Pilih DPJP">
                                                 <option value="<?= $row['DPJP'] ?>"><?= $row['DPJP'] ?></option>
                                                 <?php
-                                                $data_c = $db->query("SELECT * FROM tb_dpjp", 0);
+                                                $data_c = $db->query("SELECT * FROM tb_dpjp WHERE status='Aktif'", 0);
                                                 while($row_c = $data_c->fetch_assoc()) {
                                                     ?>
                                                     <option value="<?= $row_c['gelar_depan'] ?><?= $row_c['nama_dpjp'] ?><?= $row_c['gelar_belakang'] ?>"><?= $row_c['gelar_depan'] ?><?= $row_c['nama_dpjp'] ?><?= $row_c['gelar_belakang'] ?></option>

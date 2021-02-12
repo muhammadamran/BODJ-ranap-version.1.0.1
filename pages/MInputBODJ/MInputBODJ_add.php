@@ -116,13 +116,14 @@ $sub_kalimat = substr($kalimat,-5);
                                             <optgroup label="Pilih DPJP">
                                                 <option value="">Pilih DPJP</option>
                                                 <?php
-                                                $data = $db->query("SELECT * FROM tb_dpjp", 0);
+                                                $data = $db->query("SELECT * FROM tb_dpjp WHERE status='Aktif'", 0);
                                                 while($row = $data->fetch_assoc()) {
                                                     ?>
                                                     <option value="<?= $row['gelar_depan'] ?><?= $row['nama_dpjp'] ?><?= $row['gelar_belakang'] ?>"><?= $row['gelar_depan'] ?><?= $row['nama_dpjp'] ?><?= $row['gelar_belakang'] ?></option>
                                                 <?php } ?>
                                             </optgroup>
                                         </select>
+                                        <small><i>Jika DPJP belum ada silahkan tambahkan <b><a href="index.php?m=Cdpjp&s=Cdpjp">Klik Disini</a></i></b></small>
                                     </div>
                                 </div>
                             </div>

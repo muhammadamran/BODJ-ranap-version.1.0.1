@@ -16,11 +16,11 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
                                     <label>Berikut merupakan inputan SOAP dari BODJ Rawat Inap yang dilakukan oleh masing-masing dokter pada pasien Rawat Inap.</label> <br><hr>
-                                    <label>Klik icon <button type="button" class="btn btn-outline-primary"><i class="icon-copy ion-plus-circled"></i></button> untuk menambahkan data SOAP Rawat Inap</label>
-                                    <label>Klik icon <button type="button" class="btn btn-light"><i class="icon-copy ion-edit"></i></button> untuk mengupdate data SOAP Rawat Inap</label>
-                                    <label>Klik icon <button type="button" class="btn btn-warning"><i class="icon-copy ion-android-image"></i> <b>LAB</b></button> untuk mengupload file <b>LAB</b> Pasien</label>
-                                    <label>Klik icon <button type="button" class="btn btn-warning"><i class="icon-copy ion-android-image"></i> <b>Rontgent</b></button> untuk mengupload file <b>Rontgen</b> Pasien</label>
-                                    <label>Klik icon <button type="button" class="btn btn-warning"><i class="icon-copy ion-android-image"></i> <b>EKG</b></button> untuk mengupload file <b>EKG</b> Pasien</label>
+                                    <label>Klik icon <button type="button" class="btn btn-outline-primary"><i class="icon-copy ion-plus-circled"></i></button> untuk menambahkan data SOAP Rawat Inap</label><br>
+                                    <label>Klik icon <button type="button" class="btn btn-light"><i class="icon-copy ion-edit"></i></button> untuk mengupdate data SOAP Rawat Inap</label><br>
+                                    <label>Klik icon <button type="button" class="btn btn-warning"><i class="icon-copy ion-android-image"></i> <b>LAB</b></button> untuk mengupload file <b>LAB</b> Pasien</label><br>
+                                    <label>Klik icon <button type="button" class="btn btn-warning"><i class="icon-copy ion-android-image"></i> <b>Rontgent</b></button> untuk mengupload file <b>Rontgen</b> Pasien</label><br>
+                                    <label>Klik icon <button type="button" class="btn btn-warning"><i class="icon-copy ion-android-image"></i> <b>EKG</b></button> untuk mengupload file <b>EKG</b> Pasien</label><br>
                                     <label>Klik icon <button type="button" class="btn btn-danger"><i class="icon-copy ion-trash-b"></i></button> untuk menghapus data SOAP Rawat Inap</label>
                                 </li>
                             </ol>
