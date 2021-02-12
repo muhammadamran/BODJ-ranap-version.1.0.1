@@ -49,7 +49,7 @@
                                 while($row = $data->fetch_assoc()) {
                                     ?>
                                     <tr>
-                                        <td><a href="index.php?m=MLaporan&s=MLaporan_lihat&no_rm=<?= RIGHT($row['no_rm'],6) ?>" class="btn btn-sm btn-dark"><i class="icon-copy fi-eye"></i></a></td>
+                                        <td><a href="index.php?m=MLaporan&s=MLaporan_detail&no_rm=<?= $row['no_rm']; ?>" class="btn btn-sm btn-dark"><i class="icon-copy fi-eye"></i></a></td>
                                         <td><?= $row['no_rm'] == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row['no_rm'] ?> | <?= $row['kelas'] == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row['kelas'] ?></td>
                                         <td align="center"><button class="btn btn-warning"><i class="icon-copy ion-clipboard"></i> <?= $row['total']; ?></i></button></td>
                                     </tr>

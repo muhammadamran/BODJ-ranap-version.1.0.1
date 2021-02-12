@@ -81,7 +81,11 @@ if (isset($_POST['submit'])) {
 			<!-- Export Datatable start -->
 			<div class="card-box mb-30">
 				<div class="pd-20">
-					<h4 class="text-blue h4">Data SOAP Buku Catatan Pasien Rawat Inap Berdasarkan Keluruhan Dokter</h4>
+					<h4 class="text-blue h4">Data Pasien Rawat Inap Berdasarkan Keseluruhan Dokter</h4>
+					<hr>
+					<button class="btn btn-success"><i class="icon-copy fa fa-file-excel-o" aria-hidden="true"></i> Export MS.Excel<button>
+					<button class="btn btn-primary"><i class="icon-copy fa fa-file-word-o" aria-hidden="true"></i> Export MS.Word<button>
+					<button class="btn btn-danger"><i class="icon-copy fa fa-file-pdf-o" aria-hidden="true"></i> Export PDF<button>
 				</div>
 				<div class="table-responsive">
 					<div class="pb-20">
