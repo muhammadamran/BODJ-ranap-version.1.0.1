@@ -46,9 +46,9 @@ $row = $data->fetch_assoc()
                                 <label class="col-lg-3 col-form-label">Dokter Jaga</label>
                                 <div class="col-lg-9">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="dokter_jaga" value="<?php echo $_SESSION['nama_lengkap'];?>" placeholder="Dokter Jaga..." readonly/>
-                                        <input type="text" class="form-control" name="date_created" value="<?php echo date('Y-m-d h:m:i');?>" placeholder="Dokter Jaga..." readonly/>
-                                        <input type="hidden" class="form-control" name="kd_soap" value="<?php echo $row['kd_soap']; ?>"/>
+                                        <input type="text" class="form-control" name="dokter_jaga" value="<?= $_SESSION['nama_lengkap'];?>" placeholder="Dokter Jaga..." readonly/>
+                                        <input type="text" class="form-control" name="date_created" value="<?= date('Y-m-d h:m:i');?>" placeholder="Dokter Jaga..." readonly/>
+                                        <input type="hidden" class="form-control" name="kd_soap" value="<?= $row['kd_soap']; ?>"/>
                                     </div>
                                 </div>
                             </div>
@@ -56,7 +56,7 @@ $row = $data->fetch_assoc()
                                 <label class="col-lg-3 col-form-label">Tanggal Jaga</label>
                                 <div class="col-lg-9">
                                     <div class="input-group">
-                                        <input type="date" class="form-control" name="tgl_jaga" value="<?php echo $row['tgl_jaga']; ?>" placeholder="Tanggal Jaga..." required/>
+                                        <input type="date" class="form-control" name="tgl_jaga" value="<?= $row['tgl_jaga']; ?>" placeholder="Tanggal Jaga..." required/>
                                     </div>
                                 </div>
                             </div>
@@ -64,7 +64,7 @@ $row = $data->fetch_assoc()
                                 <label class="col-lg-3 col-form-label">No. Rekam Medis</label>
                                 <div class="col-lg-9">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="no_rm" value="<?php echo $row['no_rm']; ?>" placeholder="No. Rekam Medis..." required/>
+                                        <input type="text" class="form-control" name="no_rm" value="<?= $row['no_rm']; ?>" placeholder="No. Rekam Medis..." required/>
                                     </div>
                                 </div>
                             </div>
@@ -72,7 +72,7 @@ $row = $data->fetch_assoc()
                                 <label class="col-lg-3 col-form-label">Nama Pasien</label>
                                 <div class="col-lg-9">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="nama_pasien" value="<?php echo $row['nama_pasien']; ?>" placeholder="Nama Pasien..." required/>
+                                        <input type="text" class="form-control" name="nama_pasien" value="<?= $row['nama_pasien']; ?>" placeholder="Nama Pasien..." required/>
                                     </div>
                                 </div>
                             </div>
@@ -80,9 +80,9 @@ $row = $data->fetch_assoc()
                                 <label class="col-lg-3 col-form-label">Kelas</label>
                                 <div class="col-lg-9">
                                     <div class="input-group">
-                                        <!-- <input type="text" class="form-control" name="kelas" value="<?php echo $row['kelas']; ?>" placeholder="Kelas..." required/> -->
+                                        <!-- <input type="text" class="form-control" name="kelas" value="<?= $row['kelas']; ?>" placeholder="Kelas..." required/> -->
                                         <select class="form-control" name="kelas" placeholder="Kelas..." required>
-                                            <option value="<?php echo $row['kelas']; ?>"><?php echo $row['kelas']; ?></option>
+                                            <option value="<?= $row['kelas']; ?>"><?= $row['kelas']; ?></option>
                                             <option value="">-- Pilih Kelas --</option>
                                             <option value="HCU">HCU</option>
                                             <option value="VVIP">VVIP</option>
@@ -102,7 +102,7 @@ $row = $data->fetch_assoc()
                                 <label class="col-lg-3 col-form-label">DPJP</label>
                                 <div class="col-lg-9">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="DPJP" value="<?php echo $row['DPJP']; ?>" placeholder="DPJP..." required/>
+                                        <input type="text" class="form-control" name="DPJP" value="<?= $row['DPJP']; ?>" placeholder="DPJP..." required/>
                                     </div>
                                 </div>
                             </div>
@@ -115,7 +115,7 @@ $row = $data->fetch_assoc()
                                 <label class="col-lg-3 col-form-label">Subject</label>
                                 <div class="col-lg-9">
                                     <div class="input-group">
-                                        <textarea type="text" class="form-control" name="subject" placeholder="Subject..." required><?php echo $row['subject']; ?></textarea>
+                                        <textarea type="text" class="form-control" name="subject" placeholder="Subject..." required><?= $row['subject']; ?></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -128,7 +128,7 @@ $row = $data->fetch_assoc()
                                 <label class="col-lg-3 col-form-label">Object</label>
                                 <div class="col-lg-9">
                                     <div class="input-group">
-                                        <textarea type="text" class="form-control" name="object" placeholder="Object..." required><?php echo $row['object']; ?></textarea>
+                                        <textarea type="text" class="form-control" name="object" placeholder="Object..." required><?= $row['object']; ?></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -141,7 +141,7 @@ $row = $data->fetch_assoc()
                                 <label class="col-lg-3 col-form-label">Assesment</label>
                                 <div class="col-lg-9">
                                     <div class="input-group">
-                                        <textarea type="text" class="form-control" name="assesment" placeholder="Assesment..." required><?php echo $row['assesment']; ?></textarea>
+                                        <textarea type="text" class="form-control" name="assesment" placeholder="Assesment..." required><?= $row['assesment']; ?></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -160,7 +160,7 @@ $row = $data->fetch_assoc()
                                         </div>
                                     <?php }else{ ?>
                                         <div align="center">
-                                            <img src="<?php echo 'assets/uploads/object/'. $row['berkas'];?>" class="lingkaran" alt="" />
+                                            <img src="<?= 'assets/uploads/object/'. $row['berkas'];?>" class="lingkaran" alt="" />
                                         </div>   
                                     <?php } ?>
                                 </div>
@@ -169,7 +169,7 @@ $row = $data->fetch_assoc()
                                 <label class="col-lg-3 col-form-label">Plan</label>
                                 <div class="col-lg-9">
                                     <div class="input-group">
-                                        <textarea type="text" class="form-control" name="plan" placeholder="Plan..." required><?php echo $row['plan']; ?></textarea>
+                                        <textarea type="text" class="form-control" name="plan" placeholder="Plan..." required><?= $row['plan']; ?></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -182,7 +182,7 @@ $row = $data->fetch_assoc()
                                 <label class="col-lg-3 col-form-label">Keterangan</label>
                                 <div class="col-lg-9">
                                     <div class="input-group">
-                                        <textarea type="text" class="form-control" name="keterangan" placeholder="Keterangan..." required><?php echo $row['keterangan']; ?></textarea>
+                                        <textarea type="text" class="form-control" name="keterangan" placeholder="Keterangan..." required><?= $row['keterangan']; ?></textarea>
                                     </div>
                                 </div>
                             </div>

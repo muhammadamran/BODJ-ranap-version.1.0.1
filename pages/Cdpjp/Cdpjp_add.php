@@ -43,8 +43,8 @@
                                         <small><i>Boleh dikosongkan jika tidak mengetahui SIP DPJP</i></small>
                                     <div class="input-group">
                                         <input type="text" class="form-control" name="SIP" placeholder="SIP ..."/>
-                                        <input type="hidden" class="form-control" name="adding_by" value="<?php echo $_SESSION['nama_lengkap'];?>"/>
-                                        <input type="hidden" class="form-control" name="adding_date" value="<?php echo date('Y-m-d h:m:i');?>"/>
+                                        <input type="hidden" class="form-control" name="adding_by" value="<?= $_SESSION['nama_lengkap'];?>"/>
+                                        <input type="hidden" class="form-control" name="adding_date" value="<?= date('Y-m-d h:m:i');?>"/>
                                     </div>
                                 </div>
                             </div>

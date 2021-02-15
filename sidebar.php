@@ -75,25 +75,6 @@
                         <span class="micon dw dw-push-pin-1"></span><span class="mtext">Bedah Central (O.K)</span>
                     </a>
                 </li>
-                <!-- br>
-                <li>
-                    <div class="sidebar-small-cap">Penunjang Medis</div>
-                </li>
-                <li class="dropdown <?= !empty($_GET['m']) && $_GET['m'] == 'BFarmasi' ? 'show' : '' ?>">
-                    <a href="index.php?m=BFarmasi&s=BFarmasi" class="dropdown-toggle no-arrow">
-                        <span class="micon dw dw-syringe"></span><span class="mtext">Farmasi</span>
-                    </a>
-                </li>
-                <li class="dropdown <?= !empty($_GET['m']) && $_GET['m'] == 'BLab' ? 'show' : '' ?>">
-                    <a href="index.php?m=BLab&s=BLab" class="dropdown-toggle no-arrow">
-                        <span class="micon dw dw-billboard"></span><span class="mtext">Laboratorium</span>
-                    </a>
-                </li>
-                <li class="dropdown <?= !empty($_GET['m']) && $_GET['m'] == 'BRadiologi' ? 'show' : '' ?>">
-                    <a href="index.php?m=BRadiologi&s=BRadiologi" class="dropdown-toggle no-arrow">
-                        <span class="micon dw dw-target"></span><span class="mtext">Radiologi</span>
-                    </a>
-                </li> -->
                 <br>
                 <li>
                     <div class="sidebar-small-cap">Adding</div>
@@ -101,6 +82,11 @@
                 <li class="dropdown <?= !empty($_GET['m']) && $_GET['m'] == 'Cdpjp' ? 'show' : '' ?>">
                     <a href="index.php?m=Cdpjp&s=Cdpjp" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-user1"></span><span class="mtext">DPJP</span>
+                    </a>
+                </li>
+                <li class="dropdown <?= !empty($_GET['m']) && $_GET['m'] == 'MPengguna' ? 'show' : '' ?>">
+                    <a href="index.php?m=MPengguna&s=MPengguna" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-user"></span><span class="mtext">Pengguna/Dokter</span>
                     </a>
                 </li>
                 <br>

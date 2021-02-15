@@ -83,7 +83,7 @@ $row2 = $data2->fetch_assoc()
                                         $data = $db->query('SELECT * FROM tb_soap WHERE no_rm="'.$_GET['no_rm'].'" ORDER BY tgl_jaga DESC');
                                         while($row = $data->fetch_assoc()) {
                                             ?>        
-                                            <h4 class="card-title"><button class="btn btn-xs btn-danger"><?php echo tanggal_indo($row['tgl_jaga'],true); ?> | Oleh Dokter <?php echo $row['dokter_jaga']; ?></button>
+                                            <h4 class="card-title"><button class="btn btn-xs btn-danger"><?= tanggal_indo($row['tgl_jaga'],true); ?> | Oleh Dokter <?= $row['dokter_jaga']; ?></button>
                                             </h4>
                                             <hr>
                                             <div class="row">

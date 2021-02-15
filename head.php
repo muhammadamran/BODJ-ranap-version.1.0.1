@@ -54,6 +54,8 @@
     height: 200px;
     background: #fff;
     border-radius: 100%; 
+    border-color: #000; 
+    box-shadow: 0 0 10px rgb(0 0 0 / 18%);
   }
 </style>
 <script type="text/javascript"> 

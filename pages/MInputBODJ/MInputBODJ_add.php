@@ -58,8 +58,8 @@ $sub_kalimat = substr($kalimat,-5);
                                 <label class="col-lg-3 col-form-label">Dokter Jaga</label>
                                 <div class="col-lg-9">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="dokter_jaga" value="<?php echo $_SESSION['nama_lengkap'];?>" placeholder="Dokter Jaga..." readonly/>
-                                        <input type="text" class="form-control" name="date_created" value="<?php echo date('Y-m-d h:m:i');?>" placeholder="Dokter Jaga..." readonly/>
+                                        <input type="text" class="form-control" name="dokter_jaga" value="<?= $_SESSION['nama_lengkap'];?>" placeholder="Dokter Jaga..." readonly/>
+                                        <input type="text" class="form-control" name="date_created" value="<?= date('Y-m-d h:m:i');?>" placeholder="Dokter Jaga..." readonly/>
                                         <input type="hidden" name="kd_soap" value="<?= date('Ymd');?><?= $_SESSION['id'];?><?= $_SESSION['NIK'];?><?= $sub_kalimat; ?>">
                                     </div>
                                 </div>

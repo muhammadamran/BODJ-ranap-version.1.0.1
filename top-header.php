@@ -17,9 +17,9 @@
                     <span class="user-icon">
                         <?php
                         if ($_SESSION['foto']==NULL) { ?>
-                            <img src="https://www.smkn2terbanggibesar.sch.id/wp-content/uploads/2018/06/avatar.png" alt="">
+                            <img src="assets/img/user/user-13.png" alt="">
                         <?php }else{ ?>
-                            <img src="<?php echo 'assets/img/user/'. $_SESSION['foto'];?>" alt="user" class="rounded-circle" width="40"/>
+                            <img src="<?= 'assets/img/user/'. $_SESSION['foto'];?>" alt="user" class="rounded-circle" width="40"/>
                         <?php } ?>
                     </span>
                     <span class="user-name">
@@ -27,7 +27,7 @@
                     </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                    <a class="dropdown-item" href="index.php?m=MProfil&s=MProfil"><i class="dw dw-user1"></i> Profile</a>
+                    <a class="dropdown-item" href="index.php?m=MProfil&s=MProfil?id<?= $_SESSION['id'];?>"><i class="dw dw-user1"></i> Profile</a>
                     <a class="dropdown-item" href="logout.php"><i class="dw dw-logout"></i> Log Out</a>
                 </div>
             </div>
