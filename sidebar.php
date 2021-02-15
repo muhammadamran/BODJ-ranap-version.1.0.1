@@ -48,7 +48,7 @@
                         <span class="micon dw dw-analytics-20"></span><span class="mtext">Laporan BODJ</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="index.php?m=MLaporan&s=MLaporan">Riwayat BODJ Pasien</a></li>
+                        <li><a href="index.php?m=MLaporan&s=MLaporan" class="<?= !empty($_GET['m']) && $_GET['m'] == 'MLaporan' ? 'active' : '' ?>">Riwayat BODJ Pasien</a></li>
                     </ul>
                 </li>
                 <br>

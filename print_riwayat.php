@@ -360,7 +360,7 @@ $row2 = $data2->fetch_assoc()
                                                 <?php
                                                 if ($row['berkas']==NULL) { ?>
                                                     <div align="center">
-                                                        <img src="assets/uploads/object/icon/notfound.png" class="lingkaran-print" alt="" />
+                                                        <!-- <img src="assets/uploads/object/icon/notfound.png" class="lingkaran-print" alt="" /> -->
                                                     </div>
                                                 <?php }else{ ?>
                                                     <div align="center">
@@ -375,7 +375,7 @@ $row2 = $data2->fetch_assoc()
                                                 <?php
                                                 if ($row['rontgent']==NULL) { ?>
                                                     <div align="center">
-                                                        <img src="assets/uploads/object/icon/notfound.png" class="lingkaran-print" alt="" />
+                                                        <!-- <img src="assets/uploads/object/icon/notfound.png" class="lingkaran-print" alt="" /> -->
                                                     </div>
                                                 <?php }else{ ?>
                                                     <div align="center">
@@ -390,7 +390,7 @@ $row2 = $data2->fetch_assoc()
                                                 <?php
                                                 if ($row['ekg']==NULL) { ?>
                                                     <div align="center">
-                                                        <img src="assets/uploads/object/icon/notfound.png" class="lingkaran-print" alt="" />
+                                                        <!-- <img src="assets/uploads/object/icon/notfound.png" class="lingkaran-print" alt="" /> -->
                                                     </div>
                                                 <?php }else{ ?>
                                                     <div align="center">

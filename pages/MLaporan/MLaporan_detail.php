@@ -57,9 +57,8 @@ $row2 = $data2->fetch_assoc()
                                         <div class="form-group row">
                                             <div class="col-lg-6" align="center">
                                                 <p><b>Identitas Pasien</b></p>
-                                                <p>No.Rekam Medis: <?= $row2['no_rm']; ?></p>
-                                                <p>Nama Pasien: <?= $row2['nama_pasien']; ?></p>
-                                                <p>Kelas: <?= $row2['nama_pasien']; ?></p>
+                                                <p>No.Rekam Medis / Nama Pasien: <?= $row2['no_rm']; ?></p>
+                                                <p>Kelas: <?= $row2['kelas']; ?></p>
                                             </div>
                                             <div class="col-lg-6" align="center">
                                                 <p><b>Dokter</b></p>
