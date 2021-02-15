@@ -1,7 +1,3 @@
-<?php
-$data = $db->query('SELECT * FROM tb_user WHERE id="'.$_GET['id'].'"');
-$row = $data->fetch_assoc()
-?>
 <div class="main-container">
     <div class="pd-ltr-20 xs-pd-20-10">
         <div class="min-height-200px">

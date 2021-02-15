@@ -27,7 +27,7 @@
                     </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                    <a class="dropdown-item" href="index.php?m=MProfil&s=MProfil?id<?= $_SESSION['id'];?>"><i class="dw dw-user1"></i> Profile</a>
+                    <a class="dropdown-item" href="index.php?m=MProfil&s=MProfil"><i class="dw dw-user1"></i> Profile</a>
                     <a class="dropdown-item" href="logout.php"><i class="dw dw-logout"></i> Log Out</a>
                 </div>
             </div>

@@ -83,7 +83,7 @@
                                                                 if ($_SESSION['foto']==NULL) { ?>
                                                                     <img src="assets/img/user/user-13.png" alt="user" class="lingkaran-detail" width="40"/>   
                                                                 <?php }else{ ?>
-                                                                    <img src="<?php echo 'assets/img/user/'. $_SESSION['foto'];?>" alt="user" class="lingkaran-detail" width="40"/>   
+                                                                    <img src="<?= 'assets/img/user/'. $_SESSION['foto'];?>" alt="user" class="lingkaran-detail" width="40"/>   
                                                                 <?php } ?>
                                                             </div>
                                                         </div>
