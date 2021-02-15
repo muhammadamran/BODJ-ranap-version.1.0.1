@@ -19,82 +19,92 @@
             <div class="row">
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-30">
                     <div class="pd-20 card-box height-100-p">
-                        <div class="profile-photo">
+                        <div class="profile-photo" align="center">
                             <a href="modal" data-toggle="modal" data-target="#modal" class="edit-avatar"><i class="fa fa-pencil"></i></a>
-                            <img src="vendors/images/photo1.jpg" alt="" class="avatar-photo">
+                            <?php
+                            if ($_SESSION['foto']==NULL) { ?>
+                                <img id="image" src="assets/img/user/user-13.png" alt="Picture" class="avatar-photo"/>   
+                            <?php }else{ ?>
+                                <img id="image" src="<?= 'assets/img/user/'. $_SESSION['foto'];?>" alt="Picture" class="avatar-photo"/>   
+                            <?php } ?>
+                            
+                            <?php 
+                            $sesiid= $_SESSION['id'];
+                            $data = $db->query("SELECT * FROM tb_user WHERE id='$sesiid'");
+                            $row = $data->fetch_assoc();
+                            ?>
                             <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-body pd-5">
-                                            <div class="img-container">
-                                                <img id="image" src="vendors/images/photo2.jpg" alt="Picture">
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <input type="submit" value="Update" class="btn btn-primary">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <form class="form-horizontal form-bordered" action="pages/MProfile/MProfile_proses.php?aksi=foto_profil&id=<?= $_GET['id'] ?>" method="POST" enctype="multipart/form-data">
+                                                <div class="img-container">
+                                                <br>
+                                                    <?php
+                                                    if ($row['foto']==NULL) { ?>
+                                                        <img id="image" src="assets/img/user/user-13.png" alt="Picture" class="lingkaran-detail" width="40"/>   
+                                                    <?php }else{ ?>
+                                                        <img id="image" src="<?= 'assets/img/user/'. $row['foto'];?>" alt="Picture" class="lingkaran-detail" width="40"/>   
+                                                    <?php } ?>
+                                                </div>
+                                                <br>
+                                                <div class="row">
+                                                    <label class="col-lg-4 col-form-label">Upload Foto Profil</label>
+                                                    <div class="col-lg-8">
+                                                        <div class="input-group">
+                                                            <input type="hidden" class="form-control" name="id" value="<?= $row['id'] ?>"/>
+                                                            <input type="file" class="form-control" name="foto"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-primary">Upload</button>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <h5 class="text-center h5 mb-0">Ross C. Lopez</h5>
-                        <p class="text-center text-muted font-14">Lorem ipsum dolor sit amet</p>
+                        <h5 class="text-center h5 mb-0"><?= $row['nama_lengkap'];?></h5>
+                        <p class="text-center text-muted font-14"><?= $row['NIK'];?></p>
                         <div class="profile-info">
-                            <h5 class="mb-20 h5 text-blue">Contact Information</h5>
+                            <h5 class="mb-20 h5 text-blue">Kontak Informasi</h5>
                             <ul>
                                 <li>
-                                    <span>Email Address:</span>
-                                    FerdinandMChilds@test.com
+                                    <span>Tempat / Tanggal Lahir:</span>
+                                    <?= $row['tempat_lahir'];?> / <?= $row['tgl_lahir'];?>
                                 </li>
                                 <li>
-                                    <span>Phone Number:</span>
-                                    619-229-0054
+                                    <span>Agama:</span>
+                                    <?= $row['agama'];?>
                                 </li>
                                 <li>
-                                    <span>Country:</span>
-                                    America
+                                    <span>Status Pegawai:</span>
+                                    <?= $row['status_pegawai'];?>
                                 </li>
                                 <li>
-                                    <span>Address:</span>
-                                    1807 Holden Street<br>
-                                    San Diego, CA 92115
+                                    <span>Jabatan:</span>
+                                    <?= $row['jabatan'];?>
+                                </li>
+                                <li>
+                                    <span>Email:</span>
+                                    <?= $row['email'];?>
+                                </li>
+                                <li>
+                                    <span>Telepon:</span>
+                                    <?= $row['telepon'];?>
+                                </li>
+                                <li>
+                                    <span>Jenis Kelamin:</span>
+                                    <?= $row['jenis_kelamin'];?>
+                                </li>
+                                <li>
+                                    <span>Alamat:</span>
+                                    <?= $row['alamat'];?>
                                 </li>
                             </ul>
-                        </div>
-                        <div class="profile-social">
-                            <h5 class="mb-20 h5 text-blue">Social Links</h5>
-                            <ul class="clearfix">
-                                <li><a href="#" class="btn" data-bgcolor="#3b5998" data-color="#ffffff"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#" class="btn" data-bgcolor="#1da1f2" data-color="#ffffff"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#" class="btn" data-bgcolor="#007bb5" data-color="#ffffff"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#" class="btn" data-bgcolor="#f46f30" data-color="#ffffff"><i class="fa fa-instagram"></i></a></li>
-                                <li><a href="#" class="btn" data-bgcolor="#c32361" data-color="#ffffff"><i class="fa fa-dribbble"></i></a></li>
-                                <li><a href="#" class="btn" data-bgcolor="#3d464d" data-color="#ffffff"><i class="fa fa-dropbox"></i></a></li>
-                                <li><a href="#" class="btn" data-bgcolor="#db4437" data-color="#ffffff"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a href="#" class="btn" data-bgcolor="#bd081c" data-color="#ffffff"><i class="fa fa-pinterest-p"></i></a></li>
-                                <li><a href="#" class="btn" data-bgcolor="#00aff0" data-color="#ffffff"><i class="fa fa-skype"></i></a></li>
-                                <li><a href="#" class="btn" data-bgcolor="#00b489" data-color="#ffffff"><i class="fa fa-vine"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="profile-skills">
-                            <h5 class="mb-20 h5 text-blue">Key Skills</h5>
-                            <h6 class="mb-5 font-14">HTML</h6>
-                            <div class="progress mb-20" style="height: 6px;">
-                                <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6 class="mb-5 font-14">Css</h6>
-                            <div class="progress mb-20" style="height: 6px;">
-                                <div class="progress-bar" role="progressbar" style="width: 70%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6 class="mb-5 font-14">jQuery</h6>
-                            <div class="progress mb-20" style="height: 6px;">
-                                <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6 class="mb-5 font-14">Bootstrap</h6>
-                            <div class="progress mb-20" style="height: 6px;">
-                                <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -104,13 +114,13 @@
                             <div class="tab height-100-p">
                                 <ul class="nav nav-tabs customtab" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active" data-toggle="tab" href="#timeline" role="tab">Timeline</a>
+                                        <a class="nav-link active" data-toggle="tab" href="#timeline" role="tab">My Timeline</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" data-toggle="tab" href="#tasks" role="tab">Tasks</a>
+                                        <a class="nav-link" data-toggle="tab" href="#tasks" role="tab">Update Data Diri</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" data-toggle="tab" href="#setting" role="tab">Settings</a>
+                                        <a class="nav-link" data-toggle="tab" href="#setting" role="tab">Update Password</a>
                                     </li>
                                 </ul>
                                 <div class="tab-content">
@@ -118,79 +128,54 @@
                                     <div class="tab-pane fade show active" id="timeline" role="tabpanel">
                                         <div class="pd-20">
                                             <div class="profile-timeline">
-                                                <div class="timeline-month">
-                                                    <h5>August, 2020</h5>
-                                                </div>
                                                 <div class="profile-timeline-list">
                                                     <ul>
+                                                        <?php 
+                                                        $sesi= $_SESSION['nama_lengkap'];
+                                                        $data = $db->query("SELECT a.kd_soap,a.no_rm,a.nama_pasien,a.kelas,a.dokter_jaga,
+                                                            b.kd_soap,b.status,b.date_add
+                                                            FROM tb_soap a JOIN tb_soaplog b
+                                                            ON a.kd_soap=b.kd_soap
+                                                            WHERE dokter_jaga='$sesi'
+                                                            ORDER BY b.id DESC LIMIT 5", 0);
+                                                        while($row_1 = $data->fetch_assoc()) {
+                                                            ?>
+                                                        <?php if ($row_1['status']=='0') { ?>
                                                         <li>
-                                                            <div class="date">12 Aug</div>
-                                                            <div class="task-name"><i class="ion-android-alarm-clock"></i> Task Added</div>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                                            <div class="task-time">09:30 am</div>
+                                                            <div class="date"><?= tanggal_indo(date('Y-m-d',strtotime($row_1['date_add']))); ?></div>
+                                                            <div class="task-name"><i class="icon-copy ion-clipboard"></i> SOAP Baru dari <?= $row_1['dokter_jaga']; ?></div>
+                                                            <p>Dengan Pasien <br> <?= $row_1['no_rm']; ?>.</p>
+                                                            <div class="task-time"><?= date('H:i',strtotime($row_1['date_add'])); ?> WIB</div>
                                                         </li>
+                                                        <?php }elseif ($row_1['status']=='1') { ?>
                                                         <li>
-                                                            <div class="date">10 Aug</div>
-                                                            <div class="task-name"><i class="ion-ios-chatboxes"></i> Task Added</div>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                                            <div class="task-time">09:30 am</div>
+                                                            <div class="date"><?= tanggal_indo(date('Y-m-d',strtotime($row_1['date_add']))); ?></div>
+                                                            <div class="task-name"><i class="icon-copy ion-loop"></i> Update SOAP dari <?= $row_1['dokter_jaga']; ?></div>
+                                                            <p>Dengan Pasien <br> <?= $row_1['no_rm']; ?>.</p>
+                                                            <div class="task-time"><?= date('H:i',strtotime($row_1['date_add'])); ?> WIB</div>
                                                         </li>
+                                                        <?php }elseif ($row_1['status']=='2') { ?>
                                                         <li>
-                                                            <div class="date">10 Aug</div>
-                                                            <div class="task-name"><i class="ion-ios-clock"></i> Event Added</div>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                                            <div class="task-time">09:30 am</div>
+                                                            <div class="date"><?= tanggal_indo(date('Y-m-d',strtotime($row_1['date_add']))); ?></div>
+                                                            <div class="task-name"><i class="icon-copy ion-images"></i> Update Filr LAB dari <?= $row_1['dokter_jaga']; ?></div>
+                                                            <p>Dengan Pasien <br> <?= $row_1['no_rm']; ?>.</p>
+                                                            <div class="task-time"><?= date('H:i',strtotime($row_1['date_add'])); ?> WIB</div>
                                                         </li>
+                                                        <?php }elseif ($row_1['status']=='3') { ?>
                                                         <li>
-                                                            <div class="date">10 Aug</div>
-                                                            <div class="task-name"><i class="ion-ios-clock"></i> Event Added</div>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                                            <div class="task-time">09:30 am</div>
+                                                            <div class="date"><?= tanggal_indo(date('Y-m-d',strtotime($row_1['date_add']))); ?></div>
+                                                            <div class="task-name"><i class="icon-copy ion-images"></i> Update Filr Rontgent dari <?= $row_1['dokter_jaga']; ?></div>
+                                                            <p>Dengan Pasien <br> <?= $row_1['no_rm']; ?>.</p>
+                                                            <div class="task-time"><?= date('H:i',strtotime($row_1['date_add'])); ?> WIB</div>
                                                         </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="timeline-month">
-                                                    <h5>July, 2020</h5>
-                                                </div>
-                                                <div class="profile-timeline-list">
-                                                    <ul>
+                                                        <?php }elseif ($row_1['status']=='4') { ?>
                                                         <li>
-                                                            <div class="date">12 July</div>
-                                                            <div class="task-name"><i class="ion-android-alarm-clock"></i> Task Added</div>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                                            <div class="task-time">09:30 am</div>
+                                                            <div class="date"><?= tanggal_indo(date('Y-m-d',strtotime($row_1['date_add']))); ?></div>
+                                                            <div class="task-name"><i class="icon-copy ion-images"></i> Update Filr EKG dari <?= $row_1['dokter_jaga']; ?></div>
+                                                            <p>Dengan Pasien <br> <?= $row_1['no_rm']; ?>.</p>
+                                                            <div class="task-time"><?= date('H:i',strtotime($row_1['date_add'])); ?> WIB</div>
                                                         </li>
-                                                        <li>
-                                                            <div class="date">10 July</div>
-                                                            <div class="task-name"><i class="ion-ios-chatboxes"></i> Task Added</div>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                                            <div class="task-time">09:30 am</div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="timeline-month">
-                                                    <h5>June, 2020</h5>
-                                                </div>
-                                                <div class="profile-timeline-list">
-                                                    <ul>
-                                                        <li>
-                                                            <div class="date">12 June</div>
-                                                            <div class="task-name"><i class="ion-android-alarm-clock"></i> Task Added</div>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                                            <div class="task-time">09:30 am</div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="date">10 June</div>
-                                                            <div class="task-name"><i class="ion-ios-chatboxes"></i> Task Added</div>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                                            <div class="task-time">09:30 am</div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="date">10 June</div>
-                                                            <div class="task-name"><i class="ion-ios-clock"></i> Event Added</div>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                                            <div class="task-time">09:30 am</div>
-                                                        </li>
+                                                        <?php } } ?>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -202,200 +187,159 @@
                                         <div class="pd-20 profile-task-wrap">
                                             <div class="container pd-0">
                                                 <!-- Open Task start -->
-                                                <div class="task-title row align-items-center">
-                                                    <div class="col-md-8 col-sm-12">
-                                                        <h5>Open Tasks (4 Left)</h5>
+                                                <form action="pages/MProfil/MProfil_proses.php?aksi=update&id=<?= $_GET['id'] ?>" method="POST" enctype="multipart/form-data">
+                                                    <div class="row">
+                                                        <label class="col-lg-4 col-form-label">Foto Profil</label>
+                                                        <div class="col-lg-8" align="center">
+                                                            <?php
+                                                            if ($row['foto']==NULL) { ?>
+                                                                <img src="assets/img/user/user-13.png" alt="user" class="lingkaran-detail" width="40"/>   
+                                                            <?php }else{ ?>
+                                                                <img src="<?= 'assets/img/user/'. $row['foto'];?>" alt="user" class="lingkaran-detail" width="40"/>   
+                                                            <?php } ?>
+                                                        </div>
                                                     </div>
-                                                    <div class="col-md-4 col-sm-12 text-right">
-                                                        <a href="task-add" data-toggle="modal" data-target="#task-add" class="bg-light-blue btn text-blue weight-500"><i class="ion-plus-round"></i> Add</a>
-                                                    </div>
-                                                </div>
-                                                <div class="profile-task-list pb-30">
-                                                    <ul>
-                                                        <li>
-                                                            <div class="custom-control custom-checkbox mb-5">
-                                                                <input type="checkbox" class="custom-control-input" id="task-1">
-                                                                <label class="custom-control-label" for="task-1"></label>
-                                                            </div>
-                                                            <div class="task-type">Email</div>
-                                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id ea earum.
-                                                            <div class="task-assign">Assigned to Ferdinand M. <div class="due-date">due date <span>22 February 2019</span></div></div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="custom-control custom-checkbox mb-5">
-                                                                <input type="checkbox" class="custom-control-input" id="task-2">
-                                                                <label class="custom-control-label" for="task-2"></label>
-                                                            </div>
-                                                            <div class="task-type">Email</div>
-                                                            Lorem ipsum dolor sit amet.
-                                                            <div class="task-assign">Assigned to Ferdinand M. <div class="due-date">due date <span>22 February 2019</span></div></div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="custom-control custom-checkbox mb-5">
-                                                                <input type="checkbox" class="custom-control-input" id="task-3">
-                                                                <label class="custom-control-label" for="task-3"></label>
-                                                            </div>
-                                                            <div class="task-type">Email</div>
-                                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                                            <div class="task-assign">Assigned to Ferdinand M. <div class="due-date">due date <span>22 February 2019</span></div></div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="custom-control custom-checkbox mb-5">
-                                                                <input type="checkbox" class="custom-control-input" id="task-4">
-                                                                <label class="custom-control-label" for="task-4"></label>
-                                                            </div>
-                                                            <div class="task-type">Email</div>
-                                                            Lorem ipsum dolor sit amet. Id ea earum.
-                                                            <div class="task-assign">Assigned to Ferdinand M. <div class="due-date">due date <span>22 February 2019</span></div></div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <!-- Open Task End -->
-                                                <!-- Close Task start -->
-                                                <div class="task-title row align-items-center">
-                                                    <div class="col-md-12 col-sm-12">
-                                                        <h5>Closed Tasks</h5>
-                                                    </div>
-                                                </div>
-                                                <div class="profile-task-list close-tasks">
-                                                    <ul>
-                                                        <li>
-                                                            <div class="custom-control custom-checkbox mb-5">
-                                                                <input type="checkbox" class="custom-control-input" id="task-close-1" checked="" disabled="">
-                                                                <label class="custom-control-label" for="task-close-1"></label>
-                                                            </div>
-                                                            <div class="task-type">Email</div>
-                                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id ea earum.
-                                                            <div class="task-assign">Assigned to Ferdinand M. <div class="due-date">due date <span>22 February 2018</span></div></div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="custom-control custom-checkbox mb-5">
-                                                                <input type="checkbox" class="custom-control-input" id="task-close-2" checked="" disabled="">
-                                                                <label class="custom-control-label" for="task-close-2"></label>
-                                                            </div>
-                                                            <div class="task-type">Email</div>
-                                                            Lorem ipsum dolor sit amet.
-                                                            <div class="task-assign">Assigned to Ferdinand M. <div class="due-date">due date <span>22 February 2018</span></div></div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="custom-control custom-checkbox mb-5">
-                                                                <input type="checkbox" class="custom-control-input" id="task-close-3" checked="" disabled="">
-                                                                <label class="custom-control-label" for="task-close-3"></label>
-                                                            </div>
-                                                            <div class="task-type">Email</div>
-                                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                                            <div class="task-assign">Assigned to Ferdinand M. <div class="due-date">due date <span>22 February 2018</span></div></div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="custom-control custom-checkbox mb-5">
-                                                                <input type="checkbox" class="custom-control-input" id="task-close-4" checked="" disabled="">
-                                                                <label class="custom-control-label" for="task-close-4"></label>
-                                                            </div>
-                                                            <div class="task-type">Email</div>
-                                                            Lorem ipsum dolor sit amet. Id ea earum.
-                                                            <div class="task-assign">Assigned to Ferdinand M. <div class="due-date">due date <span>22 February 2018</span></div></div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <!-- Close Task start -->
-                                                <!-- add task popup start -->
-                                                <div class="modal fade customscroll" id="task-add" tabindex="-1" role="dialog">
-                                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLongTitle">Tasks Add</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Close Modal">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body pd-0">
-                                                                <div class="task-list-form">
-                                                                    <ul>
-                                                                        <li>
-                                                                            <form>
-                                                                                <div class="form-group row">
-                                                                                    <label class="col-md-4">Task Type</label>
-                                                                                    <div class="col-md-8">
-                                                                                        <input type="text" class="form-control">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label class="col-md-4">Task Message</label>
-                                                                                    <div class="col-md-8">
-                                                                                        <textarea class="form-control"></textarea>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label class="col-md-4">Assigned to</label>
-                                                                                    <div class="col-md-8">
-                                                                                        <select class="selectpicker form-control" data-style="btn-outline-primary" title="Not Chosen" multiple="" data-selected-text-format="count" data-count-selected-text= "{0} people selected">
-                                                                                            <option>Ferdinand M.</option>
-                                                                                            <option>Don H. Rabon</option>
-                                                                                            <option>Ann P. Harris</option>
-                                                                                            <option>Katie D. Verdin</option>
-                                                                                            <option>Christopher S. Fulghum</option>
-                                                                                            <option>Matthew C. Porter</option>
-                                                                                        </select>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row mb-0">
-                                                                                    <label class="col-md-4">Due Date</label>
-                                                                                    <div class="col-md-8">
-                                                                                        <input type="text" class="form-control date-picker">
-                                                                                    </div>
-                                                                                </div>
-                                                                            </form>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="javascript:;" class="remove-task"  data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Remove Task"><i class="ion-minus-circled"></i></a>
-                                                                            <form>
-                                                                                <div class="form-group row">
-                                                                                    <label class="col-md-4">Task Type</label>
-                                                                                    <div class="col-md-8">
-                                                                                        <input type="text" class="form-control">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label class="col-md-4">Task Message</label>
-                                                                                    <div class="col-md-8">
-                                                                                        <textarea class="form-control"></textarea>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row">
-                                                                                    <label class="col-md-4">Assigned to</label>
-                                                                                    <div class="col-md-8">
-                                                                                        <select class="selectpicker form-control" data-style="btn-outline-primary" title="Not Chosen" multiple="" data-selected-text-format="count" data-count-selected-text= "{0} people selected">
-                                                                                            <option>Ferdinand M.</option>
-                                                                                            <option>Don H. Rabon</option>
-                                                                                            <option>Ann P. Harris</option>
-                                                                                            <option>Katie D. Verdin</option>
-                                                                                            <option>Christopher S. Fulghum</option>
-                                                                                            <option>Matthew C. Porter</option>
-                                                                                        </select>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="form-group row mb-0">
-                                                                                    <label class="col-md-4">Due Date</label>
-                                                                                    <div class="col-md-8">
-                                                                                        <input type="text" class="form-control date-picker">
-                                                                                    </div>
-                                                                                </div>
-                                                                            </form>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                                <div class="add-more-task">
-                                                                    <a href="#" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Add Task"><i class="ion-plus-circled"></i> Add More Task</a>
-                                                                </div>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-primary">Add</button>
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <hr>
+                                                    <div class="row">
+                                                        <label class="col-lg-4 col-form-label">Username</label>
+                                                        <div class="col-lg-8">
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" value="<?= $row['NIK'] ?>"/>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <!-- add task popup End -->
+                                                    <div class="row">
+                                                        <label class="col-lg-4 col-form-label">NIP</label>
+                                                        <div class="col-lg-8">
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" name="NIK" value="<?= $row['NIK'] ?>"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <label class="col-lg-4 col-form-label">Nama Lengkap</label>
+                                                        <div class="col-lg-8">
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" name="nama_lengkap" value="<?= $row['nama_lengkap'] ?>"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <label class="col-lg-4 col-form-label">Tempat Lahir & Tanggal Lahir</label>
+                                                        <div class="col-lg-4">
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" name="tempat_lahir" value="<?= $row['tempat_lahir'] ?>"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <div class="input-group">
+                                                                <input type="date" class="form-control" name="tgl_lahir" value="<?= $row['tgl_lahir'] ?>"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <label class="col-lg-4 col-form-label">Agama</label>
+                                                        <div class="col-lg-8">
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" name="agama" value="<?= $row['agama'] ?>"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <label class="col-lg-4 col-form-label">Jenis Kelamin</label>
+                                                        <div class="col-lg-8">
+                                                            <div class="input-group">
+                                                                <select class="form-control" name="jenis_kelamin">
+                                                                    <option value="<?= $row['jenis_kelamin'] ?>"><?= $row['jenis_kelamin'] ?></option>
+                                                                    <option value="">Pilih Jenis Kelamin</option>
+                                                                    <option value="Pria">Pria</option>
+                                                                    <option value="Wanita">Wanita</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <label class="col-lg-4 col-form-label">Status Pernikahan</label>
+                                                        <div class="col-lg-8">
+                                                            <div class="input-group">
+                                                                <select class="form-control" name="status_pernikahan">
+                                                                    <option value="<?= $row['status_pernikahan'] ?>"><?= $row['status_pernikahan'] ?></option>
+                                                                    <option value="">Pilih Status Pernikahan</option>
+                                                                    <option value="Belum Menikah">Belum Menikah</option>
+                                                                    <option value="Menikah">Menikah</option>
+                                                                    <option value="Duda">Duda</option>
+                                                                    <option value="Janda">Janda</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <label class="col-lg-4 col-form-label">Status Pegawai</label>
+                                                        <div class="col-lg-8">
+                                                            <div class="input-group">
+                                                                <select class="form-control" name="status_pegawai">
+                                                                    <option value="<?= $row['status_pegawai'] ?>"><?= $row['status_pegawai'] ?></option>
+                                                                    <option value="">Pilih Status Pegawai</option>
+                                                                    <option value="Aktif">Aktif</option>
+                                                                    <option value="Tidak Aktif">Tidak Aktif</option>
+                                                                    <option value="Cuti">Cuti</option>
+                                                                    <option value="Mengundurkan Diri">Mengundurkan Diri</option>
+                                                                    <option value="Lain-lain">Lain-lain</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <label class="col-lg-4 col-form-label">Jabatan</label>
+                                                        <div class="col-lg-8">
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" name="jabatan" value="<?= $row['jabatan'] ?>"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <label class="col-lg-4 col-form-label">Email</label>
+                                                        <div class="col-lg-8">
+                                                            <div class="input-group">
+                                                                <input type="email" class="form-control" name="email" value="<?= $row['email'] ?>"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <label class="col-lg-4 col-form-label">Alamat</label>
+                                                        <div class="col-lg-8">
+                                                            <div class="input-group">
+                                                                <textarea type="text" class="form-control" name="alamat"><?= $row['alamat'] ?></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <label class="col-lg-4 col-form-label">Telepon</label>
+                                                        <div class="col-lg-8">
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control" name="telepon" value="<?= $row['telepon'] ?>"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <label class="col-lg-4 col-form-label">Hak Akses</label>
+                                                        <div class="col-lg-8">
+                                                            <div class="input-group">
+                                                                <select class="form-control" name="role" required="required">
+                                                                    <option value="<?= $row['role'] ?>"><?= $row['role'] ?></option>
+                                                                    <option value="">Pilih Hak Akses</option>
+                                                                    <option value="dokter">dokter</option>
+                                                                    <option value="superadmin">superadmin</option>
+                                                                    <option value="admin">admin</option>
+                                                                    <option value="user">user</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary">Update</button>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -403,129 +347,31 @@
                                     <!-- Setting Tab start -->
                                     <div class="tab-pane fade height-100-p" id="setting" role="tabpanel">
                                         <div class="profile-setting">
-                                            <form>
-                                                <ul class="profile-edit-list row">
-                                                    <li class="weight-500 col-md-6">
-                                                        <h4 class="text-blue h5 mb-20">Edit Your Personal Setting</h4>
-                                                        <div class="form-group">
-                                                            <label>Full Name</label>
-                                                            <input class="form-control form-control-lg" type="text">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>Title</label>
-                                                            <input class="form-control form-control-lg" type="text">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>Email</label>
-                                                            <input class="form-control form-control-lg" type="email">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>Date of birth</label>
-                                                            <input class="form-control form-control-lg date-picker" type="text">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>Gender</label>
-                                                            <div class="d-flex">
-                                                            <div class="custom-control custom-radio mb-5 mr-20">
-                                                                <input type="radio" id="customRadio4" name="customRadio" class="custom-control-input">
-                                                                <label class="custom-control-label weight-400" for="customRadio4">Male</label>
-                                                            </div>
-                                                            <div class="custom-control custom-radio mb-5">
-                                                                <input type="radio" id="customRadio5" name="customRadio" class="custom-control-input">
-                                                                <label class="custom-control-label weight-400" for="customRadio5">Female</label>
-                                                            </div>
+                                            <div class="pd-20 profile-task-wrap">
+                                                <div class="container pd-0">
+                                                    <form action="pages/MProfile/MProfile_proses.php?aksi=update_password&id=<?= $_GET['id'] ?>" method="POST" enctype="multipart/form-data">
+                                                        <div class="row">
+                                                            <label class="col-lg-4 col-form-label">New Password</label>
+                                                            <div class="col-lg-8">
+                                                                <div class="input-group">
+                                                                    <input type="password" class="form-control" placeholder="New Password..." required/>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group">
-                                                            <label>Country</label>
-                                                            <select class="selectpicker form-control form-control-lg" data-style="btn-outline-secondary btn-lg" title="Not Chosen">
-                                                                <option>United States</option>
-                                                                <option>India</option>
-                                                                <option>United Kingdom</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>State/Province/Region</label>
-                                                            <input class="form-control form-control-lg" type="text">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>Postal Code</label>
-                                                            <input class="form-control form-control-lg" type="text">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>Phone Number</label>
-                                                            <input class="form-control form-control-lg" type="text">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>Address</label>
-                                                            <textarea class="form-control"></textarea>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>Visa Card Number</label>
-                                                            <input class="form-control form-control-lg" type="text">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>Paypal ID</label>
-                                                            <input class="form-control form-control-lg" type="text">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <div class="custom-control custom-checkbox mb-5">
-                                                                <input type="checkbox" class="custom-control-input" id="customCheck1-1">
-                                                                <label class="custom-control-label weight-400" for="customCheck1-1">I agree to receive notification emails</label>
+                                                        <div class="row">
+                                                            <label class="col-lg-4 col-form-label">Retype New Password</label>
+                                                            <div class="col-lg-8">
+                                                                <div class="input-group">
+                                                                    <input type="password" class="form-control" name="password"  placeholder="Retype New Password..." required/>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group mb-0">
-                                                            <input type="submit" class="btn btn-primary" value="Update Information">
+                                                        <div class="modal-footer">
+                                                            <button type="submit" class="btn btn-primary">Update Password</button>
                                                         </div>
-                                                    </li>
-                                                    <li class="weight-500 col-md-6">
-                                                        <h4 class="text-blue h5 mb-20">Edit Social Media links</h4>
-                                                        <div class="form-group">
-                                                            <label>Facebook URL:</label>
-                                                            <input class="form-control form-control-lg" type="text" placeholder="Paste your link here">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>Twitter URL:</label>
-                                                            <input class="form-control form-control-lg" type="text" placeholder="Paste your link here">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>Linkedin URL:</label>
-                                                            <input class="form-control form-control-lg" type="text" placeholder="Paste your link here">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>Instagram URL:</label>
-                                                            <input class="form-control form-control-lg" type="text" placeholder="Paste your link here">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>Dribbble URL:</label>
-                                                            <input class="form-control form-control-lg" type="text" placeholder="Paste your link here">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>Dropbox URL:</label>
-                                                            <input class="form-control form-control-lg" type="text" placeholder="Paste your link here">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>Google-plus URL:</label>
-                                                            <input class="form-control form-control-lg" type="text" placeholder="Paste your link here">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>Pinterest URL:</label>
-                                                            <input class="form-control form-control-lg" type="text" placeholder="Paste your link here">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>Skype URL:</label>
-                                                            <input class="form-control form-control-lg" type="text" placeholder="Paste your link here">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>Vine URL:</label>
-                                                            <input class="form-control form-control-lg" type="text" placeholder="Paste your link here">
-                                                        </div>
-                                                        <div class="form-group mb-0">
-                                                            <input type="submit" class="btn btn-primary" value="Save & Update">
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </form>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- Setting Tab End -->
