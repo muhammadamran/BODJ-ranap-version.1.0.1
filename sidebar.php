@@ -3,7 +3,7 @@
         <a href="index.php">
             <img src="assets/mode/images/logo-icon.png" alt="" class="dark-logo">
             <img src="assets/mode/images/logo-icon.png" alt="" class="light-logo">
-            <b style="color: #5269df">BODJ</b><small style="color: #01caf1"><font style="font-size: 10px">Rawat Inap</font></small>
+            <b style="color: #5269df">BODJ</b><small style="color: #01caf1"><font style="font-size: 10px">RSKG</font></small>
         </a>
         <div class="close-sidebar" data-toggle="left-sidebar-close">
             <i class="ion-close-round"></i>
