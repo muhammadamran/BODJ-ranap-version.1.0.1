@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>BODJ Rawat Inap - &copy; RS. Khusus Ginjal Ny.R.A. Habibie </title>
+  <title>BODJ RSKG - &copy; RS. Khusus Ginjal Ny.R.A. Habibie </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/mode/images/logo-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/mode/images/logo-icon.png">
@@ -43,6 +43,13 @@
 </head>
 <style type="text/css">
   .lingkaran{
+    width: 300px;
+    height: 100%;
+    background: #fff;
+    /* border-radius: 100%; */
+  }
+
+  .foto-depan{
     width: 300px;
     height: 100%;
     background: #fff;
@@ -124,7 +131,7 @@ if ($jam > '05:30' && $jam < '10:00') {
   <div class="pre-loader">
     <div class="pre-loader-box">
       <div class="loader-logo" style="color: #000">
-        <img src="assets/mode/images/logo-icon.png" alt=""> <h3><b>BODJ</b> <small>Rawat Inap</small></h3>
+        <img src="assets/mode/images/logo-icon.png" alt=""> <h3><b>BODJ</b> <small>RSKG</small></h3>
       </div>
       <div class='loader-progress' id="progress_div">
         <div class='bar' id='bar1'></div>

@@ -3,7 +3,12 @@
 		<div class="card-box pd-20 height-100-p mb-30">
 			<div class="row align-items-center">
 				<div class="col-md-4">
-					<img src="mode/vendors/images/banner-img1.png" alt="">
+                    <?php
+                    if ($_SESSION['foto']==NULL) { ?>
+                        <img id="image" src="assets/img/user/user-13.png" alt="Picture" class="foto-depan"/>   
+                    <?php }else{ ?>
+                        <img id="image" src="<?= 'assets/img/user/'. $_SESSION['foto'];?>" alt="Picture" class="foto-depan"/>   
+                    <?php } ?>
 				</div>
 				<div class="col-md-3" align="align-items-center">
 					<h4 class="font-20 weight-500 mb-10 text-capitalize">
@@ -35,7 +40,7 @@
 												<ul>
 													<?php 
 													$sesi= $_SESSION['nama_lengkap'];
-													$data = $db->query("SELECT a.kd_soap,a.no_rm,a.nama_pasien,a.kelas,a.dokter_jaga,						b.kd_soap,b.status,b.date_add
+													$data = $db->query("SELECT a.kd_soap,a.no_rm,a.nama_pasien,a.kelas,a.dokter_jaga,a.instalasi,b.kd_soap,b.status,b.date_add
 														FROM tb_soap a JOIN tb_soaplog b
 														ON a.kd_soap=b.kd_soap
 														ORDER BY b.id DESC LIMIT 5", 0);
@@ -44,35 +49,35 @@
 													<?php if ($row['status']=='0') { ?>
 													<li>
 														<div class="date"><?= tanggal_indo(date('Y-m-d',strtotime($row['date_add']))); ?></div>
-														<div class="task-name"><i class="icon-copy ion-clipboard"></i> SOAP Baru dari <?= $row['dokter_jaga']; ?></div>
+														<div class="task-name"><i class="icon-copy ion-clipboard"></i> SOAP Baru dari <?= $row['dokter_jaga']; ?> (<?= $row['instalasi']; ?>)</div>
 														<p>Dengan Pasien <br> <?= $row['no_rm']; ?>.</p>
 														<div class="task-time"><?= date('H:i',strtotime($row['date_add'])); ?> WIB</div>
 													</li>
 													<?php }elseif ($row['status']=='1') { ?>
 													<li>
 														<div class="date"><?= tanggal_indo(date('Y-m-d',strtotime($row['date_add']))); ?></div>
-														<div class="task-name"><i class="icon-copy ion-loop"></i> Update SOAP dari <?= $row['dokter_jaga']; ?></div>
+														<div class="task-name"><i class="icon-copy ion-loop"></i> Update SOAP dari <?= $row['dokter_jaga']; ?> (<?= $row['instalasi']; ?>)</div>
 														<p>Dengan Pasien <br> <?= $row['no_rm']; ?>.</p>
 														<div class="task-time"><?= date('H:i',strtotime($row['date_add'])); ?> WIB</div>
 													</li>
 													<?php }elseif ($row['status']=='2') { ?>
 													<li>
 														<div class="date"><?= tanggal_indo(date('Y-m-d',strtotime($row['date_add']))); ?></div>
-														<div class="task-name"><i class="icon-copy ion-images"></i> Update Filr LAB dari <?= $row['dokter_jaga']; ?></div>
+														<div class="task-name"><i class="icon-copy ion-images"></i> Update Filr LAB dari <?= $row['dokter_jaga']; ?> (<?= $row['instalasi']; ?>)</div>
 														<p>Dengan Pasien <br> <?= $row['no_rm']; ?>.</p>
 														<div class="task-time"><?= date('H:i',strtotime($row['date_add'])); ?> WIB</div>
 													</li>
 													<?php }elseif ($row['status']=='3') { ?>
 													<li>
 														<div class="date"><?= tanggal_indo(date('Y-m-d',strtotime($row['date_add']))); ?></div>
-														<div class="task-name"><i class="icon-copy ion-images"></i> Update Filr Rontgent dari <?= $row['dokter_jaga']; ?></div>
+														<div class="task-name"><i class="icon-copy ion-images"></i> Update Filr Rontgent dari <?= $row['dokter_jaga']; ?> (<?= $row['instalasi']; ?>)</div>
 														<p>Dengan Pasien <br> <?= $row['no_rm']; ?>.</p>
 														<div class="task-time"><?= date('H:i',strtotime($row['date_add'])); ?> WIB</div>
 													</li>
 													<?php }elseif ($row['status']=='4') { ?>
 													<li>
 														<div class="date"><?= tanggal_indo(date('Y-m-d',strtotime($row['date_add']))); ?></div>
-														<div class="task-name"><i class="icon-copy ion-images"></i> Update Filr EKG dari <?= $row['dokter_jaga']; ?></div>
+														<div class="task-name"><i class="icon-copy ion-images"></i> Update Filr EKG dari <?= $row['dokter_jaga']; ?> (<?= $row['instalasi']; ?>)</div>
 														<p>Dengan Pasien <br> <?= $row['no_rm']; ?>.</p>
 														<div class="task-time"><?= date('H:i',strtotime($row['date_add'])); ?> WIB</div>
 													</li>

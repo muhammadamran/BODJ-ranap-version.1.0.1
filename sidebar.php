@@ -28,14 +28,23 @@
                 </li>
                 <br>
                 <li>
-                    <div class="sidebar-small-cap">BODJ Rawat Inap</div>
+                    <div class="sidebar-small-cap">BODJ RSKG</div>
                 </li>
                 <li class="dropdown <?= !empty($_GET['m']) && $_GET['m'] == 'MInputBODJ' ? 'show' : '' ?>">
                     <a href="javascript:;" class="dropdown-toggle">
                         <span class="micon dw dw-edit2"></span><span class="mtext">Forms BODJ</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="index.php?m=MInputBODJ&s=MInputBODJ" class="<?= !empty($_GET['m']) && $_GET['m'] == 'MInputBODJ' ? 'active' : '' ?>">Input BODJ</a></li>
+                        <li><a href="index.php?m=MInputBODJ&s=MInputBODJ_IGD" class="<?= !empty($_GET['m']) && $_GET['m'] == 'MInputBODJ' ? 'active' : '' ?>">Input BODJ IGD</a></li>
+                    </ul>
+                    <ul class="submenu">
+                        <li><a href="index.php?m=MInputBODJ&s=MInputBODJ_RJ" class="<?= !empty($_GET['m']) && $_GET['m'] == 'MInputBODJ' ? 'active' : '' ?>">Input BODJ Rawat Jalan</a></li>
+                    </ul>
+                    <ul class="submenu">
+                        <li><a href="index.php?m=MInputBODJ&s=MInputBODJ_HD" class="<?= !empty($_GET['m']) && $_GET['m'] == 'MInputBODJ' ? 'active' : '' ?>">Input BODJ Hemodialisa</a></li>
+                    </ul>
+                    <ul class="submenu">
+                        <li><a href="index.php?m=MInputBODJ&s=MInputBODJ_RI" class="<?= !empty($_GET['m']) && $_GET['m'] == 'MInputBODJ' ? 'active' : '' ?>">Input BODJ Rawat Inap</a></li>
                     </ul>
                 </li>
                 <li class="dropdown <?= !empty($_GET['m']) && $_GET['m'] == 'MPrint' ? 'show' : '' ?>">
@@ -94,8 +103,8 @@
                     <div class="sidebar-small-cap">Tentang Aplikasi</div>
                 </li>
                 <li class="dropdown <?= !empty($_GET['m']) && $_GET['m'] == 'Pabout' ? 'show' : '' ?>">
-                    <a href="index.php?m=Pabout&s=Pabout" class="dropdown-toggle no-arrow">
-                        <span class="micon dw dw-question"></span><span class="mtext">BODJ Rawat Inap</span>
+                    <a href="#" class="dropdown-toggle no-arrow">
+                        <span class="micon dw dw-question"></span><span class="mtext">BODJ RSKG</span>
                     </a>
                 </li>
             </ul>

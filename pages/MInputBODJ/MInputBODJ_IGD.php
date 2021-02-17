@@ -15,13 +15,13 @@
                             <hr>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    <label>Berikut merupakan inputan SOAP dari BODJ Rawat Inap yang dilakukan oleh masing-masing dokter pada pasien Rawat Inap.</label> <br><hr>
-                                    <label>Klik icon <button type="button" class="btn btn-outline-primary"><i class="icon-copy ion-plus-circled"></i></button> untuk menambahkan data SOAP Rawat Inap</label><br>
-                                    <label>Klik icon <button type="button" class="btn btn-light"><i class="icon-copy ion-edit"></i></button> untuk mengupdate data SOAP Rawat Inap</label><br>
+                                    <label>Berikut merupakan inputan SOAP dari BODJ IGD yang dilakukan oleh masing-masing dokter pada pasien IGD.</label> <br><hr>
+                                    <label>Klik icon <button type="button" class="btn btn-outline-primary"><i class="icon-copy ion-plus-circled"></i></button> untuk menambahkan data SOAP IGD</label><br>
+                                    <label>Klik icon <button type="button" class="btn btn-light"><i class="icon-copy ion-edit"></i></button> untuk mengupdate data SOAP IGD</label><br>
                                     <label>Klik icon <button type="button" class="btn btn-warning"><i class="icon-copy ion-android-image"></i> <b>LAB</b></button> untuk mengupload file <b>LAB</b> Pasien</label><br>
                                     <label>Klik icon <button type="button" class="btn btn-warning"><i class="icon-copy ion-android-image"></i> <b>Rontgent</b></button> untuk mengupload file <b>Rontgen</b> Pasien</label><br>
                                     <label>Klik icon <button type="button" class="btn btn-warning"><i class="icon-copy ion-android-image"></i> <b>EKG</b></button> untuk mengupload file <b>EKG</b> Pasien</label><br>
-                                    <label>Klik icon <button type="button" class="btn btn-danger"><i class="icon-copy ion-trash-b"></i></button> untuk menghapus data SOAP Rawat Inap</label>
+                                    <label>Klik icon <button type="button" class="btn btn-danger"><i class="icon-copy ion-trash-b"></i></button> untuk menghapus data SOAP IGD</label>
                                 </li>
                             </ol>
                         </nav>
@@ -33,7 +33,18 @@
             </div>
             <div class="card-box mb-30">
                 <div class="pd-20">
-                    <a href="index.php?m=MInputBODJ&s=MInputBODJ_add" class="btn btn-outline-primary">
+                    <ol class="breadcrumb">
+                        <?php
+                            $sesi_t= $_SESSION['nama_lengkap'];
+                            $t_soap = $db->query("SELECT COUNT(*) AS jumlah FROM tb_soap WHERE instalasi='IGD' AND dokter_jaga='$sesi_t' ");
+                            $pow3 = $t_soap->fetch_assoc();
+                        ?>
+
+                        <li class="breadcrumb-item"><label>Jumlah Pasien IGD yang telah di input oleh <?= $_SESSION['nama_lengkap'];?> - <?= $pow3['jumlah']; ?> Pasien</label> 
+                        </li>
+                    </ol>
+                    <hr>
+                    <a href="index.php?m=MInputBODJ&s=MInputBODJ_add_IGD" class="btn btn-outline-primary">
                         <i class="icon-copy ion-plus-circled"></i>
                     </a>
                 </div>
@@ -46,6 +57,7 @@
                                     <th>Tanggal Jaga</th>
                                     <th>Dokter Jaga</th>
                                     <th>Kelas Pelayanan</th>
+                                    <th>Instalasi</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -53,7 +65,7 @@
                                 <!-- DATA -->
                                 <?php 
                                 $sesi= $_SESSION['nama_lengkap'];
-                                $data = $db->query("SELECT * FROM tb_soap WHERE dokter_jaga='$sesi' AND no_rm !='' ORDER BY tgl_jaga ASC", 0);
+                                $data = $db->query("SELECT * FROM tb_soap WHERE dokter_jaga='$sesi' AND no_rm !='' AND instalasi='IGD' ORDER BY tgl_jaga ASC", 0);
                                 while($row = $data->fetch_assoc()) {
                                     ?>
                                     <tr>
@@ -72,8 +84,9 @@
                                         <td><?= $row['tgl_jaga'] == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : tanggal_indo($row['tgl_jaga']) ?></td>
                                         <td><?= $row['dokter_jaga'] == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row['dokter_jaga'] ?></td>
                                         <td><?= $row['kelas'] == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row['kelas'] ?></td>
+                                        <td><?= $row['instalasi'] == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row['instalasi'] ?></td>
                                         <td>
-                                            <a href="index.php?m=MInputBODJ&s=MInputBODJ_edit&id=<?= $row['id'] ?>"><span class="btn btn-light btn-sm"><i class="icon-copy ion-edit"></i> </span></a>
+                                            <a href="index.php?m=MInputBODJ&s=MInputBODJ_edit_IGD&id=<?= $row['id'] ?>"><span class="btn btn-light btn-sm"><i class="icon-copy ion-edit"></i> </span></a>
                                             <a href="#" data-toggle="modal" data-target="#updatefilelab<?= $row['id']?>"><span class="btn btn-warning btn-sm"><i class="icon-copy ion-android-image"></i> <b>LAB</b> </span></a>
                                             <a href="#" data-toggle="modal" data-target="#updatefilerontgen<?= $row['id']?>"><span class="btn btn-warning btn-sm"><i class="icon-copy ion-android-image"></i> <b>Rontgent</b> </span></a>
                                             <a href="#" data-toggle="modal" data-target="#updatefileekg<?= $row['id']?>"><span class="btn btn-warning btn-sm"><i class="icon-copy ion-android-image"></i> <b>EKG</b> </span></a>
@@ -85,7 +98,7 @@
                                         <div class="modal-dialog modal-lg modal-dialog-centered">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <label class="modal-title">Lihat Data Buku Operan Dokter Jaga Rawat Inap <b><?= $row['nama_pasien']; ?></b></label>
+                                                    <label class="modal-title">Lihat Data Buku Operan Dokter Jaga IGD <b><?= $row['nama_pasien']; ?></b></label>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
@@ -390,7 +403,7 @@
             function deleteData(id) {
                 var r = confirm("Anda yakin ingin menghapus ini");
                 if (r == true) {
-                    location.href = "pages/MInputBODJ/MInputBODJ_proses.php?aksi=hapus&id=" + id;
+                    location.href = "pages/MInputBODJ/MInputBODJ_proses.php?aksi=hapus_igd&id=" + id;
                 }
             }
         </script>

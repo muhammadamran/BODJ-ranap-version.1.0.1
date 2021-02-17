@@ -67,7 +67,7 @@ $row = $data->fetch_assoc()
                                             <optgroup label="Pilih Data No.Rekam Medis / Nama Pasien">
                                                 <option value="<?= $row['no_rm'] ?>"><?= $row['no_rm'] ?></option>
                                                 <?php
-                                                $result_a = pg_query($pg, "SELECT * FROM pasien_m ORDER BY create_time DESC LIMIT 5000");
+                                                $result_a = pg_query($pg, "SELECT * FROM infokunjunganri_v WHERE tglpulang IS NULL ORDER BY tgl_pendaftaran DESC");
                                                 while ($row_a = pg_fetch_assoc($result_a)) {
                                                     ?>
                                                     <option value="<?= $row_a['no_rekam_medik'] ?> | <?= $row_a['namadepan'] ?> <?= $row_a['nama_pasien'] ?>"><?= $row_a['no_rekam_medik'] ?> | <?= $row_a['namadepan'] ?> <?= $row_a['nama_pasien'] ?></option>
