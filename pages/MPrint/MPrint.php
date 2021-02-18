@@ -2,17 +2,18 @@
 if (isset($_POST['submit'])) {
 	$date1 = $_POST['date1'];
 	$date2 = $_POST['date2'];
+	$inst = $_POST['inst'];
 
-	if (!empty($date1) && !empty($date2)) {
+	if (!empty($date1) && !empty($date2) && !empty($inst)) {
 		//PERINTAH TAMPIL BERDASARKAN RANGE TANGGAL
-		$q = $db->query("SELECT * FROM tb_soap WHERE tgl_jaga BETWEEN '$date1' and '$date2'"); 
+		$q = $db->query("SELECT * FROM tb_soap WHERE tgl_jaga BETWEEN '$date1' AND '$date2' AND instalasi='$inst'"); 
 	} else {
 		// PERINTAH TAMPILKAN SEMUA DATA
 		$q = $db->query("SELECT * FROM tb_soap ORDER BY tgl_jaga DESC LIMIT 10"); 
 	}
 } else {
         //PERINTAH TAMPILKAN SEMUA DATA
-        $q = $db->query("SELECT * FROM tb_soap ORDER BY tgl_jaga DESC LIMIT 10");
+	$q = $db->query("SELECT * FROM tb_soap ORDER BY tgl_jaga DESC LIMIT 10");
 }
 ?>
 <div class="main-container">
@@ -29,12 +30,12 @@ if (isset($_POST['submit'])) {
 								<li class="breadcrumb-item"><a href="index.php">Home</a></li>
 								<li class="breadcrumb-item active" aria-current="page">Serach / Print</li>
 							</ol>
-                            <hr>
+							<hr>
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item">
-                                    <h5>
-                                        Sreach / Print <?= tanggal_indo(date('Y-m-d'));?>
-                                    </h5> 
+									<h5>
+										Sreach / Print <?= tanggal_indo(date('Y-m-d'));?>
+									</h5> 
 								</li>
 							</ol>
 						</nav>
@@ -50,30 +51,44 @@ if (isset($_POST['submit'])) {
 				<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-30">
 					<div class="pd-20 card-box mb-30">
 						<div class="row">
-							<div class="col-xl-4">
-								<img src="assets/mode/images/logo-icon.png" alt=""> <h5><b>BODJ</b> <small>Rawat Inap</small></h5>
+							<div class="col-xl-3">
+								<img src="assets/mode/images/logo-icon.png" alt=""> <h5><b>BODJ</b> <small>RSKG</small></h5>
 							</div>
-							<div class="col-xl-4">
-								<h5><b>Cari Per-Periode</b><small> Buku Catatan Dokter Rawat Inap</small></h5>
+							<div class="col-xl-5">
+								<br>
+								<h5><b>Cari Per-Periode</b><small> Buku Catatan Dokter RSKG</small></h5>
 							</div>
 						</div>
 						<hr>
-                        <form method="POST" action="">
-                            <div class="row">
-                                <div class="col-xl-5">
-                                    <label>Dari Tanggal Jaga</label>
-                                    <input type="date" name="date1" id="date1" class="form-control" name="date1" value="" placeholder="Tanggal Jaga..." required/>
-                                </div>
-                                <div class="col-xl-5">
-                                    <label>Sampai Tanggal Jaga</label>
-                                    <input type="date" name="date2" id="date2" class="form-control" name="date2" value="" placeholder="Tanggal Jaga..." required/>
-                                </div>
-                                <div class="col-xl-2">
-                                    <label style="color:#fff">Sampai</label>
-                                    <button type="submit" name="submit" class="btn btn-primary btn-block" value="Cari"><i class="icon-copy ion-search"></i> Cari</button>
-                                </div>
-                            </div>
-                        </form>
+						<form method="POST" action="">
+							<div class="row">
+								<div class="col-xl-3">
+									<label>Dari Tanggal Jaga</label>
+									<input type="date" name="date1" id="date1" class="form-control" value="<?= $date1 ?>" placeholder="Tanggal Jaga..." required/>
+								</div>
+								<div class="col-xl-3">
+									<label>Sampai Tanggal Jaga</label>
+									<input type="date" name="date2" id="date2" class="form-control" value="<?= $date2 ?>" placeholder="Tanggal Jaga..." required/>
+								</div>
+								<div class="col-xl-4">
+									<label>Pilih Instalasi</label>
+									<select class="custom-select2 form-control" name="inst" id="inst" style="width: 100%; height: 38px;" required="required">
+										<optgroup label="Pilih Instalasi">
+											<option value="<?= $inst ?>"><?= $inst ?></option>
+											<option value="">Pilih Instalasi</option>
+											<option value="IGD">IGD</option>
+											<option value="Rawat Jalan">Rawat Jalan</option>
+											<option value="Hemodialisa">Hemodialisa</option>
+											<option value="Rawat Inap">Rawat Inap</option>
+										</optgroup>
+									</select>
+								</div>
+								<div class="col-xl-2">
+									<label style="color:#fff">Sampai</label>
+									<button type="submit" name="submit" class="btn btn-primary btn-block" value="Cari"><i class="icon-copy ion-search"></i> Cari</button>
+								</div>
+							</div>
+						</form>
 					</div>
 				</div>
 				<!-- END SEARCH PERIODE -->
@@ -81,322 +96,95 @@ if (isset($_POST['submit'])) {
 			<!-- Export Datatable start -->
 			<div class="card-box mb-30">
 				<div class="pd-20">
-					<h4 class="text-blue h4">Data Pasien Rawat Inap Berdasarkan Keseluruhan Dokter</h4>
+					<h4 class="text-blue h4">Data Pasien Berdasarkan Inputan BODJ Keseluruhan Dokter</h4>
 					<hr>
 					<button class="btn btn-success"><i class="icon-copy fa fa-file-excel-o" aria-hidden="true"></i> Export MS.Excel<button>
-					<button class="btn btn-primary"><i class="icon-copy fa fa-file-word-o" aria-hidden="true"></i> Export MS.Word<button>
-					<button class="btn btn-danger"><i class="icon-copy fa fa-file-pdf-o" aria-hidden="true"></i> Export PDF<button>
-				</div>
-				<div class="table-responsive">
-					<div class="pb-20">
-						<table class="table hover">
-							<thead>
-								<tr>
-									<th class="table-plus datatable-nosort">No. RM | Nama Pasien</th>
-									<th>Tanggal Jaga</th>
-									<th>Dokter Jaga</th>
-									<th>Kelas Pelayanan</th>
-									<th>Aksi</th>
-								</tr>
-							</thead>
-							<tbody>
-								<!-- DATA -->
-								<?php
-								while ($row = $q->fetch_assoc()) {
-                                ?>
-									<tr>
-										<td>
-											<div class="dropdown">
-												<a class="btn btn-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-													<?= $row['no_rm'] == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row['no_rm'] ?>
-												</a>
-												<div class="dropdown-menu dropdown-menu-right">
-													<a class="dropdown-item" href="#" data-toggle="modal" data-target="#detailsoap<?= $row['id']?>">Data SOAP</a>
-													<a class="dropdown-item" href="#">Resume Perawatan</a>
-													<a class="dropdown-item" href="#">Riwayat Perawatan</a>
-												</div>
-											</div>
-										</td>
-										<td><?= $row['tgl_jaga'] == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : tanggal_indo($row['tgl_jaga']) ?></td>
-										<td><?= $row['dokter_jaga'] == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row['dokter_jaga'] ?></td>
-										<td><?= $row['kelas'] == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row['kelas'] ?></td>
-										<td>
-											<a href="#" data-toggle="modal" data-target="#updatefilelab<?= $row['id']?>"><span class="btn btn-warning btn-sm"><i class="icon-copy ion-android-image"></i> <b>LAB</b> </span></a>
-											<a href="#" data-toggle="modal" data-target="#updatefilerontgen<?= $row['id']?>"><span class="btn btn-warning btn-sm"><i class="icon-copy ion-android-image"></i> <b>Rontgent</b> </span></a>
-											<a href="#" data-toggle="modal" data-target="#updatefileekg<?= $row['id']?>"><span class="btn btn-warning btn-sm"><i class="icon-copy ion-android-image"></i> <b>EKG</b> </span></a>
-										</td>
-									</tr>
-									<!-- DETAIL SOAP & KETERANGAN -->
-									<div class="modal fade" id="detailsoap<?= $row['id']?>" role="dialog">
-										<div class="modal-dialog modal-lg modal-dialog-centered">
-											<div class="modal-content">
-												<div class="modal-header">
-													<label class="modal-title">Lihat Data Buku Operan Dokter Jaga Rawat Inap <b><?= $row['nama_pasien']; ?></b></label>
-													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-														<span aria-hidden="true">&times;</span>
-													</button>
-												</div>
-												<div class="modal-body">
-													<div class="row">
-														<div class="col-lg-6">
-															<p><b>Identitas Pasien</b></p>
-															<p>No.Rekam Medis | Nama Pasien: <br><?= $row['no_rm']; ?></p>
-															<p>Kelas: <?= $row['kelas']; ?></p>
-														</div>
-														<div class="col-lg-6">
-															<p><b>Dokter</b></p>
-															<p>Tanggal Dokter Jaga: <?= $row['tgl_jaga']; ?></p>
-															<p>Dokter: <?= $row['dokter_jaga']; ?></p>
-															<p>DPJP: <?= $row['DPJP']; ?></p>
-														</div>
-													</div>
-													<hr>
-													<div align="center">
-														<label><b>SOAP</b></label>
-													</div>
-													<hr>
-													<div align="center">
-														<h5>Subject</h5>
-													</div>
-													<hr>
-													<div class="row">
-														<div class="col-lg-12">
-															<div class="input-group">
-																<textarea type="text" class="ckeditor" id="ckedtor" name="subject" placeholder="Subject..." readonly><?= $row['subject']; ?></textarea>
+						<button class="btn btn-primary"><i class="icon-copy fa fa-file-word-o" aria-hidden="true"></i> Export MS.Word<button>
+							<button class="btn btn-danger"><i class="icon-copy fa fa-file-pdf-o" aria-hidden="true"></i> Export PDF<button>
+							</div>
+							<div class="table-responsive">
+								<div class="pb-20">
+									<table class="table hover multiple-select-row data-table-export nowrap">
+										<thead>
+											<tr align="center">
+												<th rowspan="2" class="table-plus datatable-nosort">No. RM | Nama Pasien</th>
+												<th rowspan="2">Tanggal Jaga</th>
+												<th rowspan="2">Dokter Jaga</th>
+												<th rowspan="2">Kelas Pelayanan</th>
+												<th rowspan="2">Instalasi</th>
+												<th colspan="2">SOAP</th>
+												<th rowspan="2">Keterangan</th>
+												<th colspan="2">File</th>
+											</tr>
+											<tr align="center">
+												<th>Subject</th>
+												<th>Object</th>
+												<th>Assesment</th>
+												<th>Plan</th>
+												<th>LAB</th>
+												<th>Rontgent</th>
+												<th>EKG</th>
+											</tr>
+										</thead>
+										<tbody>
+											<!-- DATA -->
+											<?php
+											while ($row = $q->fetch_assoc()) {
+												?>
+												<tr align="center">
+													<td><?= $row['no_rm'] == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row['no_rm'] ?></td>
+													<td><?= $row['tgl_jaga'] == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : tanggal_indo($row['tgl_jaga']) ?></td>
+													<td><?= $row['dokter_jaga'] == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row['dokter_jaga'] ?></td>
+													<td><?= $row['kelas'] == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row['kelas'] ?></td>
+													<td><?= $row['instalasi'] == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row['instalasi'] ?></td>
+													<td><?= $row['subject'] == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row['subject'] ?></td>
+													<td><?= $row['object'] == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row['object'] ?></td>
+													<td><?= $row['assesment'] == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row['assesment'] ?></td>
+													<td><?= $row['plan'] == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row['plan'] ?></td>
+													<td><?= $row['keterangan'] == NULL ? "<i><font style='color:red;'>Not Found</font></i>" : $row['keterangan'] ?></td>
+													<td>
+														<?php
+														if ($row['berkas']==NULL) { ?>
+															<div align="center">
+																<img src="assets/uploads/object/icon/notfound.png" class="lingkaran" alt="" />
 															</div>
-														</div>
-													</div>
-													<hr>
-													<div align="center">
-														<h5>Object</h5>
-													</div>
-													<hr>
-													<div class="row">
-														<div class="col-lg-12">
-															<div class="input-group">
-																<textarea type="text" class="ckeditor" id="ckedtor" name="object" placeholder="Object..." readonly><?= $row['object']; ?></textarea>
+														<?php }else{ ?>
+															<div align="center">
+																<img src="<?= 'assets/uploads/object/'. $row['berkas'];?>" class="lingkaran" alt="" />
+															</div>   
+														<?php } ?>
+													</td>
+													<td>
+														<?php
+														if ($row['rontgent']==NULL) { ?>
+															<div align="center">
+																<img src="assets/uploads/object/icon/notfound.png" class="lingkaran" alt="" />
 															</div>
-														</div>
-													</div>
-													<hr>
-													<div align="center">
-														<h5>Assesment</h5>
-													</div>
-													<hr>
-													<div class="row">
-														<div class="col-lg-12">
-															<div class="input-group">
-																<textarea type="text" class="ckeditor" id="ckedtor" name="assesment" placeholder="Assesment..." readonly><?= $row['assesment']; ?></textarea>
+														<?php }else{ ?>
+															<div align="center">
+																<img src="<?= 'assets/uploads/object/'. $row['rontgent'];?>" class="lingkaran" alt="" />
+															</div>   
+														<?php } ?>
+													</td>
+													<td>
+														<?php
+														if ($row['ekg']==NULL) { ?>
+															<div align="center">
+																<img src="assets/uploads/object/icon/notfound.png" class="lingkaran" alt="" />
 															</div>
-														</div>
-													</div>
-													<hr>
-													<div align="center">
-														<h5>Plan</h5>
-													</div>
-													<hr>
-													<div class="row">
-														<div class="col-lg-12">
-															<div class="input-group">
-																<textarea type="text" class="ckeditor" id="ckedtor" name="plan" placeholder="Plan..." readonly><?= $row['plan']; ?></textarea>
-															</div>
-														</div>
-													</div>
-													<hr>
-													<div align="center">
-														<h5>Keterangan</h5>
-													</div>
-													<hr>
-													<div class="row">
-														<div class="col-lg-12">
-															<div class="input-group">
-																<textarea type="text" class="ckeditor" id="ckedtor" name="keterangan" placeholder="Keterangan..." readonly><?= $row['keterangan']; ?></textarea>
-															</div>
-														</div>
-													</div>
-													<hr>
-													<div align="center">
-														<h5>Upload Berkas LAB, Rontgent & EKG Pasien</h5>
-													</div>
-													<hr>
-													<div class="row">
-														<div class="col-lg-4">
-															<label>LAB</label>
-															<div class="input-group">
-																<?php
-																if ($row['berkas']==NULL) { ?>
-																	<div align="center">
-																		<img src="assets/uploads/object/icon/notfound.png" class="lingkaran" alt="" />
-																	</div>
-																<?php }else{ ?>
-																	<div align="center">
-																		<img src="<?= 'assets/uploads/object/'. $row['berkas'];?>" class="lingkaran" alt="" />
-																	</div>   
-																<?php } ?>
-															</div>
-														</div>
-														<div class="col-lg-4">
-															<label>Rontgent</label>
-															<div class="input-group">
-																<?php
-																if ($row['rontgent']==NULL) { ?>
-																	<div align="center">
-																		<img src="assets/uploads/object/icon/notfound.png" class="lingkaran" alt="" />
-																	</div>
-																<?php }else{ ?>
-																	<div align="center">
-																		<img src="<?= 'assets/uploads/object/'. $row['rontgent'];?>" class="lingkaran" alt="" />
-																	</div>   
-																<?php } ?>
-															</div>
-														</div>
-														<div class="col-lg-4">
-															<label>EKG</label>
-															<div class="input-group">
-																<?php
-																if ($row['ekg']==NULL) { ?>
-																	<div align="center">
-																		<img src="assets/uploads/object/icon/notfound.png" class="lingkaran" alt="" />
-																	</div>
-																<?php }else{ ?>
-																	<div align="center">
-																		<img src="<?= 'assets/uploads/object/'. $row['ekg'];?>" class="lingkaran" alt="" />
-																	</div>   
-																<?php } ?>
-															</div>
-														</div>
-													</div>
-													<div class="modal-footer">
-														<button type="submit" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<!-- END DETAIL SOAP & KETERANGAN -->
-									<!-- DETAIL UPDATE LAB -->
-									<div class="modal fade" id="updatefilelab<?= $row['id']?>" role="dialog">
-										<div class="modal-dialog modal-md">
-											<div class="modal-content">
-												<div class="modal-header">
-													<label class="modal-title">Update File LAB <br> a.n <?= $row['no_rm']; ?></label>
-													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-														<span aria-hidden="true">&times;</span>
-													</button>
-												</div>
-												<div class="modal-body">
-													<form class="form-horizontal form-bordered" action="pages/MInputBODJ/MInputBODJ_file.php" method="POST" enctype="multipart/form-data">
-														<div class="row">
-															<label class="col-lg-4 col-form-label">Upload Berkas Digital Sebelumnya</label>
-															<div class="col-lg-8">
-																<div class="input-group">
-																	<?php
-																	if ($row['berkas']==NULL) { ?>
-																		<div align="center">
-																			<img src="assets/uploads/object/icon/notfound.png" class="lingkaran" alt="" />
-																		</div>
-																	<?php }else{ ?>
-																		<div align="center">
-																			<img src="<?= 'assets/uploads/object/'. $row['berkas'];?>" class="lingkaran" alt="" />
-																		</div>   
-																	<?php } ?>
-																</div>
-															</div>
-														</div>
-														<hr>
-														<div class="form-group">
-															<button type="button" class="btn btn-block btn-warning" data-dismiss="modal">Tutup</button>
-														</div>
-													</form>
-												</div>
-											</div>
-										</div>
-									</div>
-									<!-- END UPDATE LAB -->
-									<!-- DETAIL UPDATE RONTGENT -->
-									<div class="modal fade" id="updatefilerontgen<?= $row['id']?>" role="dialog">
-										<div class="modal-dialog modal-md">
-											<div class="modal-content">
-												<div class="modal-header">
-													<label class="modal-title">Update File Rontgent <br> a.n <?= $row['no_rm']; ?></label>
-													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-														<span aria-hidden="true">&times;</span>
-													</button>
-												</div>
-												<div class="modal-body">
-													<form class="form-horizontal form-bordered" action="pages/MInputBODJ/MInputBODJ_file.php" method="POST" enctype="multipart/form-data">
-														<div class="row">
-															<label class="col-lg-4 col-form-label">Upload Berkas Digital Sebelumnya</label>
-															<div class="col-lg-8">
-																<div class="input-group">
-																	<?php
-																	if ($row['rontgent']==NULL) { ?>
-																		<div align="center">
-																			<img src="assets/uploads/object/icon/notfound.png" class="lingkaran" alt="" />
-																		</div>
-																	<?php }else{ ?>
-																		<div align="center">
-																			<img src="<?= 'assets/uploads/object/'. $row['rontgent'];?>" class="lingkaran" alt="" />
-																		</div>   
-																	<?php } ?>
-																</div>
-															</div>
-														</div>
-														<hr>
-														<div class="form-group">
-															<button type="button" class="btn btn-block btn-warning" data-dismiss="modal">Tutup</button>
-														</div>
-													</form>
-												</div>
-											</div>
-										</div>
-									</div>
-									<!-- END UPDATE RONTGENT -->
-									<!-- DETAIL UPDATE EKG -->
-									<div class="modal fade" id="updatefileekg<?= $row['id']?>" role="dialog">
-										<div class="modal-dialog modal-md">
-											<div class="modal-content">
-												<div class="modal-header">
-													<label class="modal-title">Update File EKG <br> a.n <?= $row['no_rm']; ?></label>
-													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-														<span aria-hidden="true">&times;</span>
-													</button>
-												</div>
-												<div class="modal-body">
-													<form class="form-horizontal form-bordered" action="pages/MInputBODJ/MInputBODJ_file.php" method="POST" enctype="multipart/form-data">
-														<div class="row">
-															<label class="col-lg-4 col-form-label">Upload Berkas Digital Sebelumnya</label>
-															<div class="col-lg-8">
-																<div class="input-group">
-																	<?php
-																	if ($row['ekg']==NULL) { ?>
-																		<div align="center">
-																			<img src="assets/uploads/object/icon/notfound.png" class="lingkaran" alt="" />
-																		</div>
-																	<?php }else{ ?>
-																		<div align="center">
-																			<img src="<?= 'assets/uploads/object/'. $row['ekg'];?>" class="lingkaran" alt="" />
-																		</div>   
-																	<?php } ?>
-																</div>
-															</div>
-														</div>
-														<hr>
-														<div class="form-group">
-															<button type="button" class="btn btn-block btn-warning" data-dismiss="modal">Tutup</button>
-														</div>
-													</form>
-												</div>
-											</div>
-										</div>
-									</div>
-									<!-- END UPDATE EKG -->
-								<?php } ?>
-								<!-- END DATA -->
-							</tbody>
-						</table>
+														<?php }else{ ?>
+															<div align="center">
+																<img src="<?= 'assets/uploads/object/'. $row['ekg'];?>" class="lingkaran" alt="" />
+															</div>   
+														<?php } ?>
+													</td>
+												</tr>
+											<?php } ?>
+											<!-- END DATA -->
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<!-- Export Datatable End -->
 					</div>
-				</div>
-			</div>
-			<!-- Export Datatable End -->
-		</div>
