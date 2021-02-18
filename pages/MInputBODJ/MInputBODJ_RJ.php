@@ -36,11 +36,11 @@
                     <ol class="breadcrumb">
                         <?php
                             $sesi_t= $_SESSION['nama_lengkap'];
-                            $t_soap = $db->query("SELECT COUNT(*) AS jumlah FROM tb_soap WHERE instalasi='Rawat Inap' AND dokter_jaga='$sesi_t' ");
+                            $t_soap = $db->query("SELECT COUNT(*) AS jumlah FROM tb_soap WHERE instalasi='Rawat Jalan' AND dokter_jaga='$sesi_t' ");
                             $pow3 = $t_soap->fetch_assoc();
                         ?>
 
-                        <li class="breadcrumb-item"><label>Jumlah Pasien Rawat Inap yang telah di input oleh <?= $_SESSION['nama_lengkap'];?> - <?= $pow3['jumlah']; ?> Pasien</label> 
+                        <li class="breadcrumb-item"><label>Jumlah Pasien Rawat Jalan yang telah di input oleh <?= $_SESSION['nama_lengkap'];?> - <?= $pow3['jumlah']; ?> Pasien</label> 
                         </li>
                     </ol>
                     <hr>

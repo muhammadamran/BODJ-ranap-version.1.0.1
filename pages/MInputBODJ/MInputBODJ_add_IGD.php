@@ -80,7 +80,7 @@ $sub_kalimat = substr($kalimat,-5);
                                             <optgroup label="Pilih Data No.Rekam Medis / Nama Pasien">
                                                 <option value="">Pilih Data No.Rekam Medis / Nama Pasien</option>
                                                 <?php
-                                                $result = pg_query($pg, "SELECT * FROM pasien_m ORDER BY create_time DESC LIMIT 5000");
+                                                $result = pg_query($pg, "SELECT * FROM pasien_m ORDER BY create_time DESC");
                                                 while ($row = pg_fetch_assoc($result)) {
                                                     ?>
                                                     <option value="<?= $row['no_rekam_medik'] ?> | <?= $row['namadepan'] ?> <?= $row['nama_pasien'] ?>"><?= $row['no_rekam_medik'] ?> | <?= $row['namadepan'] ?> <?= $row['nama_pasien'] ?></option>
